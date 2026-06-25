@@ -1382,7 +1382,9 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   }
   html[dir=rtl] .fn-sidebar__item--active { border-right-color: transparent; border-bottom-color: var(--teal); }
   .fn-sidebar__num { width: auto; font-size: 10px; }
-  .fn-sidebar__name { font-size: 12px; text-
+  .fn-sidebar__name { font-size: 12px; text-align: center; }
+}
+
 
 /* ══════════════════════════════════════════
    RESPONSIVE — NAV BREAKPOINT ≤ 768px
