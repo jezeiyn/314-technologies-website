@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="314 Technologies - A 100% Emirati-owned technology consultancy and Google Cloud Partner. Consulting, Digital Public Infrastructure, and Cloud services for UAE government and enterprise." />
+  <title>314 Technologies | The constant you can build on.</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/logos/logo_simple_reversed.svg" />
+</head>
+<body class="lang-en">
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+
+    <!-- Logo -->
+    <a class="nav__logo" data-page="home" aria-label="314 Technologies - Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 90" fill="none" aria-hidden="true">
+        <g transform="translate(5,5) scale(0.667)">
+          <g stroke-linecap="round">
+            <path d="M60 16 A44 44 0 0 1 104 60" stroke="#FAFAF8" stroke-width="3.4"/>
+            <path d="M104 60 A44 44 0 0 1 60 104" stroke="#FAFAF8" stroke-width="3.4"/>
+            <path d="M60 104 A44 44 0 0 1 16 60" stroke="#FAFAF8" stroke-width="3.4"/>
+            <path d="M16 60 A44 44 0 0 1 60 16" stroke="#FAFAF8" stroke-width="3.4"/>
+            <path d="M60 34 A26 26 0 0 1 86 60" stroke="#FAFAF8" stroke-width="2.6"/>
+            <path d="M60 86 A26 26 0 0 1 34 60" stroke="#FAFAF8" stroke-width="2.6"/>
+            <line x1="7" y1="60" x2="110" y2="60" stroke="#0E1726" stroke-width="7.5"/>
+            <line x1="7" y1="60" x2="110" y2="60" stroke="#1FA39B" stroke-width="3.6"/>
+            <circle cx="7" cy="60" r="4" fill="#1FA39B"/>
+          </g>
+        </g>
+        <text x="92" y="56" font-family="'Space Grotesk','IBM Plex Sans',Arial,sans-serif" font-weight="700" font-size="44" letter-spacing="-0.9" fill="#FAFAF8">314</text>
+        <text x="95" y="75" font-family="'Space Grotesk','IBM Plex Sans',Arial,sans-serif" font-weight="400" font-size="11.5" letter-spacing="4.8" fill="#AEB6C2">technologies</text>
+      </svg>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav__links" role="list">
+      <li><a class="nav__link active" data-page="home"><span class="en">Home</span><span class="ar">الرئيسية</span></a></li>
+      <li><a class="nav__link" data-page="about"><span class="en">About Us</span><span class="ar">من نحن</span></a></li>
+      <li><a class="nav__link" data-page="industry"><span class="en">Industry Solutions</span><span class="ar">حلول القطاعات</span></a></li>
+      <li><a class="nav__link" data-page="functions"><span class="en">Business Functions</span><span class="ar">وظائف الأعمال</span></a></li>
+      <li><a class="nav__link" data-page="services"><span class="en">Services</span><span class="ar">الخدمات</span></a></li>
+      <li><a class="nav__link" data-page="contact"><span class="en">Contact Us</span><span class="ar">تواصل معنا</span></a></li>
+    </ul>
+
+    <div class="nav__actions">
+      <button class="lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="en">عربي</span>
+        <span class="ar">English</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Mobile nav drawer (same order as desktop) -->
+<div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
+  <a class="mobile-nav__link active" data-page="home"><span class="en">Home</span><span class="ar">الرئيسية</span></a>
+  <a class="mobile-nav__link" data-page="about"><span class="en">About Us</span><span class="ar">من نحن</span></a>
+  <a class="mobile-nav__link" data-page="industry"><span class="en">Industry Solutions</span><span class="ar">حلول القطاعات</span></a>
+  <a class="mobile-nav__link" data-page="functions"><span class="en">Business Functions</span><span class="ar">وظائف الأعمال</span></a>
+  <a class="mobile-nav__link" data-page="services"><span class="en">Services</span><span class="ar">الخدمات</span></a>
+  <a class="mobile-nav__link" data-page="contact"><span class="en">Contact Us</span><span class="ar">تواصل معنا</span></a>
+  <div class="mobile-nav__lang">
+    <button class="lang-btn" id="langToggleMobile">
+      <span class="en">عربي</span>
+      <span class="ar">English</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════════ -->
+<div id="page-home" class="page active page-content">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__inner">
+        <p class="hero__eyebrow en">Three One Four Technologies</p>
+        <p class="hero__eyebrow ar">ثلاثة مائة وأربعة عشر تكنولوجيز</p>
+
+        <h1 class="hero__h1 en">The constant you<br>can <span>build on.</span><br>The infinite you<br>can build toward.</h1>
+        <h1 class="hero__h1 ar">أساسٌ تبني<br><span>عليه،</span><br>وأفقٌ تبني<br>نحوه.</h1>
+
+        <p class="hero__sub en">A 100% Emirati-owned technology consultancy and certified Google Cloud Partner, serving UAE government and enterprise clients who cannot afford to build on shaky ground.</p>
+        <p class="hero__sub ar">شركة استشارات تقنية مملوكة بالكامل لمواطنين إماراتيين وشريك معتمد من Google Cloud، تخدم عملاء الحكومة والمؤسسات في الإمارات الذين لا يتحملون البناء على أرض غير مستقرة.</p>
+
+        <div class="hero__ctas">
+          <a class="btn btn-primary" data-page="services">
+            <span class="en">Explore Our Services</span>
+            <span class="ar">استكشف خدماتنا</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-outline" data-page="contact">
+            <span class="en">Contact Us</span>
+            <span class="ar">تواصل معنا</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Strip -->
+  <section class="section section--ink-soft">
+    <div class="container">
+      <p class="section__label en">What We Do</p>
+      <p class="section__label ar">ما نقدمه</p>
+      <h2 class="section__h2 section__h2--light en">Three services. One local partner.</h2>
+      <h2 class="section__h2 section__h2--light ar">ثلاث خدمات. شريك محلي واحد.</h2>
+      <p class="section__lead section__lead--light en">From institutional excellence and AI enablement to cloud migration and digital public infrastructure, delivered by an expert network that is accountable to you in person.</p>
+      <p class="section__lead section__lead--light ar">من التميز المؤسسي وتمكين الذكاء الاصطناعي إلى ترحيل السحابة والبنية التحتية الرقمية العامة، تُقدَّم من خلال شبكة خبراء مسؤولة أمامك شخصياً.</p>
+
+      <div class="services-grid">
+
+        <!-- 314 Consulting -->
+        <div class="service-card" data-page="services" role="button" tabindex="0">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="10" width="32" height="26" rx="2"/>
+              <path d="M6 16h32M14 10v6M30 10v6M14 24h8M14 29h12"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">314 Consulting</h3>
+          <p class="service-card__body en">15 expert-led advisory products spanning government excellence, AI strategy, PMO, procurement, IT governance, and capacity building. Structured. Accountable. Local.</p>
+          <p class="service-card__body ar">15 منتجاً استشارياً متخصصاً تشمل التميز الحكومي واستراتيجية الذكاء الاصطناعي وإدارة المشاريع والمشتريات وحوكمة تقنية المعلومات وبناء القدرات. منظم. مسؤول. محلي.</p>
+          <span class="service-card__link en">Learn more <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          <span class="service-card__link ar">اعرف المزيد <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+
+        <!-- 314 DPI -->
+        <div class="service-card" data-page="services" role="button" tabindex="0">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="22" cy="22" r="16"/>
+              <path d="M22 6v36M6 22h36"/>
+              <path d="M10 12c4 4 8 6 12 6s8-2 12-6M10 32c4-4 8-6 12-6s8 2 12 6"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">314 DPI</h3>
+          <p class="service-card__body en">Digital Public Infrastructure on Google Cloud. Functional registries, digital authentication, credential sharing, and G2P systems, deployable in weeks with full sovereign control.</p>
+          <p class="service-card__body ar">البنية التحتية الرقمية العامة على Google Cloud. سجلات وظيفية ومصادقة رقمية ومشاركة بيانات الاعتماد وأنظمة G2P، قابلة للنشر في أسابيع مع تحكم سيادي كامل.</p>
+          <span class="service-card__link en">Learn more <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          <span class="service-card__link ar">اعرف المزيد <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+
+        <!-- 314 Cloud -->
+        <div class="service-card" data-page="services" role="button" tabindex="0">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M30 32H14a8 8 0 1 1 1.2-15.9A10 10 0 1 1 30 26"/>
+              <path d="M22 30v-12M18 22l4-4 4 4"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">314 Cloud</h3>
+          <p class="service-card__body en">Google Cloud strategy, migration, implementation, and managed services for UAE government bodies and regulated enterprises. Honest scope. Right-sized for you.</p>
+          <p class="service-card__body ar">استراتيجية Google Cloud والترحيل والتنفيذ والخدمات المُدارة للجهات الحكومية الإماراتية والمؤسسات المنظمة. نطاق واضح. مُقاس حسب احتياجاتك.</p>
+          <span class="service-card__link en">Learn more <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          <span class="service-card__link ar">اعرف المزيد <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Why 314 -->
+  <section class="section">
+    <div class="container">
+      <p class="section__label en">Why 314</p>
+      <p class="section__label ar">لماذا 314</p>
+      <h2 class="section__h2 section__h2--ink en">A foundation does not shout.</h2>
+      <h2 class="section__h2 section__h2--ink ar">الأساس لا يصرخ.</h2>
+      <p class="section__lead section__lead--ink en">We answer to the client, not the OEM. Here is what that looks like in practice.</p>
+      <p class="section__lead section__lead--ink ar">نحن مسؤولون أمام العميل، لا أمام المصنّع. إليك ما يبدو عليه ذلك في الواقع.</p>
+
+      <div class="pillars-grid">
+        <div class="pillar">
+          <p class="pillar__num en">01</p>
+          <p class="pillar__num ar">01</p>
+          <h3 class="pillar__title en">Reliability before flash</h3>
+          <h3 class="pillar__title ar">الثقة قبل البريق</h3>
+          <p class="pillar__body en">We do not ship what will not hold. A foundation that moves is not a foundation. Every engagement starts with what keeps working, not what looks impressive in a slide deck.</p>
+          <p class="pillar__body ar">لا نقدم ما لا يصمد. الأساس الذي يتزعزع ليس أساساً. تبدأ كل مشاركة بما يستمر في العمل، لا بما يبدو مبهراً في عرض تقديمي.</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar__num en">02</p>
+          <p class="pillar__num ar">02</p>
+          <h3 class="pillar__title en">Vendor-agnostic by principle</h3>
+          <h3 class="pillar__title ar">استقلالية عن الموردين بحكم المبدأ</h3>
+          <p class="pillar__body en">We recommend what is right for the problem, even when it is not the partner that pays us best. We are a Google Cloud Partner because it is often the right answer, not because it is the only one we know.</p>
+          <p class="pillar__body ar">نوصي بما يناسب المشكلة، حتى لو لم يكن ذلك من الشريك الأعلى دفعاً. نحن شريك Google Cloud لأنها كثيراً ما تكون الإجابة الصحيحة، لا لأنها الوحيدة التي نعرفها.</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar__num en">03</p>
+          <p class="pillar__num ar">03</p>
+          <h3 class="pillar__title en">Local is the point, not the pitch</h3>
+          <h3 class="pillar__title ar">المحلية حقيقة لا شعار</h3>
+          <p class="pillar__body en">Real Emirati ownership, real in-country value, real accountability you can reach. We do not outsource the relationship. The person who scoped it is the person who delivers it.</p>
+          <p class="pillar__body ar">ملكية إماراتية حقيقية، قيمة محلية حقيقية، مساءلة حقيقية يصل إليها العميل. لا نُسنِد العلاقة لطرف خارجي. من حدد النطاق هو من يقدم الخدمة.</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar__num en">04</p>
+          <p class="pillar__num ar">04</p>
+          <h3 class="pillar__title en">Always one more decimal</h3>
+          <h3 class="pillar__title ar">دائماً عشري واحد إضافي</h3>
+          <p class="pillar__body en">We do not settle for good enough. Precision is how we earn the next contract, and the one after that. Clear language, honest scope, and delivery that matches what was promised.</p>
+          <p class="pillar__body ar">لا نكتفي بما يكفي. الدقة هي الطريقة التي نكسب بها العقد التالي وما يليه. لغة واضحة ونطاق صادق وتسليم يطابق ما وُعد به.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Cloud Partner Strip -->
+  <section class="partner-strip">
+    <div class="container">
+      <div class="partner-strip__inner">
+        <div class="partner-badge">
+          <div>
+            <p class="partner-badge__label en">Certified Partner</p>
+            <p class="partner-badge__label ar">شريك معتمد</p>
+            <p class="partner-badge__name">Google Cloud</p>
+          </div>
+        </div>
+        <p class="partner-text en">As a certified Google Cloud Partner, 314 Technologies builds, migrates, and manages workloads on Google Cloud, including DPI-in-a-Box deployments for government digital infrastructure across the UAE and GCC.</p>
+        <p class="partner-text ar">بوصفنا شريكاً معتمداً من Google Cloud، تقوم شركة 314 تكنولوجيز ببناء وترحيل وإدارة أعباء العمل على Google Cloud، بما في ذلك نشر DPI-in-a-Box للبنية التحتية الرقمية الحكومية عبر الإمارات وخليج التعاون الخليجي.</p>
+        <a class="btn btn-teal-outline" data-page="services">
+          <span class="en">314 Cloud</span>
+          <span class="ar">314 السحاب</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-home -->
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: ABOUT US
+══════════════════════════════════════════ -->
+<div id="page-about" class="page page-content">
+
+  <!-- Hero banner -->
+  <section class="section section--dark" style="min-height: 42vh; display:flex; align-items:center; padding: 80px 0;">
+    <div class="container">
+      <p class="section__label en">About Us</p>
+      <p class="section__label ar">من نحن</p>
+      <h1 class="section__h2 section__h2--light en" style="font-size:clamp(32px,4.5vw,56px);">Who we are<br>and what we stand for.</h1>
+      <h1 class="section__h2 section__h2--light ar" style="font-size:clamp(28px,4vw,52px);">من نحن<br>وما نؤمن به.</h1>
+      <p class="section__lead section__lead--light mt-24 en">314 Technologies is a UAE-based technology consultancy and systems integrator built on the principle that local accountability and technical excellence are not a trade-off.</p>
+      <p class="section__lead section__lead--light mt-24 ar">شركة 314 تكنولوجيز هي شركة استشارات تقنية وتكامل أنظمة مقرها الإمارات، مبنية على مبدأ أن المساءلة المحلية والتميز التقني ليسا خياراً بين أمرين.</p>
+    </div>
+  </section>
+
+  <!-- Who We Are -->
+  <section class="section">
+    <div class="container">
+      <p class="section__label en">Company Overview</p>
+      <p class="section__label ar">نظرة عامة عن الشركة</p>
+      <div class="about-intro">
+        <div class="about-intro__body">
+          <p class="en">314 Technologies (Three One Four Technologies L.L.C) is a 100% Emirati-owned technology consultancy and systems integrator based in Dubai, UAE. We hold in-country value (ICV) preference status, are registered with Dubai SME and the National Program, and operate as a certified Google Cloud Partner.</p>
+          <p class="ar">شركة 314 تكنولوجيز (ثري وان فور تكنولوجيز ش.ذ.م.م) شركة استشارات تقنية وتكامل أنظمة مملوكة بالكامل لمواطنين إماراتيين، مقرها دبي، الإمارات العربية المتحدة. نحمل أفضلية قيمة الصنع المحلي (ICV)، ومسجلون في مؤسسة محمد بن راشد للمنشآت الصغيرة والمتوسطة والبرنامج الوطني، ونعمل بوصفنا شريكاً معتمداً من Google Cloud.</p>
+
+          <p class="en">We serve two distinct tracks. Government bodies, semi-government entities, and regulated enterprises that buy on trust, sovereignty, and long-term accountability. And growing UAE businesses that need enterprise-grade technology without the enterprise price tag.</p>
+          <p class="ar">نخدم مسارين مختلفين. الجهات الحكومية وشبه الحكومية والمؤسسات المنظمة التي تشتري بناءً على الثقة والسيادة والمساءلة طويلة الأمد. والشركات الإماراتية النامية التي تحتاج تقنية بمستوى المؤسسات دون ثمن المؤسسات.</p>
+
+          <p class="en">We are honest about what you need. We are equally honest about what you do not. The person who scopes your engagement is the person who delivers it, and the relationship does not get passed down a subcontractor chain.</p>
+          <p class="ar">نحن صادقون فيما تحتاجه. وصادقون بالقدر ذاته فيما لا تحتاجه. من يحدد نطاق مشاركتك هو من يقدمها، ولا تُسنَد العلاقة إلى سلسلة من المقاولين من الباطن.</p>
+        </div>
+        <div class="about-intro__aside">
+          <p style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;" class="en">Our Credentials</p>
+          <p style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;" class="ar">اعتماداتنا</p>
+          <ul class="credential-list">
+            <li class="credential-item en">100% Emirati Ownership</li>
+            <li class="credential-item ar">ملكية إماراتية 100%</li>
+            <li class="credential-item en">Dubai SME Registered</li>
+            <li class="credential-item ar">مسجلة في مؤسسة محمد بن راشد</li>
+            <li class="credential-item en">National Program Member</li>
+            <li class="credential-item ar">عضو في البرنامج الوطني</li>
+            <li class="credential-item en">ICV Preference Status</li>
+            <li class="credential-item ar">أفضلية قيمة الصنع المحلي</li>
+            <li class="credential-item en">Certified Google Cloud Partner</li>
+            <li class="credential-item ar">شريك Google Cloud المعتمد</li>
+            <li class="credential-item en">UAE | GCC | MENA Operations</li>
+            <li class="credential-item ar">عمليات في الإمارات وخليج التعاون والشرق الأوسط وشمال أفريقيا</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Principles -->
+  <section class="section section--dark">
+    <div class="container">
+      <p class="section__label en">Our Principles</p>
+      <p class="section__label ar">مبادئنا</p>
+      <h2 class="section__h2 section__h2--light en">Load-bearing, not loud.</h2>
+      <h2 class="section__h2 section__h2--light ar">داعم لا صاخب.</h2>
+      <p class="section__lead section__lead--light en">A foundation does not shout. These are the principles that shape every engagement we take on.</p>
+      <p class="section__lead section__lead--light ar">الأساس لا يصرخ. هذه هي المبادئ التي تُشكّل كل مشاركة نتولاها.</p>
+
+      <div class="principles-grid">
+        <div class="principle">
+          <p class="principle__tag en">Principle 01</p>
+          <p class="principle__tag ar">المبدأ 01</p>
+          <h3 class="principle__title en">Reliability before flash</h3>
+          <h3 class="principle__title ar">الثقة قبل البريق</h3>
+          <p class="principle__do en">We do not ship what will not hold. A foundation that moves is not a foundation. Substance over spectacle, every time.</p>
+          <p class="principle__do ar">لا نقدم ما لا يصمد. الأساس الذي يتزعزع ليس أساساً. الجوهر فوق المظهر، في كل مرة.</p>
+          <p class="principle__quote en">"It works, and it keeps working."</p>
+          <p class="principle__quote ar">"يعمل، ويستمر في العمل."</p>
+        </div>
+        <div class="principle">
+          <p class="principle__tag en">Principle 02</p>
+          <p class="principle__tag ar">المبدأ 02</p>
+          <h3 class="principle__title en">We answer to the client, not the OEM</h3>
+          <h3 class="principle__title ar">نحن مسؤولون أمام العميل، لا أمام المصنّع</h3>
+          <p class="principle__do en">Vendor-agnostic by principle. We recommend what is right for the problem, even when it is not the partner that pays us best. Advice is only worth something if it is honest.</p>
+          <p class="principle__do ar">مستقلون عن الموردين بحكم المبدأ. نوصي بما يناسب المشكلة، حتى لو لم يكن ذلك من الشريك الأعلى دفعاً. المشورة لا قيمة لها إلا إذا كانت صادقة.</p>
+          <p class="principle__quote en">"We will tell you not to buy something when you do not need it."</p>
+          <p class="principle__quote ar">"سنخبرك بعدم الشراء حين لا تحتاج إليه."</p>
+        </div>
+        <div class="principle">
+          <p class="principle__tag en">Principle 03</p>
+          <p class="principle__tag ar">المبدأ 03</p>
+          <h3 class="principle__title en">Local is the point, not the pitch</h3>
+          <h3 class="principle__title ar">المحلية حقيقة لا شعار</h3>
+          <p class="principle__do en">Real Emirati ownership, real in-country value, real accountability the client can reach. The relationship does not go through a regional hub in another country.</p>
+          <p class="principle__do ar">ملكية إماراتية حقيقية، قيمة محلية حقيقية، مساءلة حقيقية يصل إليها العميل. لا تمر العلاقة عبر مكتب إقليمي في بلد آخر.</p>
+          <p class="principle__quote en">"A local call away."</p>
+          <p class="principle__quote ar">"مكالمة محلية."</p>
+        </div>
+        <div class="principle">
+          <p class="principle__tag en">Principle 04</p>
+          <p class="principle__tag ar">المبدأ 04</p>
+          <h3 class="principle__title en">Clear over clever</h3>
+          <h3 class="principle__title ar">الوضوح فوق الذكاء</h3>
+          <p class="principle__do en">We sell complex technology to non-technical decision-makers. Plain language is the product. If you cannot explain it simply, you have not understood it well enough to deliver it.</p>
+          <p class="principle__do ar">نبيع تقنية معقدة لمتخذي قرارات غير تقنيين. اللغة البسيطة هي المنتج. إذا لم تستطع شرحها ببساطة، فأنت لم تفهمها بما يكفي لتقديمها.</p>
+          <p class="principle__quote en">"This handles your identity verification end to end."</p>
+          <p class="principle__quote ar">"هذا يتولى التحقق من هويتك من البداية إلى النهاية."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials Cards -->
+  <section class="creds-section section">
+    <div class="container">
+      <p class="section__label en">Why Us</p>
+      <p class="section__label ar">لماذا نحن</p>
+      <h2 class="section__h2 section__h2--ink en">Built for the UAE market.</h2>
+      <h2 class="section__h2 section__h2--ink ar">مبني لسوق الإمارات.</h2>
+      <p class="section__lead section__lead--ink en">Two tracks, one standard of care. Whether you are a federal ministry or a growing SME, you get the same rigour.</p>
+      <p class="section__lead section__lead--ink ar">مساران، معيار واحد للاهتمام. سواء كنت وزارة اتحادية أو شركة صغيرة ومتوسطة نامية، تحصل على نفس الدقة.</p>
+      <div class="creds-grid">
+        <div class="cred-card">
+          <div class="cred-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M16 3l2.4 7.4H26l-6.4 4.6 2.4 7.4L16 18l-6 4.4 2.4-7.4L6 10.4h7.6z"/></svg>
+          </div>
+          <h3 class="cred-card__title en">Government and Enterprise Track</h3>
+          <h3 class="cred-card__title ar">مسار الحكومة والمؤسسات</h3>
+          <p class="cred-card__body en">100% Emirati ownership, ICV preference, Dubai SME registration, and National Program membership means we meet procurement requirements that external firms cannot.</p>
+          <p class="cred-card__body ar">الملكية الإماراتية الكاملة وأفضلية قيمة الصنع المحلي والتسجيل في مؤسسة محمد بن راشد وعضوية البرنامج الوطني تعني أننا نستوفي متطلبات المشتريات التي لا تستطيع الشركات الخارجية استيفاءها.</p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="8" width="24" height="18" rx="2"/><path d="M10 8V6a6 6 0 0 1 12 0v2M16 16v4M12 18l4-2 4 2"/></svg>
+          </div>
+          <h3 class="cred-card__title en">SME Track</h3>
+          <h3 class="cred-card__title ar">مسار المنشآت الصغيرة والمتوسطة</h3>
+          <p class="cred-card__body en">Enterprise-grade technology, sized and priced for a business like yours. We will tell you not to buy something when you do not need it. A local call away when something breaks.</p>
+          <p class="cred-card__body ar">تقنية بمستوى المؤسسات، مُقاسة ومُسعَّرة لعمل من حجم عملك. سنخبرك بعدم الشراء حين لا تحتاج إليه. مكالمة محلية حين يعطل شيء.</p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M16 3C9 3 4 9 4 16s5 13 12 13 12-6 12-13S23 3 16 3z"/><path d="M12 16l3 3 5-6"/></svg>
+          </div>
+          <h3 class="cred-card__title en">Google Cloud Partner</h3>
+          <h3 class="cred-card__title ar">شريك Google Cloud</h3>
+          <p class="cred-card__body en">Certified access to Google Cloud capabilities, including DPI-in-a-Box and Google Distributed Cloud for sovereign deployments. Direct partner support. No intermediary.</p>
+          <p class="cred-card__body ar">وصول معتمد لإمكانات Google Cloud، بما في ذلك DPI-in-a-Box وGoogle Distributed Cloud للنشر السيادي. دعم شريك مباشر. بلا وسيط.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Cloud partnership detail -->
+  <section class="gcp-section">
+    <div class="container">
+      <div class="gcp-inner">
+        <div class="gcp-text">
+          <p class="section__label en">Google Cloud Partnership</p>
+          <p class="section__label ar">شراكة Google Cloud</p>
+          <h2 class="section__h2 section__h2--light en">The full Google Cloud stack. With local accountability.</h2>
+          <h2 class="section__h2 section__h2--light ar">المجموعة الكاملة من Google Cloud. مع مساءلة محلية.</h2>
+          <p class="en">As a certified Google Cloud Partner, 314 Technologies delivers cloud migration, infrastructure design, managed services, and DPI-in-a-Box deployments. Our partnership gives clients direct access to Google Cloud capabilities through a local, accountable team that understands UAE regulatory and sovereignty requirements.</p>
+          <p class="ar">بوصفنا شريكاً معتمداً من Google Cloud، تقدم شركة 314 تكنولوجيز خدمات ترحيل السحابة وتصميم البنية التحتية والخدمات المُدارة ونشر DPI-in-a-Box. تمنح شراكتنا العملاء وصولاً مباشراً لإمكانات Google Cloud عبر فريق محلي ومسؤول يفهم المتطلبات التنظيمية ومتطلبات السيادة في الإمارات.</p>
+          <a class="btn btn-primary mt-32" data-page="services">
+            <span class="en">Explore 314 Cloud</span>
+            <span class="ar">استكشف 314 السحاب</span>
+          </a>
+        </div>
+        <div class="gcp-visual">
+          <div class="gcp-feature">
+            <div class="gcp-feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 2C5.6 2 2 5.6 2 10s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z"/><path d="M7 10l2 2 4-4"/></svg>
+            </div>
+            <div>
+              <p class="gcp-feature__title en">Cloud Strategy and Migration</p>
+              <p class="gcp-feature__title ar">استراتيجية السحابة والترحيل</p>
+              <p class="gcp-feature__body en">End-to-end migration planning, landing zone design, and go-live delivery.</p>
+              <p class="gcp-feature__body ar">تخطيط الترحيل الشامل وتصميم منطقة الإطلاق وتسليم الإطلاق المباشر.</p>
+            </div>
+          </div>
+          <div class="gcp-feature">
+            <div class="gcp-feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 10c0-3.3 2.7-6 6-6s6 2.7 6 6M2 14h16M6 18h8"/><path d="M10 4v6l3 3"/></svg>
+            </div>
+            <div>
+              <p class="gcp-feature__title en">DPI-in-a-Box Deployment</p>
+              <p class="gcp-feature__title ar">نشر DPI-in-a-Box</p>
+              <p class="gcp-feature__body en">Government digital infrastructure on Google Cloud, including sovereign and air-gapped options.</p>
+              <p class="gcp-feature__body ar">البنية التحتية الرقمية الحكومية على Google Cloud، بما في ذلك خيارات السيادة والعزل الهوائي.</p>
+            </div>
+          </div>
+          <div class="gcp-feature">
+            <div class="gcp-feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="16" height="16" rx="2"/><path d="M6 10h8M10 6v8"/></svg>
+            </div>
+            <div>
+              <p class="gcp-feature__title en">Managed Services and AI</p>
+              <p class="gcp-feature__title ar">الخدمات المُدارة والذكاء الاصطناعي</p>
+              <p class="gcp-feature__body en">Ongoing infrastructure management plus Vertex AI, BigQuery, and Gemini integration for enterprise use cases.</p>
+              <p class="gcp-feature__body ar">إدارة البنية التحتية المستمرة بالإضافة إلى تكامل Vertex AI وBigQuery وGemini لحالات الاستخدام المؤسسي.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-about -->
+
+
+<!-- ══════════════════════════════════════════
+     PLACEHOLDER PAGES (remaining 4)
+══════════════════════════════════════════ -->
+<div id="page-industry" class="page page-content">
+  <div class="placeholder">
+    <p class="placeholder__label en">Coming Soon</p>
+    <p class="placeholder__label ar">قريباً</p>
+    <h2 class="placeholder__title en">Industry Solutions</h2>
+    <h2 class="placeholder__title ar">حلول القطاعات</h2>
+    <p class="placeholder__body en">Sector expertise across government, enterprise, and regulated industries.</p>
+    <p class="placeholder__body ar">خبرة قطاعية في الحكومة والمؤسسات والصناعات المنظمة.</p>
+  </div>
+</div>
+
+<div id="page-functions" class="page page-content">
+  <div class="placeholder">
+    <p class="placeholder__label en">Coming Soon</p>
+    <p class="placeholder__label ar">قريباً</p>
+    <h2 class="placeholder__title en">Business Functions</h2>
+    <h2 class="placeholder__title ar">وظائف الأعمال</h2>
+    <p class="placeholder__body en">The operational domains where 314 creates measurable impact.</p>
+    <p class="placeholder__body ar">المجالات التشغيلية التي تُحدث فيها 314 أثراً قابلاً للقياس.</p>
+  </div>
+</div>
+
+<div id="page-services" class="page page-content">
+  <div class="placeholder">
+    <p class="placeholder__label en">Coming Soon</p>
+    <p class="placeholder__label ar">قريباً</p>
+    <h2 class="placeholder__title en">Services</h2>
+    <h2 class="placeholder__title ar">الخدمات</h2>
+    <p class="placeholder__body en">314 Consulting &nbsp;|&nbsp; 314 DPI &nbsp;|&nbsp; 314 Cloud</p>
+    <p class="placeholder__body ar">314 الاستشارات &nbsp;|&nbsp; 314 للبنية الرقمية &nbsp;|&nbsp; 314 السحاب</p>
+  </div>
+</div>
+
+<div id="page-contact" class="page page-content">
+  <div class="placeholder">
+    <p class="placeholder__label en">Coming Soon</p>
+    <p class="placeholder__label ar">قريباً</p>
+    <h2 class="placeholder__title en">Contact Us</h2>
+    <h2 class="placeholder__title ar">تواصل معنا</h2>
+    <p class="placeholder__body en">A local call away. Dubai, UAE &nbsp;|&nbsp; 314tech.ai</p>
+    <p class="placeholder__body ar">مكالمة محلية. دبي، الإمارات &nbsp;|&nbsp; 314tech.ai</p>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <a class="nav__logo" data-page="home" style="cursor:pointer; display:inline-block;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 90" fill="none" style="height:32px;width:auto;" aria-label="314 Technologies">
+            <g transform="translate(5,5) scale(0.667)"><g stroke-linecap="round">
+              <path d="M60 16 A44 44 0 0 1 104 60" stroke="#FAFAF8" stroke-width="3.4"/>
+              <path d="M104 60 A44 44 0 0 1 60 104" stroke="#FAFAF8" stroke-width="3.4"/>
+              <path d="M60 104 A44 44 0 0 1 16 60" stroke="#FAFAF8" stroke-width="3.4"/>
+              <path d="M16 60 A44 44 0 0 1 60 16" stroke="#FAFAF8" stroke-width="3.4"/>
+              <path d="M60 34 A26 26 0 0 1 86 60" stroke="#FAFAF8" stroke-width="2.6"/>
+              <path d="M60 86 A26 26 0 0 1 34 60" stroke="#FAFAF8" stroke-width="2.6"/>
+              <line x1="7" y1="60" x2="110" y2="60" stroke="#0E1726" stroke-width="7.5"/>
+              <line x1="7" y1="60" x2="110" y2="60" stroke="#1FA39B" stroke-width="3.6"/>
+              <circle cx="7" cy="60" r="4" fill="#1FA39B"/>
+            </g></g>
+            <text x="92" y="56" font-family="'Space Grotesk',Arial,sans-serif" font-weight="700" font-size="44" letter-spacing="-0.9" fill="#FAFAF8">314</text>
+            <text x="95" y="75" font-family="'Space Grotesk',Arial,sans-serif" font-weight="400" font-size="11.5" letter-spacing="4.8" fill="#AEB6C2">technologies</text>
+          </svg>
+        </a>
+        <p class="footer__brand__tagline en">The constant you can build on.<br>The infinite you can build toward.</p>
+        <p class="footer__brand__tagline ar">أساسٌ تبني عليه،<br>وأفقٌ تبني نحوه.</p>
+        <p class="footer__brand__sub en">Three One Four Technologies L.L.C<br>Dubai, United Arab Emirates</p>
+        <p class="footer__brand__sub ar">ثري وان فور تكنولوجيز ش.ذ.م.م<br>دبي، الإمارات العربية المتحدة</p>
+      </div>
+      <div>
+        <p class="footer__col__heading en">Navigation</p>
+        <p class="footer__col__heading ar">التنقل</p>
+        <ul class="footer__links">
+          <li><a class="footer__link en" data-page="home">Home</a><a class="footer__link ar" data-page="home">الرئيسية</a></li>
+          <li><a class="footer__link en" data-page="about">About Us</a><a class="footer__link ar" data-page="about">من نحن</a></li>
+          <li><a class="footer__link en" data-page="industry">Industry Solutions</a><a class="footer__link ar" data-page="industry">حلول القطاعات</a></li>
+          <li><a class="footer__link en" data-page="functions">Business Functions</a><a class="footer__link ar" data-page="functions">وظائف الأعمال</a></li>
+          <li><a class="footer__link en" data-page="services">Services</a><a class="footer__link ar" data-page="services">الخدمات</a></li>
+          <li><a class="footer__link en" data-page="contact">Contact Us</a><a class="footer__link ar" data-page="contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col__heading en">Services</p>
+        <p class="footer__col__heading ar">الخدمات</p>
+        <ul class="footer__links">
+          <li><a class="footer__link en" data-page="services">314 Consulting</a><a class="footer__link ar" data-page="services">314 الاستشارات</a></li>
+          <li><a class="footer__link en" data-page="services">314 DPI</a><a class="footer__link ar" data-page="services">314 للبنية الرقمية</a></li>
+          <li><a class="footer__link en" data-page="services">314 Cloud</a><a class="footer__link ar" data-page="services">314 السحاب</a></li>
+        </ul>
+        <p class="footer__col__heading en" style="margin-top:28px;">Contact</p>
+        <p class="footer__col__heading ar" style="margin-top:28px;">تواصل</p>
+        <ul class="footer__links">
+          <li><span class="footer__link">314tech.ai</span></li>
+          <li><a class="footer__link en" data-page="contact">Get in touch</a><a class="footer__link ar" data-page="contact">ابدأ التواصل</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__legal en">Three One Four Technologies L.L.C &nbsp;|&nbsp; Dubai, UAE &nbsp;|&nbsp; All rights reserved.</p>
+      <p class="footer__legal ar">ثري وان فور تكنولوجيز ش.ذ.م.م &nbsp;|&nbsp; دبي، الإمارات &nbsp;|&nbsp; جميع الحقوق محفوظة.</p>
+      <p class="footer__geo">314tech.ai</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  // ── Page routing ─────────────────────────────────────────────────────
+  const pages = ['home', 'about', 'industry', 'functions', 'services', 'contact'];
+  let currentPage = 'home';
+
+  function showPage(id) {
+    if (!pages.includes(id)) return;
+    currentPage = id;
+
+    // Toggle pages
+    pages.forEach(function (p) {
+      const el = document.getElementById('page-' + p);
+      if (el) el.classList.toggle('active', p === id);
+    });
+
+    // Update nav links (desktop + mobile)
+    document.querySelectorAll('[data-page]').forEach(function (el) {
+      if (el.classList.contains('nav__link') || el.classList.contains('mobile-nav__link')) {
+        el.classList.toggle('active', el.dataset.page === id);
+      }
+    });
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    // Update URL hash without reload
+    history.pushState(null, '', '#' + id);
+
+    // Close mobile nav
+    closeMobileNav();
+  }
+
+  // Route all [data-page] clicks
+  document.addEventListener('click', function (e) {
+    const target = e.target.closest('[data-page]');
+    if (target && target.dataset.page) {
+      e.preventDefault();
+      showPage(target.dataset.page);
+    }
+  });
+
+  // Keyboard activation for service cards
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const target = e.target.closest('[data-page]');
+      if (target && target.dataset.page) {
+        e.preventDefault();
+        showPage(target.dataset.page);
+      }
+    }
+  });
+
+  // Handle hash on load
+  function routeFromHash() {
+    const hash = window.location.hash.replace('#', '');
+    if (pages.includes(hash)) showPage(hash);
+    else showPage('home');
+  }
+  routeFromHash();
+  window.addEventListener('popstate', routeFromHash);
+
+  // ── Hamburger menu ───────────────────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  function closeMobileNav() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+
+  hamburger.addEventListener('click', function () {
+    const isOpen = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close on outside click
+  document.addEventListener('click', function (e) {
+    if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+      closeMobileNav();
+    }
+  });
+
+  // ── Language toggle ──────────────────────────────────────────────────
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    const body = document.body;
+    const html = document.documentElement;
+
+    if (lang === 'ar') {
+      body.classList.add('lang-ar');
+      body.classList.remove('lang-en');
+      html.setAttribute('lang', 'ar');
+      html.setAttribute('dir', 'rtl');
+    } else {
+      body.classList.add('lang-en');
+      body.classList.remove('lang-ar');
+      html.setAttribute('lang', 'en');
+      html.setAttribute('dir', 'ltr');
+    }
+  }
+
+  function toggleLang() {
+    setLang(currentLang === 'en' ? 'ar' : 'en');
+  }
+
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+  document.getElementById('langToggleMobile').addEventListener('click', toggleLang);
+
+  // Init
+  setLang('en');
+})();
+</script>
+
+</body>
+</html>

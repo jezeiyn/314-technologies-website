@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 90" fill="none">
+  <!-- Icon mark (scaled to 80×80, offset 5,5) -->
+  <g transform="translate(5,5) scale(0.667)">
+    <g stroke-linecap="round">
+      <path d="M60 16 A44 44 0 0 1 104 60" stroke="#0E1726" stroke-width="3.4"/>
+      <path d="M104 60 A44 44 0 0 1 60 104" stroke="#0E1726" stroke-width="3.4"/>
+      <path d="M60 104 A44 44 0 0 1 16 60" stroke="#0E1726" stroke-width="3.4"/>
+      <path d="M16 60 A44 44 0 0 1 60 16" stroke="#0E1726" stroke-width="3.4"/>
+      <path d="M60 34 A26 26 0 0 1 86 60" stroke="#0E1726" stroke-width="2.6"/>
+      <path d="M60 86 A26 26 0 0 1 34 60" stroke="#0E1726" stroke-width="2.6"/>
+      <line x1="7" y1="60" x2="110" y2="60" stroke="#FAFAF8" stroke-width="7.5"/>
+      <line x1="7" y1="60" x2="110" y2="60" stroke="#1FA39B" stroke-width="3.6"/>
+      <circle cx="7" cy="60" r="4" fill="#1FA39B"/>
+    </g>
+  </g>
+  <!-- Wordmark text -->
+  <text x="92" y="56"
+    font-family="'Space Grotesk','IBM Plex Sans','Helvetica Neue',Arial,sans-serif"
+    font-weight="700" font-size="44" letter-spacing="-0.9"
+    fill="#0E1726">314</text>
+  <text x="95" y="75"
+    font-family="'Space Grotesk','IBM Plex Sans','Helvetica Neue',Arial,sans-serif"
+    font-weight="400" font-size="11.5" letter-spacing="4.8"
+    fill="#5A6473">technologies</text>
+</svg>

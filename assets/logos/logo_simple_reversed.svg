@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke-linecap="round">
+  <!-- Two opposing quarter-arcs -->
+  <path d="M60 18 A42 42 0 0 1 102 60" stroke="#FAFAF8" stroke-width="6"/>
+  <path d="M60 102 A42 42 0 0 1 18 60" stroke="#FAFAF8" stroke-width="6"/>
+  <!-- Horizon line (no knockout on simplified) -->
+  <line x1="7" y1="60" x2="108" y2="60" stroke="#1FA39B" stroke-width="6"/>
+  <!-- Origin dot -->
+  <circle cx="7" cy="60" r="4.5" fill="#1FA39B"/>
+</svg>
