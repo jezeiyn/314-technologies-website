@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="314 Technologies - A 100% Emirati-owned technology consultancy and Google Cloud Partner. Consulting, Digital Public Infrastructure, and Cloud services for UAE government and enterprise." />
   <title>314 Technologies | The constant you can build on.</title>
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=7" />
   <link rel="icon" type="image/svg+xml" href="assets/logos/logo_simple_reversed.svg" />
 </head>
 <body class="lang-en">
@@ -48,9 +48,9 @@
     </ul>
 
     <div class="nav__actions">
-      <button class="lang-btn" id="langToggle" aria-label="Switch language">
-        <span class="en">عربي</span>
-        <span class="ar">English</span>
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <span class="lang-toggle__opt lang-toggle__opt--en">EN</span>
+        <span class="lang-toggle__opt lang-toggle__opt--ar">AR</span>
       </button>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -71,9 +71,9 @@
   <a class="mobile-nav__link" data-page="cloud"><span class="en">314 Cloud</span><span class="ar">314 السحاب</span></a>
   <a class="mobile-nav__link" data-page="contact"><span class="en">Contact Us</span><span class="ar">تواصل معنا</span></a>
   <div class="mobile-nav__lang">
-    <button class="lang-btn" id="langToggleMobile">
-      <span class="en">عربي</span>
-      <span class="ar">English</span>
+    <button class="lang-toggle" id="langToggleMobile" aria-label="Switch language">
+      <span class="lang-toggle__opt lang-toggle__opt--en">EN</span>
+      <span class="lang-toggle__opt lang-toggle__opt--ar">AR</span>
     </button>
   </div>
 </div>
@@ -1676,13 +1676,4 @@
   var fnSidebar = document.getElementById('fnSidebar');
   if (fnSidebar) {
     fnSidebar.addEventListener('click', function(e) {
-      var btn = e.target.closest('.fn-sidebar__item[data-fn]');
-      if (btn) activateFn(btn.dataset.fn);
-    });
-  }
-
-  setLang('en');
-}());
-</script>
-</body>
-</html>
+      var btn = 
