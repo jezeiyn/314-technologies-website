@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="314 Technologies - A 100% Emirati-owned technology consultancy and Google Cloud Partner. Consulting, Digital Public Infrastructure, and Cloud services for UAE government and enterprise." />
   <title>314 Technologies | The constant you can build on.</title>
-  <link rel="stylesheet" href="style.css?v=13" />
+  <link rel="stylesheet" href="style.css?v=14" />
   <link rel="icon" type="image/svg+xml" href="assets/logos/logo_simple_reversed.svg" />
 </head>
 <body class="lang-en">
@@ -1616,9 +1616,10 @@
   var mobileNav = document.getElementById('mobileNav');
 
   function closeMobileNav() {
-    hamburger.classList.remove('open');
-    mobileNav.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
+    var _h = document.getElementById('hamburger');
+    var _n = document.getElementById('mobileNav');
+    if (_h) { _h.classList.remove('open'); _h.setAttribute('aria-expanded', 'false'); }
+    if (_n) _n.classList.remove('open');
   }
 
   // hamburger toggle handled via global click handler (data-action='menu')
