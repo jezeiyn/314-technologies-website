@@ -1383,3 +1383,82 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   html[dir=rtl] .fn-sidebar__item--active { border-right-color: transparent; border-bottom-color: var(--teal); }
   .fn-sidebar__num { width: auto; font-size: 10px; }
   .fn-sidebar__name { font-size: 12px; text-
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — NAV BREAKPOINT ≤ 768px
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+  .nav__actions .lang-toggle { display: none; } /* lang toggle moves to mobile drawer */
+  .hamburger { display: flex; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE ≤ 600px
+══════════════════════════════════════════ */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  /* Container padding */
+  .container { padding: 0 16px; }
+  .section { padding: 48px 0; }
+  .hero { padding: 72px 16px 56px; }
+
+  /* Stack all multi-column grids */
+  .services-grid    { grid-template-columns: 1fr; gap: 16px; }
+  .pillars-grid     { grid-template-columns: 1fr; gap: 16px; }
+  .about-intro      { grid-template-columns: 1fr; gap: 28px; }
+  .principles-grid  { grid-template-columns: 1fr; gap: 16px; }
+  .creds-grid       { grid-template-columns: 1fr; gap: 12px; }
+  .industry-grid    { grid-template-columns: 1fr; gap: 16px; }
+  .product-grid     { grid-template-columns: 1fr; gap: 16px; }
+  .dpi-grid         { grid-template-columns: 1fr; gap: 16px; }
+  .dpi-stats-row    { grid-template-columns: 1fr 1fr; }
+  .cloud-stats      { grid-template-columns: 1fr 1fr; gap: 1px; }
+  .gcp-inner        { grid-template-columns: 1fr; gap: 32px; }
+  .svc-lead         { grid-template-columns: 1fr; gap: 24px; }
+  .contact-wrap     { grid-template-columns: 1fr; gap: 32px; }
+  .footer__top      { grid-template-columns: 1fr; gap: 32px; }
+  .footer__bottom   { flex-direction: column; gap: 8px; text-align: center; }
+
+  /* Hero adjustments */
+  .hero__h1  { font-size: clamp(28px, 8vw, 40px); }
+  .hero__sub { font-size: 15px; }
+  .hero__ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .hero__ctas .btn { width: 100%; text-align: center; justify-content: center; }
+
+  /* Section headings */
+  .section__h2 { font-size: clamp(22px, 6vw, 32px); }
+
+  /* Service cards full width */
+  .service-card { padding: 24px 20px; }
+
+  /* fn-explorer already collapses at 900px — just tighten content */
+  .fn-content { padding: 28px 16px; }
+
+  /* Entry animation on page blocks — fires when page becomes active */
+  .page.active .services-grid > *,
+  .page.active .pillars-grid > *,
+  .page.active .principles-grid > *,
+  .page.active .industry-grid > *,
+  .page.active .product-grid > *,
+  .page.active .dpi-grid > *,
+  .page.active .creds-grid > *,
+  .page.active .service-card {
+    animation: slideUp 0.35s ease both;
+  }
+  .page.active .services-grid > *:nth-child(2),
+  .page.active .pillars-grid > *:nth-child(2),
+  .page.active .industry-grid > *:nth-child(2),
+  .page.active .product-grid > *:nth-child(2) { animation-delay: 0.07s; }
+  .page.active .services-grid > *:nth-child(3),
+  .page.active .pillars-grid > *:nth-child(3),
+  .page.active .industry-grid > *:nth-child(3),
+  .page.active .product-grid > *:nth-child(3) { animation-delay: 0.14s; }
+  .page.active .services-grid > *:nth-child(4),
+  .page.active .pillars-grid > *:nth-child(4),
+  .page.active .industry-grid > *:nth-child(4) { animation-delay: 0.21s; }
+}
