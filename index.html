@@ -48,7 +48,7 @@
     </ul>
 
     <div class="nav__actions">
-      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+      <button class="lang-toggle" id="langToggle" data-action="lang" aria-label="Switch language">
         <span class="lang-toggle__opt lang-toggle__opt--en">EN</span>
         <span class="lang-toggle__opt lang-toggle__opt--ar">AR</span>
       </button>
@@ -71,7 +71,7 @@
   <a class="mobile-nav__link" data-page="cloud"><span class="en">314 Cloud</span><span class="ar">314 السحاب</span></a>
   <a class="mobile-nav__link" data-page="contact"><span class="en">Contact Us</span><span class="ar">تواصل معنا</span></a>
   <div class="mobile-nav__lang">
-    <button class="lang-toggle" id="langToggleMobile" aria-label="Switch language">
+    <button class="lang-toggle" id="langToggleMobile" data-action="lang" aria-label="Switch language">
       <span class="lang-toggle__opt lang-toggle__opt--en">EN</span>
       <span class="lang-toggle__opt lang-toggle__opt--ar">AR</span>
     </button>
@@ -1582,6 +1582,7 @@
   }
 
   document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-action="lang"]')) { toggleLang(); return; }
     var fnBtn = e.target.closest('.fn-sidebar__item[data-fn]');
     if (fnBtn) { activateFn(fnBtn.dataset.fn); return; }
     var target = e.target.closest('[data-page]');
@@ -1656,8 +1657,7 @@
     setLang(currentLang === 'en' ? 'ar' : 'en');
   }
 
-  document.getElementById('langToggle').addEventListener('click', toggleLang);
-  document.getElementById('langToggleMobile').addEventListener('click', toggleLang);
+  // lang toggle handled via global click handler (data-action="lang")
 
   // Service pages now use data-page routing (scroll-spy removed)
 
