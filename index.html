@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="314 Technologies - A 100% Emirati-owned technology consultancy and Google Cloud Partner. Consulting, Digital Public Infrastructure, and Cloud services for UAE government and enterprise." />
   <title>314 Technologies | The constant you can build on.</title>
-  <link rel="stylesheet" href="style.css?v=10" />
+  <link rel="stylesheet" href="style.css?v=11" />
   <link rel="icon" type="image/svg+xml" href="assets/logos/logo_simple_reversed.svg" />
 </head>
 <body class="lang-en">
@@ -52,7 +52,7 @@
         <span class="lang-toggle__opt lang-toggle__opt--en">EN</span>
         <span class="lang-toggle__opt lang-toggle__opt--ar">AR</span>
       </button>
-      <button class="hamburger" id="hamburger" data-action="menu" aria-label="Open menu" aria-expanded="false">
+      <button class="hamburger" id="hamburger" data-action="menu" aria-label="Open menu" aria-expanded="false" onclick="window._toggleNav && window._toggleNav()">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -1660,6 +1660,16 @@
   }
 
   // lang toggle handled via global click handler (data-action="lang")
+  // Expose globals for onclick fallback
+  window._toggleLang = toggleLang;
+  window._toggleNav = function() {
+    var h = document.getElementById('hamburger');
+    var n = document.getElementById('mobileNav');
+    if (!h || !n) return;
+    var isOpen = n.classList.toggle('open');
+    h.classList.toggle('open', isOpen);
+    h.setAttribute('aria-expanded', String(isOpen));
+  };
 
   // Service pages now use data-page routing (scroll-spy removed)
 
