@@ -1676,4 +1676,13 @@
   var fnSidebar = document.getElementById('fnSidebar');
   if (fnSidebar) {
     fnSidebar.addEventListener('click', function(e) {
-      var btn = 
+      var btn = e.target.closest('.fn-sidebar__item[data-fn]');
+      if (btn) activateFn(btn.dataset.fn);
+    });
+  }
+
+  setLang('en');
+}());
+</script>
+</body>
+</html>
