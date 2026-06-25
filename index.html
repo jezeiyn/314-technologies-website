@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="314 Technologies - A 100% Emirati-owned technology consultancy and Google Cloud Partner. Consulting, Digital Public Infrastructure, and Cloud services for UAE government and enterprise." />
   <title>314 Technologies | The constant you can build on.</title>
-  <link rel="stylesheet" href="style.css?v=3" />
+  <link rel="stylesheet" href="style.css?v=4" />
   <link rel="icon" type="image/svg+xml" href="assets/logos/logo_simple_reversed.svg" />
 </head>
 <body class="lang-en">
@@ -1660,28 +1660,29 @@
   // Service pages now use data-page routing (scroll-spy removed)
 
 
-  // Business Functions two-panel switcher
-  var fnItems = document.querySelectorAll('.fn-sidebar__item');
+  // Business Functions two-panel switcher — delegation on sidebar nav
   function activateFn(fnId) {
-    fnItems.forEach(function(b) {
-      b.classList.remove('fn-sidebar__item--active');
-      b.setAttribute('aria-selected', 'false');
+    document.querySelectorAll('.fn-sidebar__item').forEach(function(b) {
+      var active = b.dataset.fn === fnId;
+      b.classList.toggle('fn-sidebar__item--active', active);
+      b.setAttribute('aria-selected', String(active));
     });
     document.querySelectorAll('.fn-panel').forEach(function(p) {
-      p.classList.remove('fn-panel--active');
+      p.classList.toggle('fn-panel--active', p.id === 'fn-panel-' + fnId);
     });
-    var btn = document.querySelector('.fn-sidebar__item[data-fn="' + fnId + '"]');
-    var panel = document.getElementById('fn-panel-' + fnId);
-    if (btn)   { btn.classList.add('fn-sidebar__item--active'); btn.setAttribute('aria-selected', 'true'); }
-    if (panel) { panel.classList.add('fn-panel--active'); }
   }
-  fnItems.forEach(function(btn) {
-    btn.addEventListener('click', function() { activateFn(btn.dataset.fn); });
-  });
+  var fnSidebar = document.getElementById('fnSidebar');
+  if (fnSidebar) {
+    fnSidebar.addEventListener('click', function(e) {
+      var btn = e.target.closest('.fn-sidebar__item[data-fn]');
+      if (btn) activateFn(btn.dataset.fn);
+    });
+  }
 
   setLang('en');
 })();
 </script>
 
 </body>
-</ht
+</html>
+                                                                                         
