@@ -1685,4 +1685,24 @@
   // Business Functions two-panel switcher — delegation on sidebar nav
   function activateFn(fnId) {
     document.querySelectorAll('.fn-sidebar__item').forEach(function(b) {
-      var active = b.datas
+      var active = b.dataset.fn === fnId;
+      b.classList.toggle('fn-sidebar__item--active', active);
+      b.setAttribute('aria-selected', String(active));
+    });
+    document.querySelectorAll('.fn-panel').forEach(function(p) {
+      p.classList.toggle('fn-panel--active', p.id === 'fn-panel-' + fnId);
+    });
+  }
+  var fnSidebar = document.getElementById('fnSidebar');
+  if (fnSidebar) {
+    fnSidebar.addEventListener('click', function(e) {
+      var btn = e.target.closest('.fn-sidebar__item[data-fn]');
+      if (btn) activateFn(btn.dataset.fn);
+    });
+  }
+
+  setLang('en');
+}());
+</script>
+</body>
+</html>
