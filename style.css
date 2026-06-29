@@ -236,7 +236,25 @@ body.lang-ar .en { display: none !important; }
 .hero__inner {
   position: relative;
   z-index: 1;
-  max-width: 780px;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  align-items: center;
+  gap: 64px;
+  width: 100%;
+}
+.hero__text {
+  max-width: 680px;
+}
+.hero__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+}
+.hero__icon svg {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
 }
 .hero__eyebrow {
   display: inline-flex;
@@ -1393,6 +1411,8 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   .nav__links { display: none; }
   .nav__actions .lang-toggle { display: none; } /* lang toggle moves to mobile drawer */
   .hamburger { display: flex; }
+  .hero__inner { grid-template-columns: 1fr; gap: 32px; }
+  .hero__icon  { max-width: 180px; margin: 0 auto; }
 }
 
 /* ══════════════════════════════════════════
@@ -1427,6 +1447,8 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   .footer__bottom   { flex-direction: column; gap: 8px; text-align: center; }
 
   /* Hero adjustments */
+  .hero__inner { grid-template-columns: 1fr; gap: 0; }
+  .hero__icon  { display: none; }
   .hero__h1  { font-size: clamp(28px, 8vw, 40px); }
   .hero__sub { font-size: 15px; }
   .hero__ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -1454,13 +1476,4 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   }
   .page.active .services-grid > *:nth-child(2),
   .page.active .pillars-grid > *:nth-child(2),
-  .page.active .industry-grid > *:nth-child(2),
-  .page.active .product-grid > *:nth-child(2) { animation-delay: 0.07s; }
-  .page.active .services-grid > *:nth-child(3),
-  .page.active .pillars-grid > *:nth-child(3),
-  .page.active .industry-grid > *:nth-child(3),
-  .page.active .product-grid > *:nth-child(3) { animation-delay: 0.14s; }
-  .page.active .services-grid > *:nth-child(4),
-  .page.active .pillars-grid > *:nth-child(4),
-  .page.active .industry-grid > *:nth-child(4) { animation-delay: 0.21s; }
-}
+  .page.active .indus
