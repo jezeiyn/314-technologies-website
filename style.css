@@ -95,7 +95,7 @@ body.lang-ar .en { display: none !important; }
   flex-shrink: 0;
   cursor: pointer;
 }
-.nav__logo svg { height: 36px; width: auto; }
+.nav__logo svg { height: 48px; width: auto; }
 
 .nav__links {
   display: flex;
