@@ -1844,12 +1844,12 @@
     btn.disabled = true;
     btn.innerHTML = '<span class="en">Sending…</span><span class="ar">جاري الإرسال…</span>';
 
-    fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ name: name, organisation: org, email: email, service: svc, message: msg })
-    })
+    var qs = '?name=' + encodeURIComponent(name)
+           + '&organisation=' + encodeURIComponent(org)
+           + '&email=' + encodeURIComponent(email)
+           + '&service=' + encodeURIComponent(svc)
+           + '&message=' + encodeURIComponent(msg);
+    fetch(APPS_SCRIPT_URL + qs, { mode: 'no-cors' })
     .then(function() {
       document.getElementById('contactForm').innerHTML =
         '<div style="padding:32px;text-align:center;">' +
