@@ -1417,15 +1417,20 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
 }
 @media (max-width: 900px) {
   .fn-explorer { grid-template-columns: 1fr; }
+  .fn-content  { padding: 32px 20px; min-height: auto; }
+
   .fn-sidebar {
     position: static;
+    flex: 1;
+    min-width: 0;
     height: auto;
     overflow-x: auto;
     overflow-y: visible;
     flex-direction: row;
     padding: 0;
     border-right: none;
-    border-bottom: 1px solid var(--hair);
+    border-bottom: none;
+    background: transparent;
     scrollbar-width: none;
   }
   .fn-sidebar::-webkit-scrollbar { display: none; }
@@ -1438,7 +1443,7 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
     border-left: none;
     border-bottom: 3px solid transparent;
     flex-shrink: 0;
-    min-width: 90px;
+    min-width: 80px;
   }
   html[dir=rtl] .fn-sidebar__item { border-right: none; border-bottom: 3px solid transparent; }
   .fn-sidebar__item--active {
@@ -1447,7 +1452,7 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   }
   html[dir=rtl] .fn-sidebar__item--active { border-right-color: transparent; border-bottom-color: var(--teal); }
   .fn-sidebar__num { width: auto; font-size: 10px; }
-  .fn-sidebar__name { font-size: 12px; text-align: center; }
+  .fn-sidebar__name { font-size: 11px; text-align: center; }
 }
 
 
@@ -1611,28 +1616,27 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
 @media (max-width: 900px) {
   .fn-sidebar-wrap {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     position: relative;
-    background: var(--ink-soft);
-    border-bottom: 1px solid var(--hair);
+    background: var(--paper-2);
+    border-bottom: 2px solid var(--teal);
   }
   .fn-swipe-arrow {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 32px;
-    height: 100%;
-    min-height: 56px;
-    color: var(--teal);
-    background: linear-gradient(to right, var(--ink-soft) 60%, transparent);
+    width: 36px;
+    color: var(--slate);
+    background: linear-gradient(to right, var(--paper-2) 60%, transparent);
     border: none;
     cursor: pointer;
     z-index: 2;
     padding: 0;
+    min-height: 56px;
   }
   .fn-swipe-arrow--right {
-    background: linear-gradient(to left, var(--ink-soft) 60%, transparent);
+    background: linear-gradient(to left, var(--paper-2) 60%, transparent);
   }
   .fn-swipe-arrow--left  { order: -1; }
   .fn-swipe-arrow--right { order: 99; }
