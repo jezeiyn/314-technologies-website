@@ -1476,6 +1476,34 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   .section { padding: 48px 0; }
   .hero { padding: 72px 16px 56px; }
 
+  /* Stack all multi-column grids */
+  .services-grid    { grid-template-columns: 1fr; gap: 16px; }
+  .pillars-grid     { grid-template-columns: 1fr; gap: 16px; }
+  .about-intro      { grid-template-columns: 1fr; gap: 28px; }
+  .principles-grid  { grid-template-columns: 1fr; gap: 16px; }
+  .creds-grid       { grid-template-columns: 1fr; gap: 12px; }
+  .industry-grid    { grid-template-columns: 1fr; gap: 16px; }
+  .product-grid     { grid-template-columns: 1fr; gap: 16px; }
+  .dpi-grid         { grid-template-columns: 1fr; gap: 16px; }
+  .dpi-stats-row    { grid-template-columns: 1fr 1fr; }
+  .cloud-stats      { grid-template-columns: 1fr 1fr; gap: 1px; }
+  .gcp-inner        { grid-template-columns: 1fr; gap: 32px; }
+  .svc-lead         { grid-template-columns: 1fr; gap: 24px; }
+  .contact-wrap     { grid-template-columns: 1fr; gap: 32px; }
+  .footer__top      { grid-template-columns: 1fr; gap: 32px; }
+  .footer__bottom   { flex-direction: column; gap: 8px; text-align: center; }
+
+  /* Hero adjustments */
+  .hero__inner { grid-template-columns: 1fr; gap: 0; }
+  .hero__icon  { display: none; }
+  .hero__h1  { font-size: clamp(28px, 8vw, 40px); }
+  .hero__sub { font-size: 15px; }
+  .hero__ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .hero__ctas .btn { width: 100%; text-align: center; justify-content: center; }
+
+  /* Section headings */
+  .section__h2 { font-size: clamp(22px, 6vw, 32px); }
+
   /* Service cards full width */
   .service-card { padding: 24px 20px; }
 
