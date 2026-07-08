@@ -66,9 +66,7 @@
   <a class="mobile-nav__link" data-page="about"><span class="en">About Us</span><span class="ar">من نحن</span></a>
   <a class="mobile-nav__link" data-page="industry"><span class="en">Industry Solutions</span><span class="ar">حلول القطاعات</span></a>
   <a class="mobile-nav__link" data-page="functions"><span class="en">Business Functions</span><span class="ar">وظائف الأعمال</span></a>
-  <a class="mobile-nav__link" data-page="consulting"><span class="en">314 Consulting</span><span class="ar">314 الاستشارات</span></a>
-  <a class="mobile-nav__link" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 للبنية الرقمية</span></a>
-  <a class="mobile-nav__link" data-page="cloud"><span class="en">314 Cloud</span><span class="ar">314 السحاب</span></a>
+  <a class="mobile-nav__link" data-page="consulting"><span class="en">Services</span><span class="ar">الخدمات</span></a>
   <a class="mobile-nav__link" data-page="contact"><span class="en">Contact Us</span><span class="ar">تواصل معنا</span></a>
   <div class="mobile-nav__lang">
     <button class="lang-toggle" id="langToggleMobile" data-action="lang" aria-label="Switch language">
@@ -610,7 +608,11 @@
   <div class="fn-explorer">
 
     <!-- Left: sticky function nav -->
-    <nav class="fn-sidebar" id="fnSidebar" aria-label="Business functions">
+    <div class="fn-sidebar-wrap">
+      <button class="fn-swipe-arrow fn-swipe-arrow--left" id="fnArrowLeft" aria-label="Scroll left" onclick="document.getElementById('fnSidebar').scrollBy({left:-120,behavior:'smooth'})">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 12L6 8l4-4"/></svg>
+      </button>
+      <nav class="fn-sidebar" id="fnSidebar" aria-label="Business functions">
       <p class="fn-sidebar__label en">8 Functions</p>
       <p class="fn-sidebar__label ar">8 وظائف</p>
 
