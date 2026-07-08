@@ -1048,6 +1048,19 @@ body.lang-ar .principle__quote {
   line-height: 1.3;
 }
 
+/* Entry animation — industry solutions cards */
+.page.active .industry-grid > * {
+  animation: slideUp 0.35s ease both;
+}
+.page.active .industry-grid > *:nth-child(1) { animation-delay: 0.04s; }
+.page.active .industry-grid > *:nth-child(2) { animation-delay: 0.08s; }
+.page.active .industry-grid > *:nth-child(3) { animation-delay: 0.12s; }
+.page.active .industry-grid > *:nth-child(4) { animation-delay: 0.16s; }
+.page.active .industry-grid > *:nth-child(5) { animation-delay: 0.20s; }
+.page.active .industry-grid > *:nth-child(6) { animation-delay: 0.24s; }
+.page.active .industry-grid > *:nth-child(7) { animation-delay: 0.28s; }
+.page.active .industry-grid > *:nth-child(8) { animation-delay: 0.32s; }
+
 /* Centre the last 3 items in the 5-col grid (row 3, cols 2-4) */
 .dpi-pillars-grid > .dpi-pillar:nth-child(11) { grid-column-start: 2; }
 
@@ -1483,22 +1496,4 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   .hero__icon  { max-width: 180px; margin: 0 auto; }
 }
 
-/* ══════════════════════════════════════════
-   RESPONSIVE — MOBILE ≤ 600px
-══════════════════════════════════════════ */
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 600px) {
-  /* Container padding */
-  .container { padding: 0 16px; }
-  .section { padding: 48px 0; }
-  .hero { padding: 72px 16px 56px; }
-
-  /* Stack all multi-column grids */
-  .services-grid    { grid-template-columns: 1fr; gap: 16px; }
-  .pillars-grid     { grid-template-columns: 1fr; gap: 16px; }
-  .about-intro      { grid-template-columns: 1fr; gap: 28px; }
-  .p
+/* ═══════════════════════════════�
