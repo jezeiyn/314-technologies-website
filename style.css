@@ -1047,61 +1047,6 @@ body.lang-ar .principle__quote {
   color: var(--paper);
   line-height: 1.3;
 }
-
-/* ── 314 CLOUD PAGE ── */
-/* Centre the lone 4th card in the 3-col grid */
-#page-cloud .dpi-grid > .dpi-card:nth-child(4) { grid-column: 2; }
-
-/* Entry animations — service cards */
-#page-cloud.active .dpi-grid > * {
-  animation: slideUp 0.35s ease both;
-}
-#page-cloud.active .dpi-grid > *:nth-child(1) { animation-delay: 0.04s; }
-#page-cloud.active .dpi-grid > *:nth-child(2) { animation-delay: 0.08s; }
-#page-cloud.active .dpi-grid > *:nth-child(3) { animation-delay: 0.12s; }
-#page-cloud.active .dpi-grid > *:nth-child(4) { animation-delay: 0.16s; }
-
-/* Entry animations — gcp-feature rows */
-#page-cloud.active .gcp-feature {
-  animation: slideUp 0.35s ease both;
-}
-#page-cloud.active .gcp-feature:nth-child(1) { animation-delay: 0.10s; }
-#page-cloud.active .gcp-feature:nth-child(2) { animation-delay: 0.18s; }
-#page-cloud.active .gcp-feature:nth-child(3) { animation-delay: 0.26s; }
-
-/* Entry animation — industry solutions cards */
-.page.active .industry-grid > * {
-  animation: slideUp 0.35s ease both;
-}
-.page.active .industry-grid > *:nth-child(1) { animation-delay: 0.04s; }
-.page.active .industry-grid > *:nth-child(2) { animation-delay: 0.08s; }
-.page.active .industry-grid > *:nth-child(3) { animation-delay: 0.12s; }
-.page.active .industry-grid > *:nth-child(4) { animation-delay: 0.16s; }
-.page.active .industry-grid > *:nth-child(5) { animation-delay: 0.20s; }
-.page.active .industry-grid > *:nth-child(6) { animation-delay: 0.24s; }
-.page.active .industry-grid > *:nth-child(7) { animation-delay: 0.28s; }
-.page.active .industry-grid > *:nth-child(8) { animation-delay: 0.32s; }
-
-/* Centre the last 3 items in the 5-col grid (row 3, cols 2-4) */
-.dpi-pillars-grid > .dpi-pillar:nth-child(11) { grid-column-start: 2; }
-
-/* Entry animation — fires once when DPI page becomes active */
-.page.active .dpi-pillars-grid > * {
-  animation: slideUp 0.35s ease both;
-}
-.page.active .dpi-pillars-grid > *:nth-child(1)  { animation-delay: 0.04s; }
-.page.active .dpi-pillars-grid > *:nth-child(2)  { animation-delay: 0.08s; }
-.page.active .dpi-pillars-grid > *:nth-child(3)  { animation-delay: 0.12s; }
-.page.active .dpi-pillars-grid > *:nth-child(4)  { animation-delay: 0.16s; }
-.page.active .dpi-pillars-grid > *:nth-child(5)  { animation-delay: 0.20s; }
-.page.active .dpi-pillars-grid > *:nth-child(6)  { animation-delay: 0.24s; }
-.page.active .dpi-pillars-grid > *:nth-child(7)  { animation-delay: 0.28s; }
-.page.active .dpi-pillars-grid > *:nth-child(8)  { animation-delay: 0.32s; }
-.page.active .dpi-pillars-grid > *:nth-child(9)  { animation-delay: 0.36s; }
-.page.active .dpi-pillars-grid > *:nth-child(10) { animation-delay: 0.40s; }
-.page.active .dpi-pillars-grid > *:nth-child(11) { animation-delay: 0.44s; }
-.page.active .dpi-pillars-grid > *:nth-child(12) { animation-delay: 0.48s; }
-.page.active .dpi-pillars-grid > *:nth-child(13) { animation-delay: 0.52s; }
 .dpi-card {
   background: var(--ink-soft);
   border: 1px solid var(--hair-dark);
@@ -1500,4 +1445,129 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
     border-left-color: transparent;
     border-bottom-color: var(--teal);
   }
-  html[dir=rtl] .fn-sideb
+  html[dir=rtl] .fn-sidebar__item--active { border-right-color: transparent; border-bottom-color: var(--teal); }
+  .fn-sidebar__num { width: auto; font-size: 10px; }
+  .fn-sidebar__name { font-size: 12px; text-align: center; }
+}
+
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — NAV BREAKPOINT ≤ 768px
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+  .nav__actions .lang-toggle { display: none; } /* lang toggle moves to mobile drawer */
+  .hamburger { display: flex; }
+  .hero__inner { grid-template-columns: 1fr; gap: 32px; }
+  .hero__icon  { max-width: 180px; margin: 0 auto; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE ≤ 600px
+══════════════════════════════════════════ */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  /* Container padding */
+  .container { padding: 0 16px; }
+  .section { padding: 48px 0; }
+  .hero { padding: 72px 16px 56px; }
+
+  /* Service cards full width */
+  .service-card { padding: 24px 20px; }
+
+  /* fn-explorer collapses at 900px — just tighten content */
+  .fn-content { padding: 28px 16px; }
+
+  /* ── DPI PILLARS ── */
+  .dpi-pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  /* Reset centering rules that only work in wider grid layouts */
+  #page-cloud .dpi-grid > .dpi-card:nth-child(4) { grid-column: auto; }
+  .dpi-pillars-grid > .dpi-pillar:nth-child(11)  { grid-column-start: auto; }
+}
+
+/* ════════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════════ */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Cloud page entry animations ── */
+#page-cloud.active .dpi-grid > * {
+  animation: slideUp 0.35s ease both;
+}
+#page-cloud.active .dpi-grid > *:nth-child(1) { animation-delay: 0.04s; }
+#page-cloud.active .dpi-grid > *:nth-child(2) { animation-delay: 0.08s; }
+#page-cloud.active .dpi-grid > *:nth-child(3) { animation-delay: 0.12s; }
+#page-cloud.active .dpi-grid > *:nth-child(4) { animation-delay: 0.16s; }
+#page-cloud.active .gcp-feature {
+  animation: slideUp 0.35s ease both;
+}
+#page-cloud.active .gcp-feature:nth-child(1) { animation-delay: 0.10s; }
+#page-cloud.active .gcp-feature:nth-child(2) { animation-delay: 0.18s; }
+#page-cloud.active .gcp-feature:nth-child(3) { animation-delay: 0.26s; }
+
+/* ── Industry solutions entry animations ── */
+.page.active .industry-grid > * {
+  animation: slideUp 0.35s ease both;
+}
+.page.active .industry-grid > *:nth-child(1) { animation-delay: 0.04s; }
+.page.active .industry-grid > *:nth-child(2) { animation-delay: 0.08s; }
+.page.active .industry-grid > *:nth-child(3) { animation-delay: 0.12s; }
+.page.active .industry-grid > *:nth-child(4) { animation-delay: 0.16s; }
+.page.active .industry-grid > *:nth-child(5) { animation-delay: 0.20s; }
+.page.active .industry-grid > *:nth-child(6) { animation-delay: 0.24s; }
+.page.active .industry-grid > *:nth-child(7) { animation-delay: 0.28s; }
+.page.active .industry-grid > *:nth-child(8) { animation-delay: 0.32s; }
+
+/* ── DPI pillars entry animations ── */
+.page.active .dpi-pillars-grid > * {
+  animation: slideUp 0.35s ease both;
+}
+.page.active .dpi-pillars-grid > *:nth-child(1)  { animation-delay: 0.04s; }
+.page.active .dpi-pillars-grid > *:nth-child(2)  { animation-delay: 0.08s; }
+.page.active .dpi-pillars-grid > *:nth-child(3)  { animation-delay: 0.12s; }
+.page.active .dpi-pillars-grid > *:nth-child(4)  { animation-delay: 0.16s; }
+.page.active .dpi-pillars-grid > *:nth-child(5)  { animation-delay: 0.20s; }
+.page.active .dpi-pillars-grid > *:nth-child(6)  { animation-delay: 0.24s; }
+.page.active .dpi-pillars-grid > *:nth-child(7)  { animation-delay: 0.28s; }
+.page.active .dpi-pillars-grid > *:nth-child(8)  { animation-delay: 0.32s; }
+.page.active .dpi-pillars-grid > *:nth-child(9)  { animation-delay: 0.36s; }
+.page.active .dpi-pillars-grid > *:nth-child(10) { animation-delay: 0.40s; }
+.page.active .dpi-pillars-grid > *:nth-child(11) { animation-delay: 0.44s; }
+.page.active .dpi-pillars-grid > *:nth-child(12) { animation-delay: 0.48s; }
+.page.active .dpi-pillars-grid > *:nth-child(13) { animation-delay: 0.52s; }
+
+/* ── General page entry animations (all screen sizes) ── */
+.page.active .services-grid > *,
+.page.active .pillars-grid > *,
+.page.active .principles-grid > *,
+.page.active .product-grid > *,
+.page.active .creds-grid > *,
+.page.active .service-card {
+  animation: slideUp 0.35s ease both;
+}
+.page.active .services-grid > *:nth-child(2),
+.page.active .pillars-grid > *:nth-child(2),
+.page.active .product-grid > *:nth-child(2) { animation-delay: 0.07s; }
+.page.active .services-grid > *:nth-child(3),
+.page.active .pillars-grid > *:nth-child(3),
+.page.active .product-grid > *:nth-child(3) { animation-delay: 0.14s; }
+.page.active .services-grid > *:nth-child(4),
+.page.active .pillars-grid > *:nth-child(4),
+.page.active .product-grid > *:nth-child(4) { animation-delay: 0.21s; }
+
+/* ── Cloud: centre last card in 3-col grid (not on mobile) ── */
+@media (min-width: 601px) {
+  #page-cloud .dpi-grid > .dpi-card:nth-child(4) { grid-column: 2; }
+}
+
+/* ── DPI pillars: centre last 3 in 5-col grid (not on mobile/tablet) ── */
+@media (min-width: 901px) {
+  .dpi-pillars-grid > .dpi-pillar:nth-child(11) { grid-column-start: 2; }
+}
