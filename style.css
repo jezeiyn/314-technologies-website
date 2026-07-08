@@ -1416,7 +1416,7 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   .fn-content { padding: 48px 40px; }
 }
 @media (max-width: 900px) {
-  .fn-explorer { grid-template-columns: 1fr; }
+  .fn-explorer { grid-template-columns: 1fr; overflow-x: hidden; }
   .fn-content  { padding: 32px 20px; min-height: auto; }
 
   .fn-sidebar {
@@ -1618,6 +1618,9 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
     display: flex;
     align-items: stretch;
     position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;           /* contain sidebar scroll — don't widen page */
     background: var(--paper-2);
     border-bottom: 2px solid var(--teal);
   }
