@@ -1599,3 +1599,41 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
 @media (min-width: 901px) {
   .dpi-pillars-grid > .dpi-pillar:nth-child(11) { grid-column-start: 2; }
 }
+
+/* ── FN SIDEBAR SWIPE ARROWS (mobile only) ── */
+.fn-sidebar-wrap {
+  position: relative;
+  display: contents; /* transparent on desktop — sidebar still lays out normally */
+}
+.fn-swipe-arrow {
+  display: none; /* hidden on desktop */
+}
+@media (max-width: 900px) {
+  .fn-sidebar-wrap {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: var(--ink-soft);
+    border-bottom: 1px solid var(--hair);
+  }
+  .fn-swipe-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 100%;
+    min-height: 56px;
+    color: var(--teal);
+    background: linear-gradient(to right, var(--ink-soft) 60%, transparent);
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    padding: 0;
+  }
+  .fn-swipe-arrow--right {
+    background: linear-gradient(to left, var(--ink-soft) 60%, transparent);
+  }
+  .fn-swipe-arrow--left  { order: -1; }
+  .fn-swipe-arrow--right { order: 99; }
+}
