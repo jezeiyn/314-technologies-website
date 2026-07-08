@@ -1846,21 +1846,18 @@
 
     fetch(APPS_SCRIPT_URL, {
       method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({ name: name, organisation: org, email: email, service: svc, message: msg })
     })
-    .then(function(r) { return r.json(); })
-    .then(function(res) {
-      if (res.status === 'ok') {
-        document.getElementById('contactForm').innerHTML =
-          '<div style="padding:32px;text-align:center;">' +
-          '<p style="font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;" class="en">Message sent.</p>' +
-          '<p style="font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;" class="ar">تم إرسال رسالتك.</p>' +
-          '<p style="color:var(--slate);" class="en">We’ll be in touch shortly.</p>' +
-          '<p style="color:var(--slate);" class="ar">سنتواصل معك قريباً.</p>' +
-          '</div>';
-      } else {
-        throw new Error('unexpected response');
-      }
+    .then(function() {
+      document.getElementById('contactForm').innerHTML =
+        '<div style="padding:32px;text-align:center;">' +
+        '<p style="font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;" class="en">Message sent.</p>' +
+        '<p style="font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;" class="ar">تم إرسال رسالتك.</p>' +
+        '<p style="color:var(--slate);" class="en">We’ll be in touch shortly.</p>' +
+        '<p style="color:var(--slate);" class="ar">سنتواصل معك قريباً.</p>' +
+        '</div>';
     })
     .catch(function() {
       btn.disabled = false;
