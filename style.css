@@ -1048,6 +1048,27 @@ body.lang-ar .principle__quote {
   line-height: 1.3;
 }
 
+/* ── 314 CLOUD PAGE ── */
+/* Centre the lone 4th card in the 3-col grid */
+#page-cloud .dpi-grid > .dpi-card:nth-child(4) { grid-column: 2; }
+
+/* Entry animations — service cards */
+#page-cloud.active .dpi-grid > * {
+  animation: slideUp 0.35s ease both;
+}
+#page-cloud.active .dpi-grid > *:nth-child(1) { animation-delay: 0.04s; }
+#page-cloud.active .dpi-grid > *:nth-child(2) { animation-delay: 0.08s; }
+#page-cloud.active .dpi-grid > *:nth-child(3) { animation-delay: 0.12s; }
+#page-cloud.active .dpi-grid > *:nth-child(4) { animation-delay: 0.16s; }
+
+/* Entry animations — gcp-feature rows */
+#page-cloud.active .gcp-feature {
+  animation: slideUp 0.35s ease both;
+}
+#page-cloud.active .gcp-feature:nth-child(1) { animation-delay: 0.10s; }
+#page-cloud.active .gcp-feature:nth-child(2) { animation-delay: 0.18s; }
+#page-cloud.active .gcp-feature:nth-child(3) { animation-delay: 0.26s; }
+
 /* Entry animation — industry solutions cards */
 .page.active .industry-grid > * {
   animation: slideUp 0.35s ease both;
@@ -1479,21 +1500,4 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
     border-left-color: transparent;
     border-bottom-color: var(--teal);
   }
-  html[dir=rtl] .fn-sidebar__item--active { border-right-color: transparent; border-bottom-color: var(--teal); }
-  .fn-sidebar__num { width: auto; font-size: 10px; }
-  .fn-sidebar__name { font-size: 12px; text-align: center; }
-}
-
-
-/* ══════════════════════════════════════════
-   RESPONSIVE — NAV BREAKPOINT ≤ 768px
-══════════════════════════════════════════ */
-@media (max-width: 768px) {
-  .nav__links { display: none; }
-  .nav__actions .lang-toggle { display: none; } /* lang toggle moves to mobile drawer */
-  .hamburger { display: flex; }
-  .hero__inner { grid-template-columns: 1fr; gap: 32px; }
-  .hero__icon  { max-width: 180px; margin: 0 auto; }
-}
-
-/* ═══════════════════════════════�
+  html[dir=rtl] .fn-sideb
