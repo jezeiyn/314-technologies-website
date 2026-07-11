@@ -184,6 +184,8 @@ body.lang-ar .en { display: none !important; }
 .nav__dropdown.open .nav__caret { transform: rotate(180deg); opacity: 1; }
 
 .nav__dropdown-menu {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: calc(100% + 6px);
   left: 50%;
@@ -261,9 +263,9 @@ html[dir=rtl] .mobile-nav__dropdown-toggle { text-align: right; }
 
 .mobile-nav__sub-group {
   display: none;
-  background: rgba(0,0,0,0.15);
+  background: rgba(0,0,0,0.12);
 }
-.mobile-nav__sub-group.open { display: block; }
+.mobile-nav__sub-group.open { display: flex; flex-direction: column; }
 .mobile-nav__sub {
   padding-left: 40px;
   font-size: 14px;
@@ -306,6 +308,7 @@ html[dir=rtl] .mobile-nav__sub { padding-left: 28px; padding-right: 40px; }
 }
 .mobile-nav.open { display: flex; }
 .mobile-nav__link {
+  display: block;
   color: var(--muted);
   font-family: var(--font-head);
   font-size: 15px;
