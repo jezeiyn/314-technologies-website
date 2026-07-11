@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="314 Technologies - A 100% Emirati-owned technology consultancy and Google Cloud Partner. Advisory Services, Digital Public Infrastructure, and Cloud services for UAE government and enterprise." />
   <title>314 Technologies | The constant you can build on.</title>
-  <link rel="stylesheet" href="style.css?v=17" />
+  <link rel="stylesheet" href="style.css?v=18" />
   <link rel="icon" type="image/svg+xml" href="assets/logos/logo_simple_reversed.svg" />
 </head>
 <body class="lang-en">
@@ -72,10 +72,15 @@
 <!-- Mobile nav drawer -->
 <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
   <a class="mobile-nav__link active" data-page="home"><span class="en">Home</span><span class="ar">الرئيسية</span></a>
-  <div class="mobile-nav__group"><span class="en">What we do</span><span class="ar">ما نقدمه</span></div>
-  <a class="mobile-nav__link mobile-nav__sub" data-page="consulting"><span class="en">314 Advisory Services</span><span class="ar">314 الاستشارات</span></a>
-  <a class="mobile-nav__link mobile-nav__sub" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 البنية الرقمية</span></a>
-  <a class="mobile-nav__link mobile-nav__sub" data-page="cloud"><span class="en">314 Cloud and Ai</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a>
+  <button class="mobile-nav__link mobile-nav__dropdown-toggle" id="mobileWhatWeDo" aria-expanded="false">
+    <span class="en">What we do</span><span class="ar">ما نقدمه</span>
+    <svg class="mobile-nav__caret" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l5 5 5-5"/></svg>
+  </button>
+  <div class="mobile-nav__sub-group" id="mobileWhatWeDoSub">
+    <a class="mobile-nav__link mobile-nav__sub" data-page="consulting"><span class="en">314 Advisory Services</span><span class="ar">314 الاستشارات</span></a>
+    <a class="mobile-nav__link mobile-nav__sub" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 البنية الرقمية</span></a>
+    <a class="mobile-nav__link mobile-nav__sub" data-page="cloud"><span class="en">314 Cloud and Ai</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a>
+  </div>
   <a class="mobile-nav__link" data-page="about"><span class="en">Who we are</span><span class="ar">من نحن</span></a>
   <a class="mobile-nav__link" data-page="industry"><span class="en">Our Partners</span><span class="ar">شركاؤنا</span></a>
   <a class="mobile-nav__link" data-page="contact"><span class="en">Contact</span><span class="ar">تواصل معنا</span></a>
@@ -1722,6 +1727,8 @@
     });
     var dropTgl = document.getElementById('navDropdownToggle');
     if (dropTgl) dropTgl.classList.toggle('active', svcGroup.includes(id));
+    var mobDropTgl = document.getElementById('mobileWhatWeDo');
+    if (mobDropTgl) mobDropTgl.classList.toggle('active', svcGroup.includes(id));
     // Update service sub-nav active state
     document.querySelectorAll('.svc-nav__btn[data-page]').forEach(function(btn) {
       btn.classList.toggle('svc-active', btn.dataset.page === id);
@@ -1770,6 +1777,23 @@
     var _n = document.getElementById('mobileNav');
     if (_h) { _h.classList.remove('open'); _h.setAttribute('aria-expanded', 'false'); }
     if (_n) _n.classList.remove('open');
+    // collapse mobile What we do sub-group too
+    var sub = document.getElementById('mobileWhatWeDoSub');
+    var tgl = document.getElementById('mobileWhatWeDo');
+    if (sub) sub.classList.remove('open');
+    if (tgl) { tgl.classList.remove('open'); tgl.setAttribute('aria-expanded', 'false'); }
+  }
+
+  // Mobile "What we do" accordion
+  var mobWwd = document.getElementById('mobileWhatWeDo');
+  if (mobWwd) {
+    mobWwd.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var sub = document.getElementById('mobileWhatWeDoSub');
+      var isOpen = sub.classList.toggle('open');
+      this.classList.toggle('open', isOpen);
+      this.setAttribute('aria-expanded', isOpen);
+    });
   }
 
   // hamburger toggle handled via global click handler (data-action='menu')
