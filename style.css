@@ -237,6 +237,39 @@ body.lang-ar .en { display: none !important; }
 }
 html[dir=rtl] .mobile-nav__sub { padding-left: 14px; padding-right: 40px; }
 
+
+/* ── MOBILE NAV ACCORDION (What we do) ── */
+.mobile-nav__dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+html[dir=rtl] .mobile-nav__dropdown-toggle { text-align: right; }
+.mobile-nav__caret {
+  flex-shrink: 0;
+  transition: transform 0.22s ease;
+  opacity: 0.6;
+}
+.mobile-nav__dropdown-toggle.open .mobile-nav__caret { transform: rotate(180deg); opacity: 1; }
+.mobile-nav__dropdown-toggle.active { color: var(--teal); }
+
+.mobile-nav__sub-group {
+  display: none;
+  background: rgba(0,0,0,0.15);
+}
+.mobile-nav__sub-group.open { display: block; }
+.mobile-nav__sub {
+  padding-left: 40px;
+  font-size: 14px;
+}
+html[dir=rtl] .mobile-nav__sub { padding-left: 28px; padding-right: 40px; }
+
 /* Hamburger */
 .hamburger {
   display: none;
