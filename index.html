@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="314 Technologies - A 100% Emirati-owned technology consultancy and Google Cloud Partner. Advisory Services, Digital Public Infrastructure, and Cloud services for UAE government and enterprise." />
   <title>314 Technologies | The constant you can build on.</title>
-  <link rel="stylesheet" href="style.css?v=16" />
+  <link rel="stylesheet" href="style.css?v=17" />
   <link rel="icon" type="image/svg+xml" href="assets/logos/logo_simple_reversed.svg" />
 </head>
 <body class="lang-en">
@@ -40,11 +40,20 @@
     <!-- Desktop links -->
     <ul class="nav__links" role="list">
       <li><a class="nav__link active" data-page="home"><span class="en">Home</span><span class="ar">الرئيسية</span></a></li>
-      <li><a class="nav__link" data-page="about"><span class="en">About Us</span><span class="ar">من نحن</span></a></li>
-      <li><a class="nav__link" data-page="industry"><span class="en">Industry Solutions</span><span class="ar">حلول القطاعات</span></a></li>
-      <li><a class="nav__link" data-page="functions"><span class="en">Business Functions</span><span class="ar">وظائف الأعمال</span></a></li>
-      <li><a class="nav__link" data-page="consulting"><span class="en">Services</span><span class="ar">الخدمات</span></a></li>
-      <li><a class="nav__link" data-page="contact"><span class="en">Contact Us</span><span class="ar">تواصل معنا</span></a></li>
+      <li class="nav__dropdown">
+        <button class="nav__dropdown-toggle" id="navDropdownToggle" aria-haspopup="true" aria-expanded="false">
+          <span class="en">What we do</span><span class="ar">ما نقدمه</span>
+          <svg class="nav__caret" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <ul class="nav__dropdown-menu" role="list">
+          <li><a class="nav__dropdown-item" data-page="consulting"><span class="en">314 Advisory Services</span><span class="ar">314 الاستشارات</span></a></li>
+          <li><a class="nav__dropdown-item" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 البنية الرقمية</span></a></li>
+          <li><a class="nav__dropdown-item" data-page="cloud"><span class="en">314 Cloud and Ai</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a></li>
+        </ul>
+      </li>
+      <li><a class="nav__link" data-page="about"><span class="en">Who we are</span><span class="ar">من نحن</span></a></li>
+      <li><a class="nav__link" data-page="industry"><span class="en">Our Partners</span><span class="ar">شركاؤنا</span></a></li>
+      <li><a class="nav__link" data-page="contact"><span class="en">Contact</span><span class="ar">تواصل معنا</span></a></li>
     </ul>
 
     <div class="nav__actions">
@@ -60,14 +69,16 @@
   </div>
 </nav>
 
-<!-- Mobile nav drawer (same order as desktop) -->
+<!-- Mobile nav drawer -->
 <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
   <a class="mobile-nav__link active" data-page="home"><span class="en">Home</span><span class="ar">الرئيسية</span></a>
-  <a class="mobile-nav__link" data-page="about"><span class="en">About Us</span><span class="ar">من نحن</span></a>
-  <a class="mobile-nav__link" data-page="industry"><span class="en">Industry Solutions</span><span class="ar">حلول القطاعات</span></a>
-  <a class="mobile-nav__link" data-page="functions"><span class="en">Business Functions</span><span class="ar">وظائف الأعمال</span></a>
-  <a class="mobile-nav__link" data-page="consulting"><span class="en">Services</span><span class="ar">الخدمات</span></a>
-  <a class="mobile-nav__link" data-page="contact"><span class="en">Contact Us</span><span class="ar">تواصل معنا</span></a>
+  <div class="mobile-nav__group"><span class="en">What we do</span><span class="ar">ما نقدمه</span></div>
+  <a class="mobile-nav__link mobile-nav__sub" data-page="consulting"><span class="en">314 Advisory Services</span><span class="ar">314 الاستشارات</span></a>
+  <a class="mobile-nav__link mobile-nav__sub" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 البنية الرقمية</span></a>
+  <a class="mobile-nav__link mobile-nav__sub" data-page="cloud"><span class="en">314 Cloud and Ai</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a>
+  <a class="mobile-nav__link" data-page="about"><span class="en">Who we are</span><span class="ar">من نحن</span></a>
+  <a class="mobile-nav__link" data-page="industry"><span class="en">Our Partners</span><span class="ar">شركاؤنا</span></a>
+  <a class="mobile-nav__link" data-page="contact"><span class="en">Contact</span><span class="ar">تواصل معنا</span></a>
   <div class="mobile-nav__lang">
     <button class="lang-toggle" id="langToggleMobile" data-action="lang" aria-label="Switch language">
       <span class="lang-toggle__opt lang-toggle__opt--en">EN</span>
@@ -164,7 +175,7 @@
           <span class="service-card__link ar">اعرف المزيد <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
         </div>
 
-        <!-- 314 Cloud -->
+        <!-- 314 Cloud and Ai -->
         <div class="service-card" data-page="cloud" role="button" tabindex="0">
           <div class="service-card__icon" aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -172,7 +183,7 @@
               <path d="M22 30v-12M18 22l4-4 4 4"/>
             </svg>
           </div>
-          <h3 class="service-card__title">314 Cloud</h3>
+          <h3 class="service-card__title">314 Cloud and Ai</h3>
           <p class="service-card__body en">Google Cloud strategy, migration, implementation, and managed services for UAE government bodies and regulated enterprises. Honest scope. Right-sized for you.</p>
           <p class="service-card__body ar">استراتيجية Google Cloud والترحيل والتنفيذ والخدمات المُدارة للجهات الحكومية الإماراتية والمؤسسات المنظمة. نطاق واضح. مُقاس حسب احتياجاتك.</p>
           <span class="service-card__link en">Learn more <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
@@ -244,7 +255,7 @@
         <p class="partner-text en">As a certified Google Cloud Partner, 314 Technologies builds, migrates, and manages workloads on Google Cloud, including DPI-in-a-Box deployments for government digital infrastructure across the UAE and GCC.</p>
         <p class="partner-text ar">بوصفنا شريكاً معتمداً من Google Cloud، تقوم شركة 314 تكنولوجيز ببناء وترحيل وإدارة أعباء العمل على Google Cloud، بما في ذلك نشر DPI-in-a-Box للبنية التحتية الرقمية الحكومية عبر الإمارات وخليج التعاون الخليجي.</p>
         <a class="btn btn-teal-outline" data-page="cloud">
-          <span class="en">314 Cloud</span>
+          <span class="en">314 Cloud and Ai</span>
           <span class="ar">314 السحاب</span>
         </a>
       </div>
@@ -473,8 +484,8 @@
 
   <section class="page-hero">
     <div class="container">
-      <p class="section__label en">Industry Solutions</p>
-      <p class="section__label ar">حلول القطاعات</p>
+      <p class="section__label en">Our Partners</p>
+      <p class="section__label ar">شركاؤنا</p>
       <h1 class="page-hero__title en">Deep expertise.<br>Sector by sector.</h1>
       <h1 class="page-hero__title ar">خبرة عميقة.<br>قطاعاً بقطاع.</h1>
       <p class="page-hero__sub en">314 Technologies brings focused experience across the sectors that define the UAE economy and its public service landscape. Every engagement draws on specific regulatory, operational, and technology knowledge built inside each vertical.</p>
@@ -936,7 +947,7 @@
     <div class="svc-nav__inner">
       <a class="svc-nav__btn svc-active" data-page="consulting"><span class="en">314 Advisory Services</span><span class="ar">314 الاستشارات</span></a>
       <a class="svc-nav__btn" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 للبنية الرقمية</span></a>
-      <a class="svc-nav__btn" data-page="cloud"><span class="en">314 Cloud</span><span class="ar">314 السحاب</span></a>
+      <a class="svc-nav__btn" data-page="cloud"><span class="en">314 Cloud and Ai</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a>
     </div>
   </div>
 
@@ -1106,7 +1117,7 @@
     <div class="svc-nav__inner">
       <a class="svc-nav__btn" data-page="consulting"><span class="en">314 Advisory Services</span><span class="ar">314 الاستشارات</span></a>
       <a class="svc-nav__btn svc-active" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 للبنية الرقمية</span></a>
-      <a class="svc-nav__btn" data-page="cloud"><span class="en">314 Cloud</span><span class="ar">314 السحاب</span></a>
+      <a class="svc-nav__btn" data-page="cloud"><span class="en">314 Cloud and Ai</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a>
     </div>
   </div>
 
@@ -1403,7 +1414,7 @@
     <div class="svc-nav__inner">
       <a class="svc-nav__btn" data-page="consulting"><span class="en">314 Advisory Services</span><span class="ar">314 الاستشارات</span></a>
       <a class="svc-nav__btn" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 للبنية الرقمية</span></a>
-      <a class="svc-nav__btn svc-active" data-page="cloud"><span class="en">314 Cloud</span><span class="ar">314 السحاب</span></a>
+      <a class="svc-nav__btn svc-active" data-page="cloud"><span class="en">314 Cloud and Ai</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a>
     </div>
   </div>
 
@@ -1411,7 +1422,7 @@
     <div class="container">
       <div class="svc-lead">
         <div>
-          <p class="section__label en">314 Cloud</p>
+          <p class="section__label en">314 Cloud and Ai</p>
           <p class="section__label ar">314 السحاب</p>
           <h2 class="section__h2 en">Google Cloud,<br>with local accountability.</h2>
           <h2 class="section__h2 ar">Google Cloud،<br>مع مساءلة محلية.</h2>
@@ -1541,7 +1552,7 @@
                 <option value="">-- Select a service area --</option>
                 <option value="consulting">314 Advisory Services: advisory, product scoping, or partnership</option>
                 <option value="dpi">314 DPI: government digital infrastructure</option>
-                <option value="cloud">314 Cloud: Google Cloud implementation or migration</option>
+                <option value="cloud">314 Cloud and Ai: Google Cloud implementation or migration</option>
                 <option value="general">General: media, careers, or other</option>
               </select>
             </div>
@@ -1654,11 +1665,11 @@
         <p class="footer__col__heading ar">التنقل</p>
         <ul class="footer__links">
           <li><a class="footer__link en" data-page="home">Home</a><a class="footer__link ar" data-page="home">الرئيسية</a></li>
-          <li><a class="footer__link en" data-page="about">About Us</a><a class="footer__link ar" data-page="about">من نحن</a></li>
-          <li><a class="footer__link en" data-page="industry">Industry Solutions</a><a class="footer__link ar" data-page="industry">حلول القطاعات</a></li>
+          <li><a class="footer__link en" data-page="about">Who we are</a><a class="footer__link ar" data-page="about">من نحن</a></li>
+          <li><a class="footer__link en" data-page="industry">Our Partners</a><a class="footer__link ar" data-page="industry">شركاؤنا</a></li>
           <li><a class="footer__link en" data-page="functions">Business Functions</a><a class="footer__link ar" data-page="functions">وظائف الأعمال</a></li>
-          <li><a class="footer__link en" data-page="consulting">Services</a><a class="footer__link ar" data-page="consulting">الخدمات</a></li>
-          <li><a class="footer__link en" data-page="contact">Contact Us</a><a class="footer__link ar" data-page="contact">تواصل معنا</a></li>
+          <li><a class="footer__link en" data-page="consulting">What we do</a><a class="footer__link ar" data-page="consulting">ما نقدمه</a></li>
+          <li><a class="footer__link en" data-page="contact">Contact</a><a class="footer__link ar" data-page="contact">تواصل معنا</a></li>
         </ul>
       </div>
       <div>
@@ -1667,7 +1678,7 @@
         <ul class="footer__links">
           <li><a class="footer__link en" data-page="consulting">314 Advisory Services</a><a class="footer__link ar" data-page="consulting">314 الاستشارات</a></li>
           <li><a class="footer__link en" data-page="dpi">314 DPI</a><a class="footer__link ar" data-page="dpi">314 للبنية الرقمية</a></li>
-          <li><a class="footer__link en" data-page="cloud">314 Cloud</a><a class="footer__link ar" data-page="cloud">314 السحاب</a></li>
+          <li><a class="footer__link en" data-page="cloud">314 Cloud and Ai</a><a class="footer__link ar" data-page="cloud">314 السحابة والذكاء الاصطناعي</a></li>
         </ul>
         <p class="footer__col__heading en" style="margin-top:28px;">Contact</p>
         <p class="footer__col__heading ar" style="margin-top:28px;">تواصل</p>
@@ -1705,12 +1716,13 @@
     });
     var svcGroup = ['consulting', 'dpi', 'cloud'];
     document.querySelectorAll('[data-page]').forEach(function (el) {
-      if (el.classList.contains('nav__link') || el.classList.contains('mobile-nav__link')) {
-        var isActive = el.dataset.page === id ||
-          (svcGroup.includes(id) && el.dataset.page === 'consulting');
-        el.classList.toggle('active', isActive);
+      if (el.classList.contains('nav__link') || el.classList.contains('mobile-nav__link') ||
+          el.classList.contains('mobile-nav__sub') || el.classList.contains('nav__dropdown-item')) {
+        el.classList.toggle('active', el.dataset.page === id);
       }
     });
+    var dropTgl = document.getElementById('navDropdownToggle');
+    if (dropTgl) dropTgl.classList.toggle('active', svcGroup.includes(id));
     // Update service sub-nav active state
     document.querySelectorAll('.svc-nav__btn[data-page]').forEach(function(btn) {
       btn.classList.toggle('svc-active', btn.dataset.page === id);
@@ -1762,6 +1774,23 @@
   }
 
   // hamburger toggle handled via global click handler (data-action='menu')
+
+  // Desktop dropdown toggle (click support for touch devices)
+  var navDropTgl = document.getElementById('navDropdownToggle');
+  if (navDropTgl) {
+    navDropTgl.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var li = this.closest('.nav__dropdown');
+      var isOpen = li.classList.toggle('open');
+      this.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav__dropdown')) {
+        var dd = document.querySelector('.nav__dropdown');
+        if (dd) { dd.classList.remove('open'); navDropTgl.setAttribute('aria-expanded', 'false'); }
+      }
+    });
+  }
 
   document.addEventListener('click', function (e) {
     var _h = document.getElementById('hamburger');
