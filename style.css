@@ -153,6 +153,90 @@ body.lang-ar .en { display: none !important; }
   color: var(--paper);
 }
 
+
+/* ── NAV DROPDOWN ── */
+.nav__dropdown { position: relative; }
+.nav__dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  border: none;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+.nav__dropdown-toggle:hover,
+.nav__dropdown-toggle.active { color: var(--teal); }
+.nav__caret {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+.nav__dropdown:hover .nav__caret,
+.nav__dropdown.open .nav__caret { transform: rotate(180deg); opacity: 1; }
+
+.nav__dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: var(--ink-soft);
+  border: 1px solid var(--hair-dark);
+  border-radius: var(--radius);
+  min-width: 230px;
+  padding: 6px 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 200;
+}
+.nav__dropdown:hover .nav__dropdown-menu,
+.nav__dropdown.open .nav__dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.nav__dropdown-item {
+  display: block;
+  padding: 11px 22px;
+  color: var(--muted);
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color var(--transition), background var(--transition);
+}
+.nav__dropdown-item:hover  { color: var(--paper); background: rgba(255,255,255,0.06); }
+.nav__dropdown-item.active { color: var(--teal); }
+
+/* ── MOBILE NAV GROUP LABEL ── */
+.mobile-nav__group {
+  padding: 12px 28px 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border-bottom: none;
+}
+.mobile-nav__sub {
+  padding-left: 40px;
+  font-size: 14px;
+}
+html[dir=rtl] .mobile-nav__sub { padding-left: 14px; padding-right: 40px; }
+
 /* Hamburger */
 .hamburger {
   display: none;
