@@ -1954,17 +1954,15 @@
   }
 
   setLang('en');
-  // ── CONTACT FORM ──
-  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHPcUxjY6YrPo4oHwnVcsnHkvuZuojaBvL6GxKW4n8ZYbdiSckJs8c4vUPVWY2gIrB/exec';
-
+  // ── CONTACT FORM — Web3Forms ──
   window.submitContactForm = function(e) {
     e.preventDefault();
-    var btn  = e.target.querySelector('[type="submit"]');
-    var name = document.getElementById('c-name').value.trim();
-    var org  = document.getElementById('c-org').value.trim();
-    var email= document.getElementById('c-email').value.trim();
-    var svc  = document.getElementById('c-svc').value;
-    var msg  = document.getElementById('c-msg').value.trim();
+    var btn   = e.target.querySelector('[type="submit"]');
+    var name  = document.getElementById('c-name').value.trim();
+    var org   = document.getElementById('c-org').value.trim();
+    var email = document.getElementById('c-email').value.trim();
+    var svc   = document.getElementById('c-svc').value;
+    var msg   = document.getElementById('c-msg').value.trim();
 
     if (!name || !email || !msg) {
       alert('Please fill in your name, email, and message.');
@@ -1974,20 +1972,33 @@
     btn.disabled = true;
     btn.innerHTML = '<span class="en">Sending…</span><span class="ar">جاري الإرسال…</span>';
 
-    var qs = '?name=' + encodeURIComponent(name)
-           + '&organisation=' + encodeURIComponent(org)
-           + '&email=' + encodeURIComponent(email)
-           + '&service=' + encodeURIComponent(svc)
-           + '&message=' + encodeURIComponent(msg);
-    fetch(APPS_SCRIPT_URL + qs, { mode: 'no-cors' })
-    .then(function() {
-      document.getElementById('contactForm').innerHTML =
-        '<div style="padding:32px;text-align:center;">' +
-        '<p style="font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;" class="en">Message sent.</p>' +
-        '<p style="font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;" class="ar">تم إرسال رسالتك.</p>' +
-        '<p style="color:var(--slate);" class="en">We’ll be in touch shortly.</p>' +
-        '<p style="color:var(--slate);" class="ar">سنتواصل معك قريباً.</p>' +
-        '</div>';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '0851be10-e0ac-4715-9a9e-1cc55c9ca74d',
+        subject: 'New enquiry from 314tech.ai — ' + svc,
+        from_name: '314 Technologies Website',
+        name: name,
+        email: email,
+        organisation: org,
+        service: svc,
+        message: msg
+      })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.success) {
+        document.getElementById('contactForm').innerHTML =
+          '<div style="padding:32px;text-align:center;">' +
+          '<p style="font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;" class="en">Message sent.</p>' +
+          '<p style="font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;" class="ar">تم إرسال رسالتك.</p>' +
+          '<p style="color:var(--slate);" class="en">We\'ll be in touch shortly.</p>' +
+          '<p style="color:var(--slate);" class="ar">سنتواصل معك قريباً.</p>' +
+          '</div>';
+      } else {
+        throw new Error(data.message || 'Submission failed');
+      }
     })
     .catch(function() {
       btn.disabled = false;
