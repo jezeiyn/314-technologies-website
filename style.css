@@ -1720,6 +1720,74 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   #page-cloud .dpi-grid > .dpi-card:nth-child(4) { grid-column: 2; }
 }
 
+
+/* ── AI AGENTS SECTION (314 Cloud and Ai page) ── */
+.ai-agents-wrap {
+  background: var(--ink-soft);
+  border-radius: var(--radius);
+  margin-top: 48px;
+  padding: 48px 40px;
+}
+.ai-agents-lead {
+  color: var(--muted);
+  font-size: 16px;
+  margin-top: 8px;
+  margin-bottom: 36px;
+}
+.ai-agents-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.ai-agent-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--hair-dark);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+}
+.ai-agent-card__title {
+  font-family: var(--font-head);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.ai-agent-card__body {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 24px;
+  flex: 1;
+}
+.ai-agent-card__use-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.ai-agent-card__uses {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+  padding-left: 16px;
+  list-style: disc;
+}
+html[dir=rtl] .ai-agent-card__uses { padding-left: 0; padding-right: 16px; }
+
+@media (max-width: 900px) {
+  .ai-agents-grid { grid-template-columns: 1fr; }
+  .ai-agents-wrap { padding: 36px 24px; }
+}
+@media (max-width: 600px) {
+  .ai-agents-wrap { padding: 28px 16px; }
+}
+
 /* ── DPI pillars: centre last 3 in 5-col grid (not on mobile/tablet) ── */
 @media (min-width: 901px) {
   .dpi-pillars-grid > .dpi-pillar:nth-child(11) { grid-column-start: 2; }
