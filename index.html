@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="314 Technologies - A 100% Emirati-owned technology consultancy and Google Cloud Partner. Advisory Services, Digital Public Infrastructure, and Cloud services for UAE government and enterprise." />
   <title>314 Technologies | The constant you can build on.</title>
-  <link rel="stylesheet" href="style.css?v=20" />
+  <link rel="stylesheet" href="style.css?v=21" />
   <link rel="icon" type="image/svg+xml" href="assets/logos/logo_simple_reversed.svg" />
 </head>
 <body class="lang-en">
@@ -125,11 +125,15 @@
         </div>
 
         <div class="hero__icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke-linecap="round">
-            <path d="M60 18 A42 42 0 0 1 102 60" stroke="#FAFAF8" stroke-width="6"/>
-            <path d="M60 102 A42 42 0 0 1 18 60" stroke="#FAFAF8" stroke-width="6"/>
-            <line x1="7" y1="60" x2="108" y2="60" stroke="#1FA39B" stroke-width="6"/>
-            <circle cx="7" cy="60" r="4.5" fill="#1FA39B"/>
+          <svg class="hero-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke-linecap="round">
+            <!-- Arc 1: top-right quarter — draws on, then rotates CW -->
+            <path class="hero-logo__arc1" d="M60 18 A42 42 0 0 1 102 60" stroke="#FAFAF8" stroke-width="6" stroke-dasharray="67" stroke-dashoffset="67"/>
+            <!-- Arc 2: bottom-left quarter — draws on, then rotates CCW -->
+            <path class="hero-logo__arc2" d="M60 102 A42 42 0 0 1 18 60" stroke="#FAFAF8" stroke-width="6" stroke-dasharray="67" stroke-dashoffset="67"/>
+            <!-- Teal line — draws left to right -->
+            <line class="hero-logo__line" x1="7" y1="60" x2="108" y2="60" stroke="#1FA39B" stroke-width="6" stroke-dasharray="101" stroke-dashoffset="101"/>
+            <!-- Dot — appears then scans the line -->
+            <circle class="hero-logo__dot" cx="7" cy="60" r="4.5" fill="#1FA39B"/>
           </svg>
         </div>
       </div>
