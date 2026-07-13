@@ -1576,6 +1576,97 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
 }
 
 
+
+/* ══════════════════════════════════════════
+   HERO LOGO ANIMATION
+══════════════════════════════════════════ */
+.hero-logo {
+  overflow: visible;
+  animation: heroLogoBreathe 7s ease-in-out 2s infinite;
+}
+
+/* Entry: draw paths on */
+@keyframes heroDrawPath {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes heroDrawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Continuous: arc rotations (counter-rotating for an orbital feel) */
+@keyframes heroArcSpin1 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes heroArcSpin2 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+/* Dot: scan left→right→left along the line */
+@keyframes heroDotScan {
+  0%   { transform: translateX(0px); }
+  38%  { transform: translateX(101px); }
+  62%  { transform: translateX(101px); }
+  100% { transform: translateX(0px); }
+}
+
+/* Breathing scale on whole icon */
+@keyframes heroLogoBreathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.045); }
+}
+
+/* Arc 1 — draw on, then spin CW */
+.hero-logo__arc1 {
+  transform-origin: 60px 60px;
+  transform-box: view-box;
+  animation:
+    heroDrawPath 0.75s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards,
+    heroArcSpin1 55s linear 0.95s infinite;
+}
+
+/* Arc 2 — draw on (staggered), then spin CCW at different speed */
+.hero-logo__arc2 {
+  transform-origin: 60px 60px;
+  transform-box: view-box;
+  animation:
+    heroDrawPath 0.75s cubic-bezier(0.4, 0, 0.2, 1) 0.38s both,
+    heroArcSpin2 70s linear 1.13s infinite;
+}
+
+/* Line — draws left to right after arcs */
+.hero-logo__line {
+  animation: heroDrawLine 0.65s cubic-bezier(0.4, 0, 0.2, 1) 0.9s forwards;
+  filter: drop-shadow(0 0 5px rgba(31,163,155,0.55));
+}
+
+/* Dot — fades in then scans */
+.hero-logo__dot {
+  opacity: 0;
+  animation:
+    heroDotAppear 0.3s ease 1.55s forwards,
+    heroDotScan 4.5s ease-in-out 1.85s infinite;
+  filter: drop-shadow(0 0 6px rgba(31,163,155,0.8));
+}
+@keyframes heroDotAppear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo,
+  .hero-logo__arc1,
+  .hero-logo__arc2,
+  .hero-logo__line,
+  .hero-logo__dot {
+    animation: none !important;
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+
 /* ══════════════════════════════════════════
    RESPONSIVE — NAV BREAKPOINT ≤ 768px
 ══════════════════════════════════════════ */
