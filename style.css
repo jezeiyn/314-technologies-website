@@ -1580,20 +1580,22 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
 /* ══════════════════════════════════════════
    HERO LOGO ANIMATION
 ══════════════════════════════════════════ */
-.hero-logo {
-  overflow: visible;
-  animation: heroLogoBreathe 7s ease-in-out 2s infinite;
-}
 
-/* Entry: draw paths on */
-@keyframes heroDrawPath {
-  to { stroke-dashoffset: 0; }
+/* ── Entry: draw paths on (stroke-dashoffset trick) ── */
+@keyframes heroDrawArc {
+  from { stroke-dashoffset: 67; }
+  to   { stroke-dashoffset: 0;  }
 }
 @keyframes heroDrawLine {
-  to { stroke-dashoffset: 0; }
+  from { stroke-dashoffset: 101; }
+  to   { stroke-dashoffset: 0;   }
+}
+@keyframes heroDotAppear {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 1; transform: scale(1);   }
 }
 
-/* Continuous: arc rotations (counter-rotating for an orbital feel) */
+/* ── Continuous: arc rotation (on <g> wrappers) ── */
 @keyframes heroArcSpin1 {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -1603,60 +1605,73 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   to   { transform: rotate(-360deg); }
 }
 
-/* Dot: scan left→right→left along the line */
+/* ── Continuous: dot scans the line ── */
 @keyframes heroDotScan {
-  0%   { transform: translateX(0px); }
+  0%   { transform: translateX(0);     }
   38%  { transform: translateX(101px); }
   62%  { transform: translateX(101px); }
-  100% { transform: translateX(0px); }
+  100% { transform: translateX(0);     }
 }
 
-/* Breathing scale on whole icon */
+/* ── Continuous: whole icon breathes ── */
 @keyframes heroLogoBreathe {
-  0%, 100% { transform: scale(1); }
+  0%, 100% { transform: scale(1);     }
   50%       { transform: scale(1.045); }
 }
 
-/* Arc 1 — draw on, then spin CW */
+/* SVG root: breathe after entry finishes */
+.hero-logo {
+  overflow: visible;
+  animation: heroLogoBreathe 7s ease-in-out 2.2s infinite;
+}
+
+/* <g> wrappers: rotate around SVG centre (60,60).
+   transform-box:view-box makes transform-origin relative to the viewport. */
+.hero-logo__arc-g1 {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: heroArcSpin1 55s linear 1.1s infinite;
+}
+.hero-logo__arc-g2 {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: heroArcSpin2 72s linear 1.1s infinite;
+}
+
+/* <path> elements: draw-on animation only (no transform conflict) */
 .hero-logo__arc1 {
-  transform-origin: 60px 60px;
-  transform-box: view-box;
-  animation:
-    heroDrawPath 0.75s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards,
-    heroArcSpin1 55s linear 0.95s infinite;
+  stroke-dasharray: 67;
+  stroke-dashoffset: 67;
+  animation: heroDrawArc 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
 }
-
-/* Arc 2 — draw on (staggered), then spin CCW at different speed */
 .hero-logo__arc2 {
-  transform-origin: 60px 60px;
-  transform-box: view-box;
-  animation:
-    heroDrawPath 0.75s cubic-bezier(0.4, 0, 0.2, 1) 0.38s both,
-    heroArcSpin2 70s linear 1.13s infinite;
+  stroke-dasharray: 67;
+  stroke-dashoffset: 67;
+  animation: heroDrawArc 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
 }
 
-/* Line — draws left to right after arcs */
+/* Line: draw left-to-right */
 .hero-logo__line {
-  animation: heroDrawLine 0.65s cubic-bezier(0.4, 0, 0.2, 1) 0.9s forwards;
+  stroke-dasharray: 101;
+  stroke-dashoffset: 101;
+  animation: heroDrawLine 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.9s forwards;
   filter: drop-shadow(0 0 5px rgba(31,163,155,0.55));
 }
 
-/* Dot — fades in then scans */
+/* Dot: appear, then scan */
 .hero-logo__dot {
   opacity: 0;
   animation:
-    heroDotAppear 0.3s ease 1.55s forwards,
-    heroDotScan 4.5s ease-in-out 1.85s infinite;
+    heroDotAppear 0.35s ease 1.6s forwards,
+    heroDotScan   4.5s ease-in-out 1.95s infinite;
   filter: drop-shadow(0 0 6px rgba(31,163,155,0.8));
 }
-@keyframes heroDotAppear {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
 
-/* Respect user preference */
+/* Accessibility: skip all animation for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   .hero-logo,
+  .hero-logo__arc-g1,
+  .hero-logo__arc-g2,
   .hero-logo__arc1,
   .hero-logo__arc2,
   .hero-logo__line,
@@ -1664,6 +1679,7 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
     animation: none !important;
     opacity: 1 !important;
     stroke-dashoffset: 0 !important;
+    transform: none !important;
   }
 }
 
