@@ -1595,6 +1595,24 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
 
 
 
+
+/* ── Home: Transformation block ── */
+.home-transform-head {
+  font-family: var(--font-head);
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 600;
+  color: var(--paper);
+  margin-top: 36px;
+  margin-bottom: 14px;
+}
+.home-transform-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 780px;
+  margin-bottom: 44px;
+}
+
 /* ══════════════════════════════════════════
    HERO LOGO ANIMATION
 ══════════════════════════════════════════ */
