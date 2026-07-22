@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="314 Technologies - A UAE based technology company and Google Cloud Partner. Advisory Services, Digital Public Infrastructure, and Cloud services for UAE government and enterprise." />
   <title>314 Technologies | The constant you can build on.</title>
-  <link rel="stylesheet" href="style.css?v=35" />
+  <link rel="stylesheet" href="style.css?v=36" />
   <link rel="icon" type="image/svg+xml" href="assets/logos/logo_simple_reversed.svg" />
 </head>
 <body class="lang-en">
@@ -1488,7 +1488,6 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 15l-2 5L9 9l11 4-5 2z"/></svg>
           Click any tile to see the AI agent use cases we can deploy.
         </p>
-
         <div class="industry-grid">
             <button class="industry-tile" data-industry="government" aria-label="Government & Public Sector">
               <div class="industry-tile__icon">
@@ -1563,66 +1562,66 @@
               <span class="industry-tile__name en">Smart Cities</span>
             </button>
         </div>
+      </div>
 
-        <!-- Inline expansion panel — slides open below the grid -->
-        <div class="ind-panel" id="indPanel" aria-live="polite">
-          <div class="ind-panel__inner">
-            <div class="ind-panel__header">
-              <h4 class="ind-panel__title" id="indPanelTitle"></h4>
-              <button class="ind-panel__close" id="indPanelClose" aria-label="Close">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="1" y1="1" x2="15" y2="15"/><line x1="15" y1="1" x2="1" y2="15"/></svg>
-              </button>
-            </div>
-            <div class="ind-panel__cases" id="indPanelCases"></div>
-            <a class="btn btn-primary ind-panel__cta" data-page="contact" id="indPanelCta">
-              <span class="en">Discuss this with us</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
+      <!-- Industry modal -->
+      <div class="ind-modal-overlay" id="indModalOverlay">
+        <div class="ind-modal" id="indModal" role="dialog" aria-modal="true" aria-labelledby="indModalTitle">
+          <button class="ind-modal__close" id="indModalClose" aria-label="Close">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="1" y1="1" x2="15" y2="15"/><line x1="15" y1="1" x2="1" y2="15"/></svg>
+          </button>
+          <p class="section__label en" style="color:var(--teal);margin-bottom:6px;">AI Agent Use Cases</p>
+          <h3 class="ind-modal__title" id="indModalTitle"></h3>
+          <div class="ind-modal__cases" id="indModalCases"></div>
+          <a class="btn btn-primary ind-modal__cta" data-page="contact" id="indModalCta">
+            <span class="en">Discuss this with us</span>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
       </div>
 
       <script>
       (function(){
-        var DATA = {"government":[{t:"Citizen Inquiry Agent",d:"24/7 handling of resident enquiries, service requests, and status updates across any channel."},{t:"Case Routing & Triage",d:"Automatically categorise, prioritise, and route incoming cases to the right department or officer."},{t:"Back-Office Automation",d:"Process approvals, documents, and routine workflows without manual intervention."},{t:"Benefits Eligibility",d:"Guide citizens through eligibility checks and social programme applications end to end."},{t:"Compliance Monitoring",d:"Continuously monitor submissions and flag regulatory deviations before they escalate."}],"financial":[{t:"Customer Onboarding Agent",d:"Automate KYC, document collection, and account setup from enquiry to activation."},{t:"Fraud Detection & Response",d:"Real-time transaction monitoring with automated escalation and case creation."},{t:"Loan Processing Agent",d:"Collect, assess, and route applications with structured decisioning support."},{t:"Billing Dispute Resolution",d:"Handle enquiries, gather evidence, and resolve billing disputes without agent involvement."},{t:"Regulatory Reporting",d:"Aggregate data and generate compliance reports on schedule with full audit trail."}],"healthcare":[{t:"Patient Intake Agent",d:"Collect symptoms, history, and insurance details digitally before the appointment."},{t:"Appointment Scheduling",d:"Book, reschedule, and remind patients across channels without staff involvement."},{t:"Clinical Documentation",d:"Transcribe and structure clinical notes from consultations into the record system."},{t:"Insurance Claims Processing",d:"Extract, validate, and submit claims with full documentation and audit trail."},{t:"Medication Adherence",d:"Proactively reach out to patients and flag non-compliance to care teams."}],"retail":[{t:"Customer Support Agent",d:"Handle returns, exchanges, order status, and FAQs at scale with no queue."},{t:"Inventory Management",d:"Monitor stock levels and trigger restocking or supplier orders automatically."},{t:"Personalised Recommendations",d:"Surface relevant products based on customer behaviour and purchase context."},{t:"Fraud & Returns Detection",d:"Flag suspicious return patterns and escalate to the right team automatically."},{t:"Supplier Communication",d:"Automate PO generation, delivery updates, and dispute handling with vendors."}],"telecom":[{t:"Technical Support Agent",d:"Diagnose, troubleshoot, and resolve network issues without escalation to a human agent."},{t:"Churn Prediction & Retention",d:"Identify at-risk customers and trigger retention workflows at the right moment."},{t:"Billing Dispute Handling",d:"Resolve billing queries and apply adjustments autonomously within set parameters."},{t:"Network Fault Detection",d:"Monitor signals and route maintenance jobs to the field before customers notice."},{t:"Account & SIM Management",d:"Handle activations, upgrades, and cancellations without live agent support."}],"education":[{t:"Student Support Agent",d:"Answer academic, administrative, and campus enquiries around the clock."},{t:"Enrolment & Admissions",d:"Guide applicants through requirements, documentation, and key deadlines."},{t:"Learning Personalisation",d:"Adapt content and pacing based on individual performance and engagement data."},{t:"Administrative Automation",d:"Process fee payments, transcript requests, and timetabling without manual work."},{t:"Faculty Support",d:"Draft communications, manage schedules, and handle routine administrative requests."}],"energy":[{t:"Outage Management",d:"Detect, log, and coordinate field responses to outages automatically."},{t:"Predictive Maintenance",d:"Analyse sensor data and schedule intervention before equipment fails."},{t:"Consumption & Billing Queries",d:"Handle usage enquiries and generate consumption insights on demand."},{t:"Regulatory Submissions",d:"Monitor environmental obligations and generate submissions on schedule."},{t:"Customer Efficiency Advisory",d:"Proactively advise customers on demand reduction and tariff optimisation."}],"legal":[{t:"Contract Review Agent",d:"Extract key clauses, flag risks, and benchmark against standard templates automatically."},{t:"Due Diligence Automation",d:"Gather, organise, and surface relevant documents for legal and commercial review."},{t:"Regulatory Monitoring",d:"Track regulatory changes and alert teams to new compliance obligations in real time."},{t:"Client Intake & Matter Setup",d:"Qualify leads, collect documents, and open matters without manual data entry."},{t:"Billing & Time Capture",d:"Capture time, draft narratives, and generate client-ready invoices automatically."}],"realestate":[{t:"Property Enquiry Agent",d:"Handle inbound leads, qualify buyers, and book viewings without staff involvement."},{t:"Tenant Onboarding",d:"Guide new tenants through documentation, payments, and move-in orientation."},{t:"Maintenance Request Handling",d:"Log, triage, and dispatch maintenance jobs automatically with contractor updates."},{t:"Lease Renewal Automation",d:"Identify upcoming renewals and manage the negotiation and documentation workflow."},{t:"Market Intelligence",d:"Aggregate market data and surface insights for investors, agents, and asset managers."}],"manufacturing":[{t:"Procurement Agent",d:"Raise POs, track deliveries, and manage supplier communications automatically."},{t:"Quality Control Automation",d:"Flag deviations on the production line and log non-conformances in real time."},{t:"Predictive Maintenance",d:"Monitor equipment health and schedule intervention before unplanned downtime."},{t:"Inventory Optimisation",d:"Balance stock levels across warehouses based on real-time demand signals."},{t:"Supplier Onboarding",d:"Collect documentation, validate compliance, and set up new vendors without delays."}],"travel":[{t:"Booking Assistant",d:"Handle enquiries, check availability, and complete reservations across all channels."},{t:"Concierge Agent",d:"Provide personalised recommendations and arrange guest services on demand."},{t:"Complaint Resolution",d:"Triage complaints, gather context, and resolve or escalate with full context."},{t:"Loyalty Programme Management",d:"Handle points balances, redemptions, and status queries without staff."},{t:"Disruption Management",d:"Proactively communicate changes and rebook affected travellers automatically."}],"smartcity":[{t:"Traffic & Mobility Agent",d:"Analyse flow data and coordinate signal optimisation dynamically in real time."},{t:"Infrastructure Monitoring",d:"Detect anomalies in utilities, roads, and public assets before they affect residents."},{t:"Emergency Response Routing",d:"Triage incidents and coordinate first responder deployment intelligently."},{t:"Citizen Service Hub",d:"Single AI entry point for all city services, enquiries, and status updates."},{t:"Environmental Monitoring",d:"Track air quality, waste, and sustainability metrics with automated alerts."}]};
-        var panel    = document.getElementById('indPanel');
-        var titleEl  = document.getElementById('indPanelTitle');
-        var casesEl  = document.getElementById('indPanelCases');
-        var closeBtn = document.getElementById('indPanelClose');
-        var current  = null;
+        var DATA    = {"government":[{t:"Citizen Inquiry Agent",d:"24/7 handling of resident enquiries, service requests, and status updates across any channel."},{t:"Case Routing & Triage",d:"Automatically categorise, prioritise, and route incoming cases to the right department or officer."},{t:"Back-Office Automation",d:"Process approvals, documents, and routine workflows without manual intervention."},{t:"Benefits Eligibility",d:"Guide citizens through eligibility checks and social programme applications end to end."},{t:"Compliance Monitoring",d:"Continuously monitor submissions and flag regulatory deviations before they escalate."}],"financial":[{t:"Customer Onboarding Agent",d:"Automate KYC, document collection, and account setup from enquiry to activation."},{t:"Fraud Detection & Response",d:"Real-time transaction monitoring with automated escalation and case creation."},{t:"Loan Processing Agent",d:"Collect, assess, and route applications with structured decisioning support."},{t:"Billing Dispute Resolution",d:"Handle enquiries, gather evidence, and resolve billing disputes without agent involvement."},{t:"Regulatory Reporting",d:"Aggregate data and generate compliance reports on schedule with full audit trail."}],"healthcare":[{t:"Patient Intake Agent",d:"Collect symptoms, history, and insurance details digitally before the appointment."},{t:"Appointment Scheduling",d:"Book, reschedule, and remind patients across channels without staff involvement."},{t:"Clinical Documentation",d:"Transcribe and structure clinical notes from consultations into the record system."},{t:"Insurance Claims Processing",d:"Extract, validate, and submit claims with full documentation and audit trail."},{t:"Medication Adherence",d:"Proactively reach out to patients and flag non-compliance to care teams."}],"retail":[{t:"Customer Support Agent",d:"Handle returns, exchanges, order status, and FAQs at scale with no queue."},{t:"Inventory Management",d:"Monitor stock levels and trigger restocking or supplier orders automatically."},{t:"Personalised Recommendations",d:"Surface relevant products based on customer behaviour and purchase context."},{t:"Fraud & Returns Detection",d:"Flag suspicious return patterns and escalate to the right team automatically."},{t:"Supplier Communication",d:"Automate PO generation, delivery updates, and dispute handling with vendors."}],"telecom":[{t:"Technical Support Agent",d:"Diagnose, troubleshoot, and resolve network issues without escalation to a human agent."},{t:"Churn Prediction & Retention",d:"Identify at-risk customers and trigger retention workflows at the right moment."},{t:"Billing Dispute Handling",d:"Resolve billing queries and apply adjustments autonomously within set parameters."},{t:"Network Fault Detection",d:"Monitor signals and route maintenance jobs to the field before customers notice."},{t:"Account & SIM Management",d:"Handle activations, upgrades, and cancellations without live agent support."}],"education":[{t:"Student Support Agent",d:"Answer academic, administrative, and campus enquiries around the clock."},{t:"Enrolment & Admissions",d:"Guide applicants through requirements, documentation, and key deadlines."},{t:"Learning Personalisation",d:"Adapt content and pacing based on individual performance and engagement data."},{t:"Administrative Automation",d:"Process fee payments, transcript requests, and timetabling without manual work."},{t:"Faculty Support",d:"Draft communications, manage schedules, and handle routine administrative requests."}],"energy":[{t:"Outage Management",d:"Detect, log, and coordinate field responses to outages automatically."},{t:"Predictive Maintenance",d:"Analyse sensor data and schedule intervention before equipment fails."},{t:"Consumption & Billing Queries",d:"Handle usage enquiries and generate consumption insights on demand."},{t:"Regulatory Submissions",d:"Monitor environmental obligations and generate submissions on schedule."},{t:"Customer Efficiency Advisory",d:"Proactively advise customers on demand reduction and tariff optimisation."}],"legal":[{t:"Contract Review Agent",d:"Extract key clauses, flag risks, and benchmark against standard templates automatically."},{t:"Due Diligence Automation",d:"Gather, organise, and surface relevant documents for legal and commercial review."},{t:"Regulatory Monitoring",d:"Track regulatory changes and alert teams to new compliance obligations in real time."},{t:"Client Intake & Matter Setup",d:"Qualify leads, collect documents, and open matters without manual data entry."},{t:"Billing & Time Capture",d:"Capture time, draft narratives, and generate client-ready invoices automatically."}],"realestate":[{t:"Property Enquiry Agent",d:"Handle inbound leads, qualify buyers, and book viewings without staff involvement."},{t:"Tenant Onboarding",d:"Guide new tenants through documentation, payments, and move-in orientation."},{t:"Maintenance Request Handling",d:"Log, triage, and dispatch maintenance jobs automatically with contractor updates."},{t:"Lease Renewal Automation",d:"Identify upcoming renewals and manage the negotiation and documentation workflow."},{t:"Market Intelligence",d:"Aggregate market data and surface insights for investors, agents, and asset managers."}],"manufacturing":[{t:"Procurement Agent",d:"Raise POs, track deliveries, and manage supplier communications automatically."},{t:"Quality Control Automation",d:"Flag deviations on the production line and log non-conformances in real time."},{t:"Predictive Maintenance",d:"Monitor equipment health and schedule intervention before unplanned downtime."},{t:"Inventory Optimisation",d:"Balance stock levels across warehouses based on real-time demand signals."},{t:"Supplier Onboarding",d:"Collect documentation, validate compliance, and set up new vendors without delays."}],"travel":[{t:"Booking Assistant",d:"Handle enquiries, check availability, and complete reservations across all channels."},{t:"Concierge Agent",d:"Provide personalised recommendations and arrange guest services on demand."},{t:"Complaint Resolution",d:"Triage complaints, gather context, and resolve or escalate with full context."},{t:"Loyalty Programme Management",d:"Handle points balances, redemptions, and status queries without staff."},{t:"Disruption Management",d:"Proactively communicate changes and rebook affected travellers automatically."}],"smartcity":[{t:"Traffic & Mobility Agent",d:"Analyse flow data and coordinate signal optimisation dynamically in real time."},{t:"Infrastructure Monitoring",d:"Detect anomalies in utilities, roads, and public assets before they affect residents."},{t:"Emergency Response Routing",d:"Triage incidents and coordinate first responder deployment intelligently."},{t:"Citizen Service Hub",d:"Single AI entry point for all city services, enquiries, and status updates."},{t:"Environmental Monitoring",d:"Track air quality, waste, and sustainability metrics with automated alerts."}]};
+        var overlay = document.getElementById('indModalOverlay');
+        var titleEl = document.getElementById('indModalTitle');
+        var casesEl = document.getElementById('indModalCases');
+        var closeBtn= document.getElementById('indModalClose');
 
-        function openPanel(key) {
+        function openModal(key) {
           var cases = DATA[key];
           var tile  = document.querySelector('.industry-tile[data-industry="'+key+'"]');
           titleEl.textContent = tile ? tile.querySelector('.industry-tile__name').textContent : '';
           casesEl.innerHTML = cases.map(function(c,i) {
-            return '<div class="ind-case" style="animation-delay:'+(i*0.06)+'s"><p class="ind-case__title">'+c.t+'</p><p class="ind-case__desc">'+c.d+'</p></div>';
+            return '<div class="ind-case" style="animation-delay:'+(i*0.07)+'s"><p class="ind-case__title">'+c.t+'</p><p class="ind-case__desc">'+c.d+'</p></div>';
           }).join('');
-          // Mark active tile
-          document.querySelectorAll('.industry-tile').forEach(function(t) {
-            t.classList.toggle('active', t.dataset.industry === key);
-          });
-          panel.classList.add('open');
-          current = key;
+          overlay.classList.add('open');
+          document.body.style.overflow = 'hidden';
         }
 
-        function closePanel() {
-          panel.classList.remove('open');
-          document.querySelectorAll('.industry-tile').forEach(function(t) { t.classList.remove('active'); });
-          current = null;
+        function closeModal() {
+          var modal = document.getElementById('indModal');
+          modal.classList.add('closing');
+          overlay.classList.add('closing');
+          setTimeout(function() {
+            overlay.classList.remove('open','closing');
+            modal.classList.remove('closing');
+            document.body.style.overflow = '';
+          }, 280);
         }
 
         document.querySelectorAll('.industry-tile').forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            if (current === this.dataset.industry) { closePanel(); } else { openPanel(this.dataset.industry); }
-          });
+          btn.addEventListener('click', function() { openModal(this.dataset.industry); });
         });
-        closeBtn.addEventListener('click', closePanel);
-
-        document.getElementById('indPanelCta').addEventListener('click', function(e) {
-          e.preventDefault(); closePanel();
-          var nav = document.querySelector('[data-page="contact"].nav__link') || document.querySelector('[data-page="contact"]');
-          if (nav) nav.click();
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+        document.getElementById('indModalCta').addEventListener('click', function(e) {
+          e.preventDefault(); closeModal();
+          setTimeout(function() {
+            var nav = document.querySelector('[data-page="contact"].nav__link') || document.querySelector('[data-page="contact"]');
+            if (nav) nav.click();
+          }, 300);
         });
       })();
       </script>
