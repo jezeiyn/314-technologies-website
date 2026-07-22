@@ -1622,6 +1622,72 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
 
 
 
+
+/* ══════════════════════════════════════════
+   SECURITY SECTION (home page)
+══════════════════════════════════════════ */
+.security-section {
+  background: var(--ink);
+  padding: 80px 0;
+}
+.security-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 56px;
+}
+.security-lead {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--muted);
+  padding-top: 8px;
+}
+.security-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.security-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--hair-dark);
+  border-top: 2px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+}
+.security-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(31,163,155,0.12);
+  color: var(--teal);
+  margin-bottom: 16px;
+}
+.security-card__title {
+  font-family: var(--font-head);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--paper);
+  margin-bottom: 10px;
+}
+.security-card__body {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+  .security-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .security-head { grid-template-columns: 1fr; gap: 20px; }
+  .security-grid { grid-template-columns: 1fr; }
+  .security-section { padding: 56px 0; }
+}
+
 /* ══════════════════════════════════════════
    INDUSTRY TILES + MODAL
 ══════════════════════════════════════════ */
