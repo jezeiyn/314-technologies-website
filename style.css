@@ -1623,69 +1623,71 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
 
 
 
+
 /* ══════════════════════════════════════════
-   SECURITY SECTION (home page)
+   CLOUD PAGE — SECURITY BLOCK
 ══════════════════════════════════════════ */
-.security-section {
-  background: var(--ink);
-  padding: 80px 0;
+.cloud-security {
+  background: var(--ink-soft);
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  margin-top: 32px;
 }
-.security-head {
+.cloud-security__head {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: 40px;
   align-items: start;
-  margin-bottom: 56px;
+  margin-bottom: 36px;
 }
-.security-lead {
-  font-size: 16px;
+.cloud-security__lead {
+  font-size: 15px;
   line-height: 1.75;
   color: var(--muted);
-  padding-top: 8px;
+  padding-top: 6px;
 }
-.security-grid {
+.cloud-security__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 16px;
 }
-.security-card {
+.cloud-sec-card {
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--hair-dark);
   border-top: 2px solid var(--teal);
   border-radius: var(--radius);
-  padding: 28px 24px;
+  padding: 24px 20px;
 }
-.security-card__icon {
+.cloud-sec-card__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: rgba(31,163,155,0.12);
   color: var(--teal);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
-.security-card__title {
+.cloud-sec-card__title {
   font-family: var(--font-head);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--paper);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
-.security-card__body {
-  font-size: 13px;
+.cloud-sec-card__body {
+  font-size: 12.5px;
   color: var(--muted);
   line-height: 1.7;
 }
-
 @media (max-width: 1024px) {
-  .security-grid { grid-template-columns: repeat(2, 1fr); }
+  .cloud-security__grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 700px) {
-  .security-head { grid-template-columns: 1fr; gap: 20px; }
-  .security-grid { grid-template-columns: 1fr; }
-  .security-section { padding: 56px 0; }
+  .cloud-security { padding: 32px 20px; }
+  .cloud-security__head { grid-template-columns: 1fr; gap: 16px; }
+  .cloud-security__grid { grid-template-columns: 1fr; }
 }
 
 /* ══════════════════════════════════════════
