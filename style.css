@@ -1177,6 +1177,7 @@ body.lang-ar .principle__quote {
   transition: border-color 0.2s;
 }
 .dpi-pillar:hover { border-color: var(--teal); }
+.dpi-pillar[data-domain] { cursor: pointer; }
 .dpi-pillar__icon {
   width: 40px; height: 40px;
   display: flex; align-items: center; justify-content: center;
