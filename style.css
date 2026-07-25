@@ -654,7 +654,8 @@ html[dir=rtl] .mobile-nav__sub { padding-left: 28px; padding-right: 40px; }
 .about-logo-wrap {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 4px;
 }
 .about-logo {
   width: 200px;
