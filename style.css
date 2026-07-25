@@ -2185,3 +2185,33 @@ html[dir=rtl] .ai-agent-card__uses { padding-left: 0; padding-right: 16px; }
   .cloud-security__grid { grid-template-columns: 1fr; }
   .ind-modal__cases { grid-template-columns: 1fr; }
 }
+
+/* ── MODAL MOBILE RESPONSIVE ── */
+@media (max-width: 600px) {
+  .ind-modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .ind-modal {
+    max-height: 92vh;
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 48px 20px 28px;
+    width: 100%;
+  }
+  .ind-modal__close {
+    top: 12px;
+    right: 12px;
+    background: var(--hair-dark);
+    color: var(--paper);
+    padding: 8px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ind-modal__title { font-size: 18px; margin-bottom: 16px; padding-right: 32px; }
+  .ind-modal__cases { grid-template-columns: 1fr; }
+  .ind-case:last-child:nth-child(odd) { grid-column: auto; }
+}
