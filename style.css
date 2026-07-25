@@ -2072,7 +2072,8 @@ html[dir=rtl] .ai-agent-card__uses { padding-left: 0; padding-right: 16px; }
   justify-content: center;
   padding: 20px;
   z-index: 1100;
-  padding-top: 70px;
+  padding-top: 0;
+  overflow: hidden;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.28s ease, visibility 0.28s ease;
@@ -2188,31 +2189,65 @@ html[dir=rtl] .ai-agent-card__uses { padding-left: 0; padding-right: 16px; }
 }
 
 /* ── MODAL MOBILE RESPONSIVE ── */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  /* Slide up from bottom as a sheet */
   .ind-modal-overlay {
     padding: 0;
     align-items: flex-end;
   }
   .ind-modal {
-    max-height: 92vh;
-    border-radius: var(--radius) var(--radius) 0 0;
-    padding: 48px 20px 28px;
+    max-height: 88vh;
+    border-radius: 16px 16px 0 0;
+    padding: 16px 20px 32px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* prevent the modal box itself from scrolling */
+  }
+  /* Sticky header strip: drag handle + close always visible */
+  .ind-modal::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--hair-dark);
+    border-radius: 2px;
+    margin: 0 auto 16px;
+    flex-shrink: 0;
   }
   .ind-modal__close {
-    top: 12px;
-    right: 12px;
+    position: absolute;
+    top: 14px;
+    right: 16px;
     background: var(--hair-dark);
     color: var(--paper);
-    padding: 8px;
     border-radius: 50%;
     width: 32px;
     height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0;
+    z-index: 10;
   }
-  .ind-modal__title { font-size: 18px; margin-bottom: 16px; padding-right: 32px; }
-  .ind-modal__cases { grid-template-columns: 1fr; }
+  /* Label + title: fixed header inside the flex column, never scrolls */
+  .ind-modal .section__label,
+  .ind-modal__title {
+    flex-shrink: 0;
+  }
+  .ind-modal__title {
+    font-size: 18px;
+    margin-bottom: 12px;
+    padding-right: 40px;
+  }
+  /* Only the cases list scrolls */
+  .ind-modal__body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 16px;
+  }
+  .ind-modal__cases { grid-template-columns: 1fr; gap: 10px; }
   .ind-case:last-child:nth-child(odd) { grid-column: auto; }
+  .ind-modal__cta { flex-shrink: 0; }
 }
