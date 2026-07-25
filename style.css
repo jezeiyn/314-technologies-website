@@ -2071,7 +2071,8 @@ html[dir=rtl] .ai-agent-card__uses { padding-left: 0; padding-right: 16px; }
   align-items: center;
   justify-content: center;
   padding: 20px;
-  z-index: 900;
+  z-index: 1100;
+  padding-top: 70px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.28s ease, visibility 0.28s ease;
