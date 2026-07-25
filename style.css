@@ -353,6 +353,27 @@ html[dir=rtl] .mobile-nav__sub { padding-left: 28px; padding-right: 40px; }
   overflow: hidden;
   max-width: 100%;
 }
+
+.about-hero {
+  position: relative;
+  overflow: hidden;
+}
+.about-hero::before {
+  content: '3.14159 26535 89793 23846 26433 83279 50288 41971 69399 37510 58209 74944 59230';
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  font-family: var(--font-mono);
+  font-size: 100px;
+  color: rgba(255,255,255,0.025);
+  letter-spacing: -2px;
+  line-height: 1;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  animation: piGlow 6s ease-in-out infinite;
+}
 .hero__inner {
   position: relative;
   z-index: 1;
@@ -1701,7 +1722,28 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   .nav__links { display: none; }
   .nav__actions .lang-toggle { display: none; } /* lang toggle moves to mobile drawer */
   .hamburger { display: flex; }
-  .hero__inner { grid-template-columns: 1fr; gap: 32px; }
+  
+.about-hero {
+  position: relative;
+  overflow: hidden;
+}
+.about-hero::before {
+  content: '3.14159 26535 89793 23846 26433 83279 50288 41971 69399 37510 58209 74944 59230';
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  font-family: var(--font-mono);
+  font-size: 100px;
+  color: rgba(255,255,255,0.025);
+  letter-spacing: -2px;
+  line-height: 1;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  animation: piGlow 6s ease-in-out infinite;
+}
+.hero__inner { grid-template-columns: 1fr; gap: 32px; }
   .hero__icon  { max-width: 180px; margin: 0 auto; }
 }
 
@@ -1737,7 +1779,28 @@ html[dir=rtl] .fn-panel__covers li::before { margin-top: 7px; }
   .footer__bottom   { flex-direction: column; gap: 8px; text-align: center; }
 
   /* Hero adjustments */
-  .hero__inner { grid-template-columns: 1fr; gap: 0; }
+  
+.about-hero {
+  position: relative;
+  overflow: hidden;
+}
+.about-hero::before {
+  content: '3.14159 26535 89793 23846 26433 83279 50288 41971 69399 37510 58209 74944 59230';
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  font-family: var(--font-mono);
+  font-size: 100px;
+  color: rgba(255,255,255,0.025);
+  letter-spacing: -2px;
+  line-height: 1;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  animation: piGlow 6s ease-in-out infinite;
+}
+.hero__inner { grid-template-columns: 1fr; gap: 0; }
   .hero__icon  { display: none; }
   .hero__h1  { font-size: clamp(28px, 8vw, 40px); }
   .hero__sub { font-size: 15px; }
