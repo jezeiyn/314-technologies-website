@@ -1370,6 +1370,23 @@ body.lang-ar .principle__quote {
   .dpi-for-wrap { grid-template-columns: 1fr !important; }
   .footer__top { grid-template-columns: 1fr 1fr; }
 }
+/* ── DPI WHO-FOR / WHY-314 TWO-COL ── */
+.dpi-for-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--hair-dark);
+}
+.dpi-for-wrap > div > .section__label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 16px;
+}
+
 /* ── DPI STATS ROW ── */
 .dpi-stats-row {
   display: grid;
