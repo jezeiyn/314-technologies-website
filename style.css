@@ -1474,6 +1474,14 @@ body.lang-ar .principle__quote {
   gap: 16px;
   margin-top: 40px;
 }
+@media (max-width: 900px) {
+  .team-tiles-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}
+@media (max-width: 480px) {
+  .team-tiles-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .team-tile { padding: 16px 10px 14px; gap: 8px; }
+  .team-tile__label { font-size: 11.5px; }
+}
 .team-tile {
   background: var(--paper);
   border: 1px solid var(--hair);
