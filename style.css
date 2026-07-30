@@ -1372,6 +1372,72 @@ body.lang-ar .principle__quote {
   .footer__top { grid-template-columns: 1fr 1fr; }
 }
 
+
+/* ── ABOUT PAGE HERO ANIMATION ── */
+.about-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  min-height: 42vh;
+}
+.about-hero-text { display: flex; flex-direction: column; justify-content: center; }
+.about-anim-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+}
+.about-anim-svg { width: 100%; max-width: 380px; }
+
+/* quarter-arc circumference ≈ 251 (r=160); inner ≈ 157 (r=100) */
+.about-arc {
+  stroke-dasharray: 251;
+  stroke-dashoffset: 251;
+  animation: about-draw-arc 1.8s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+.about-arc-1 { animation-delay: 0.1s; }
+.about-arc-2 { animation-delay: 0.4s; }
+.about-arc-3 { stroke-dasharray: 157; stroke-dashoffset: 157; animation-delay: 0.6s; animation-duration: 1.4s; }
+.about-arc-4 { stroke-dasharray: 157; stroke-dashoffset: 157; animation-delay: 0.8s; animation-duration: 1.4s; }
+
+.about-hline {
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  animation: about-draw-arc 1.2s cubic-bezier(0.4,0,0.2,1) 0.9s forwards;
+}
+.about-pulse-r1 {
+  animation: about-pulse 2.4s ease-out 2.2s infinite;
+}
+.about-pulse-r2 {
+  animation: about-pulse 2.4s ease-out 3s infinite;
+}
+
+@keyframes about-draw-arc {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes about-pulse {
+  0%   { r: 5;  opacity: 0.7; }
+  100% { r: 36; opacity: 0; }
+}
+
+/* Journey two-col */
+.about-journey-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.about-anim-wrap--journey { opacity: 0.6; }
+.about-anim-svg--journey { max-width: 320px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-hero-inner,
+  .about-journey-inner { grid-template-columns: 1fr; }
+  .about-anim-wrap { display: none; }
+}
+
 /* ── TEAM TILES (About page) ── */
 .team-tiles-grid {
   display: grid;
