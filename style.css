@@ -1358,6 +1358,35 @@ body.lang-ar .principle__quote {
 }
 
 /* ── RESPONSIVE ── */
+
+/* ── ABOUT PAGE RESPONSIVE ── */
+.about-hero {
+  padding: 80px 0;
+}
+.about-journey-body,
+.about-purpose-body {
+  max-width: 760px;
+}
+
+@media (max-width: 768px) {
+  .about-hero { padding: 60px 0; }
+  .about-hero-inner { grid-template-columns: 1fr; }
+  .about-anim-wrap  { display: none; }
+  .about-journey-body,
+  .about-purpose-body { max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .about-hero  { padding: 48px 0; }
+  .svc-section { padding: 48px 0; }
+  .team-tiles-grid  { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .team-tile        { padding: 18px 12px 16px; gap: 10px; }
+  .team-tile__label { font-size: 12px; }
+  .about-intro      { grid-template-columns: 1fr; }
+  .about-logo-wrap  { display: none; }
+  .dpi-for-wrap     { grid-template-columns: 1fr !important; gap: 32px; }
+}
+
 @media (max-width: 900px) {
   .industry-grid { grid-template-columns: repeat(2, 1fr); }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
