@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="314 Technologies - A global technology and advisory firm. Digital Public Infrastructure, Cloud and AI, and Advisory for governments and enterprises worldwide." />
   <title>314 Technologies | The constant you can build on.</title>
-  <link rel="stylesheet" href="style.css?v=47" />
+  <link rel="stylesheet" href="style.css?v=48" />
   <link rel="icon" type="image/svg+xml" href="assets/logos/logo_simple_reversed.svg" />
 </head>
 <body class="lang-en">
@@ -261,31 +261,93 @@
 <div id="page-about" class="page page-content">
 
   <!-- Hero banner -->
-  <section class="section section--dark about-hero" style="min-height:42vh;display:flex;align-items:center;padding:80px 0;">
+  <section class="section section--dark about-hero" style="padding:80px 0;">
     <div class="container">
-      <p class="section__label en">About Us</p>
-      <p class="section__label ar">من نحن</p>
-      <h1 class="section__h2 section__h2--light en" style="font-size:clamp(32px,4.5vw,56px);">About 314 Technologies.</h1>
-      <h1 class="section__h2 section__h2--light ar" style="font-size:clamp(28px,4vw,52px);">عن 314 تكنولوجيز.</h1>
-      <p class="section__lead section__lead--light mt-24 en">314 Technologies is a global technology and advisory firm. We build the infrastructure, systems, and platforms that organisations depend on, and we stay until they work.</p>
-      <p class="section__lead section__lead--light mt-24 ar">شركة 314 تكنولوجيز هي شركة تقنية واستشارات عالمية. نبني البنية التحتية والأنظمة والمنصات التي تعتمد عليها المنظمات، ونبقى حتى تعمل.</p>
+      <div class="about-hero-inner">
+        <div class="about-hero-text">
+          <p class="section__label en">About Us</p>
+          <p class="section__label ar">من نحن</p>
+          <h1 class="section__h2 section__h2--light en" style="font-size:clamp(32px,4.5vw,56px);">About 314 Technologies.</h1>
+          <h1 class="section__h2 section__h2--light ar" style="font-size:clamp(28px,4vw,52px);">عن 314 تكنولوجيز.</h1>
+          <p class="section__lead section__lead--light mt-24 en">314 Technologies is a global technology and advisory firm. We build the infrastructure, systems, and platforms that organisations depend on, and we stay until they work.</p>
+          <p class="section__lead section__lead--light mt-24 ar">شركة 314 تكنولوجيز هي شركة تقنية واستشارات عالمية. نبني البنية التحتية والأنظمة والمنصات التي تعتمد عليها المنظمات، ونبقى حتى تعمل.</p>
+        </div>
+        <div class="about-anim-wrap" aria-hidden="true">
+          <svg class="about-anim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- Ghost arcs: outer ring -->
+            <path d="M200 40 A160 160 0 0 1 360 200" stroke="rgba(250,250,248,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M360 200 A160 160 0 0 1 200 360" stroke="rgba(250,250,248,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M200 360 A160 160 0 0 1 40 200"  stroke="rgba(250,250,248,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M40 200 A160 160 0 0 1 200 40"   stroke="rgba(250,250,248,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Ghost arcs: inner ring -->
+            <path d="M200 100 A100 100 0 0 1 300 200" stroke="rgba(250,250,248,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M300 200 A100 100 0 0 1 200 300" stroke="rgba(250,250,248,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M200 300 A100 100 0 0 1 100 200" stroke="rgba(250,250,248,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M100 200 A100 100 0 0 1 200 100" stroke="rgba(250,250,248,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Animated teal arcs (draw-in) -->
+            <path class="about-arc about-arc-1" d="M200 40 A160 160 0 0 1 360 200" stroke="#1FA39B" stroke-width="2.5" stroke-linecap="round"/>
+            <path class="about-arc about-arc-2" d="M200 360 A160 160 0 0 1 40 200"  stroke="#1FA39B" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Inner accent arcs -->
+            <path class="about-arc about-arc-3" d="M200 100 A100 100 0 0 1 300 200" stroke="rgba(31,163,155,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+            <path class="about-arc about-arc-4" d="M200 300 A100 100 0 0 1 100 200" stroke="rgba(31,163,155,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Horizontal line sweeping in -->
+            <line class="about-hline" x1="20" y1="200" x2="380" y2="200" stroke="#1FA39B" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Pulse rings -->
+            <circle class="about-pulse-r1" cx="20" cy="200" r="6"  stroke="#1FA39B" stroke-width="1" fill="none"/>
+            <circle class="about-pulse-r2" cx="20" cy="200" r="6"  stroke="#1FA39B" stroke-width="1" fill="none"/>
+            <!-- Dot -->
+            <circle cx="20" cy="200" r="5" fill="#1FA39B"/>
+          </svg>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Our Journey -->
   <section class="svc-section bg-ink">
     <div class="container">
-      <p class="section__label en" style="color:var(--teal);margin-bottom:8px;">Our Journey</p>
-      <p class="section__label ar" style="color:var(--teal);margin-bottom:8px;">مسيرتنا</p>
-      <h2 class="section__h2 section__h2--light en" style="margin-bottom:32px;">Built from the inside out.</h2>
-      <h2 class="section__h2 section__h2--light ar" style="margin-bottom:32px;">بُني من الداخل إلى الخارج.</h2>
-      <div style="max-width:720px;">
+      <div class="about-journey-inner">
+        <div>
+          <p class="section__label en" style="color:var(--teal);margin-bottom:8px;">Our Journey</p>
+          <p class="section__label ar" style="color:var(--teal);margin-bottom:8px;">مسيرتنا</p>
+          <h2 class="section__h2 section__h2--light en" style="margin-bottom:32px;">Built from the inside out.</h2>
+          <h2 class="section__h2 section__h2--light ar" style="margin-bottom:32px;">بُني من الداخل إلى الخارج.</h2>
+          <div>
         <p class="en" style="color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:20px;">The founding team brings together experience spanning global technology delivery, public policy, government advisory, and senior executive roles at organisations including Google, Cisco, Boston Consulting Group, and national institutions across the Gulf region.</p>
         <p class="ar" style="color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:20px;">يجمع الفريق المؤسس خبرات تمتد عبر توصيل التكنولوجيا العالمية والسياسات العامة والاستشارات الحكومية وأدوار تنفيذية رفيعة في منظمات بارزة كجوجل وسيسكو ومجموعة بوسطن الاستشارية ومؤسسات وطنية في منطقة الخليج.</p>
         <p class="en" style="color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:20px;">314 was built on a simple observation: the firms that won advisory mandates rarely stayed to build the thing. And the firms that stayed to build rarely understood the strategic layer well enough to get the architecture right. 314 is the answer to that gap.</p>
         <p class="ar" style="color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:20px;">بُنيت 314 على ملاحظة بسيطة: الشركات التي فازت بتفويضات الاستشارات نادراً ما بقيت لتبني الشيء الفعلي. والشركات التي بقت للبناء نادراً ما فهمت الطبقة الاستراتيجية بما يكفي للحصول على الهندسة الصحيحة. 314 هي الإجابة على هذه الفجوة.</p>
         <p class="en" style="color:var(--muted);font-size:16px;line-height:1.8;">The founding team has operated at the intersection of strategy and delivery long enough to know that the two cannot be separated. That conviction is the foundation every engagement is built on.</p>
         <p class="ar" style="color:var(--muted);font-size:16px;line-height:1.8;">عمل الفريق المؤسس عند تقاطع الاستراتيجية والتنفيذ لفترة طويلة بما يكفي ليعلم أن الاثنين لا يمكن فصلهما. هذا الإيمان هو الأساس الذي يُبنى عليه كل مشاركة.</p>
+          </div>
+        </div>
+        <div class="about-anim-wrap about-anim-wrap--journey" aria-hidden="true">
+          <svg class="about-anim-svg about-anim-svg--journey" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- Ghost arcs: outer ring -->
+            <path d="M200 40 A160 160 0 0 1 360 200" stroke="rgba(250,250,248,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M360 200 A160 160 0 0 1 200 360" stroke="rgba(250,250,248,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M200 360 A160 160 0 0 1 40 200"  stroke="rgba(250,250,248,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M40 200 A160 160 0 0 1 200 40"   stroke="rgba(250,250,248,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Ghost arcs: inner ring -->
+            <path d="M200 100 A100 100 0 0 1 300 200" stroke="rgba(250,250,248,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M300 200 A100 100 0 0 1 200 300" stroke="rgba(250,250,248,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M200 300 A100 100 0 0 1 100 200" stroke="rgba(250,250,248,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M100 200 A100 100 0 0 1 200 100" stroke="rgba(250,250,248,0.05)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Animated teal arcs (draw-in) -->
+            <path class="about-arc about-arc-1" d="M200 40 A160 160 0 0 1 360 200" stroke="#1FA39B" stroke-width="2.5" stroke-linecap="round"/>
+            <path class="about-arc about-arc-2" d="M200 360 A160 160 0 0 1 40 200"  stroke="#1FA39B" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Inner accent arcs -->
+            <path class="about-arc about-arc-3" d="M200 100 A100 100 0 0 1 300 200" stroke="rgba(31,163,155,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+            <path class="about-arc about-arc-4" d="M200 300 A100 100 0 0 1 100 200" stroke="rgba(31,163,155,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Horizontal line sweeping in -->
+            <line class="about-hline" x1="20" y1="200" x2="380" y2="200" stroke="#1FA39B" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Pulse rings -->
+            <circle class="about-pulse-r1" cx="20" cy="200" r="6"  stroke="#1FA39B" stroke-width="1" fill="none"/>
+            <circle class="about-pulse-r2" cx="20" cy="200" r="6"  stroke="#1FA39B" stroke-width="1" fill="none"/>
+            <!-- Dot -->
+            <circle cx="20" cy="200" r="5" fill="#1FA39B"/>
+          </svg>
+        </div>
       </div>
     </div>
   </section>
