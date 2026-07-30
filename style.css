@@ -1367,9 +1367,40 @@ body.lang-ar .principle__quote {
   .svc-lead { grid-template-columns: 1fr; gap: 24px; }
   .contact-wrap { grid-template-columns: 1fr; }
   .gcp-inner { grid-template-columns: 1fr; }
+  .team-tiles-grid { grid-template-columns: repeat(2, 1fr); }
   .dpi-for-wrap { grid-template-columns: 1fr !important; }
   .footer__top { grid-template-columns: 1fr 1fr; }
 }
+
+/* ── TEAM TILES (About page) ── */
+.team-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+.team-tile {
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  padding: 24px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.team-tile:hover { border-color: var(--teal); }
+.team-tile__icon { color: var(--teal); flex-shrink: 0; }
+.team-tile__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+  margin: 0;
+}
+
 /* ── DPI WHO-FOR / WHY-314 TWO-COL ── */
 .dpi-for-wrap {
   display: grid;
