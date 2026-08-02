@@ -9,15 +9,11 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="theme-color" content="#0E1726" />
   <link rel="canonical" href="https://www.314tech.ai/" />
-  <link rel="alternate" hreflang="en" href="https://www.314tech.ai/" />
-  <link rel="alternate" hreflang="ar" href="https://www.314tech.ai/" />
-  <link rel="alternate" hreflang="x-default" href="https://www.314tech.ai/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="314 Technologies" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:locale:alternate" content="ar_AE" />
   <meta property="og:url" content="https://www.314tech.ai/" />
   <meta property="og:title" content="314 Technologies | Advisory, Cloud &amp; AI, and Digital Public Infrastructure" />
   <meta property="og:description" content="A global technology and advisory firm. Advisory, cloud and AI, and digital public infrastructure for governments and enterprises, from strategy through to build and run." />
@@ -32,7 +28,7 @@
   <meta name="twitter:description" content="A global technology and advisory firm. Advisory, cloud and AI, and digital public infrastructure for governments and enterprises." />
   <meta name="twitter:image" content="https://www.314tech.ai/assets/og-image.png" />
 
-  <link rel="stylesheet" href="style.css?v=53" />
+  <link rel="stylesheet" href="style.css?v=54" />
   <link rel="icon" type="image/svg+xml" href="assets/logos/logo_simple_reversed.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png" />
@@ -59,7 +55,7 @@
           "addressLocality": "Dubai",
           "addressCountry": "AE"
         },
-        "knowsLanguage": ["en", "ar"],
+        "knowsLanguage": ["en"],
         "areaServed": "Worldwide"
       },
       {
@@ -67,7 +63,7 @@
         "@id": "https://www.314tech.ai/#website",
         "url": "https://www.314tech.ai/",
         "name": "314 Technologies",
-        "inLanguage": ["en", "ar"],
+        "inLanguage": "en",
         "publisher": { "@id": "https://www.314tech.ai/#organization" }
       },
       {
@@ -114,7 +110,7 @@
   }
   </script>
 </head>
-<body class="lang-en">
+<body>
 
 <!-- ══════════════════════════════════════════
      NAVIGATION
@@ -145,27 +141,23 @@
 
     <!-- Desktop links -->
     <ul class="nav__links" role="list">
-      <li><a class="nav__link active" data-page="home"><span class="en">Home</span><span class="ar">الرئيسية</span></a></li>
+      <li><a class="nav__link active" data-page="home"><span class="en">Home</span></a></li>
       <li class="nav__dropdown">
         <button class="nav__dropdown-toggle" id="navDropdownToggle" aria-haspopup="true" aria-expanded="false">
-          <span class="en">What we do</span><span class="ar">ما نقدمه</span>
+          <span class="en">What we do</span>
           <svg class="nav__caret" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
         </button>
         <ul class="nav__dropdown-menu" role="list">
-          <li><a class="nav__dropdown-item" data-page="consulting"><span class="en">314 Advisory</span><span class="ar">314 الاستشارات</span></a></li>
-          <li><a class="nav__dropdown-item" data-page="cloud"><span class="en">314 Cloud & AI</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a></li>
-          <li><a class="nav__dropdown-item" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 البنية الرقمية</span></a></li>
+          <li><a class="nav__dropdown-item" data-page="consulting"><span class="en">314 Advisory</span></a></li>
+          <li><a class="nav__dropdown-item" data-page="cloud"><span class="en">314 Cloud & AI</span></a></li>
+          <li><a class="nav__dropdown-item" data-page="dpi"><span class="en">314 DPI</span></a></li>
         </ul>
       </li>
-      <li><a class="nav__link" data-page="about"><span class="en">Who we are</span><span class="ar">من نحن</span></a></li>
-      <li><a class="nav__link" data-page="contact"><span class="en">Contact</span><span class="ar">تواصل معنا</span></a></li>
+      <li><a class="nav__link" data-page="about"><span class="en">Who we are</span></a></li>
+      <li><a class="nav__link" data-page="contact"><span class="en">Contact</span></a></li>
     </ul>
 
     <div class="nav__actions">
-      <button class="lang-toggle" id="langToggle" data-action="lang" aria-label="Switch language">
-        <span class="lang-toggle__opt lang-toggle__opt--en">EN</span>
-        <span class="lang-toggle__opt lang-toggle__opt--ar">AR</span>
-      </button>
       <button class="hamburger" id="hamburger" data-action="menu" aria-label="Open menu" aria-expanded="false" onclick="this.classList.toggle('open'); var n=document.getElementById('mobileNav'); n.classList.toggle('open'); this.setAttribute('aria-expanded', n.classList.contains('open'))">
         <span></span><span></span><span></span>
       </button>
@@ -176,24 +168,18 @@
 
 <!-- Mobile nav drawer -->
 <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
-  <a class="mobile-nav__link active" data-page="home"><span class="en">Home</span><span class="ar">الرئيسية</span></a>
+  <a class="mobile-nav__link active" data-page="home"><span class="en">Home</span></a>
   <button class="mobile-nav__link mobile-nav__dropdown-toggle" id="mobileWhatWeDo" aria-expanded="false">
-    <span class="en">What we do</span><span class="ar">ما نقدمه</span>
+    <span class="en">What we do</span>
     <svg class="mobile-nav__caret" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l5 5 5-5"/></svg>
   </button>
   <div class="mobile-nav__sub-group" id="mobileWhatWeDoSub">
-    <a class="mobile-nav__link mobile-nav__sub" data-page="consulting"><span class="en">314 Advisory</span><span class="ar">314 الاستشارات</span></a>
-    <a class="mobile-nav__link mobile-nav__sub" data-page="cloud"><span class="en">314 Cloud & AI</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a>
-    <a class="mobile-nav__link mobile-nav__sub" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 البنية الرقمية</span></a>
+    <a class="mobile-nav__link mobile-nav__sub" data-page="consulting"><span class="en">314 Advisory</span></a>
+    <a class="mobile-nav__link mobile-nav__sub" data-page="cloud"><span class="en">314 Cloud & AI</span></a>
+    <a class="mobile-nav__link mobile-nav__sub" data-page="dpi"><span class="en">314 DPI</span></a>
   </div>
-  <a class="mobile-nav__link" data-page="about"><span class="en">Who we are</span><span class="ar">من نحن</span></a>
-  <a class="mobile-nav__link" data-page="contact"><span class="en">Contact</span><span class="ar">تواصل معنا</span></a>
-  <div class="mobile-nav__lang">
-    <button class="lang-toggle" id="langToggleMobile" data-action="lang" aria-label="Switch language">
-      <span class="lang-toggle__opt lang-toggle__opt--en">EN</span>
-      <span class="lang-toggle__opt lang-toggle__opt--ar">AR</span>
-    </button>
-  </div>
+  <a class="mobile-nav__link" data-page="about"><span class="en">Who we are</span></a>
+  <a class="mobile-nav__link" data-page="contact"><span class="en">Contact</span></a>
 </div>
 
 
@@ -208,22 +194,22 @@
       <div class="hero__inner">
         <div class="hero__text">
           <p class="hero__eyebrow en">Three One Four Technologies</p>
-          <p class="hero__eyebrow ar">ثلاثة مائة وأربعة عشر تكنولوجيز</p>
+          
 
           <h1 class="hero__h1 en">The constant you<br>can <span>build on.</span><br>The infinite you<br>can build toward.</h1>
-          <h1 class="hero__h1 ar">أساسٌ تبني<br><span>عليه،</span><br>وأفقٌ تبني<br>نحوه.</h1>
+          
 
 
 
           <div class="hero__ctas">
             <a class="btn btn-primary" data-page="contact">
               <span class="en">Explore Our Services</span>
-              <span class="ar">استكشف خدماتنا</span>
+              
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <a class="btn btn-outline" data-page="contact">
               <span class="en">Contact Us</span>
-              <span class="ar">تواصل معنا</span>
+              
             </a>
           </div>
         </div>
@@ -251,11 +237,11 @@
   <section class="section section--ink-soft">
     <div class="container">
       <p class="section__label en">What We Do</p>
-      <p class="section__label ar">ما نقدمه</p>
+      
       <h2 class="section__h2 section__h2--light en">Strategy anchored in reality.</h2>
-      <h2 class="section__h2 section__h2--light ar">استراتيجية راسخة في الواقع.</h2>
+      
       <p class="section__lead section__lead--light en">We orchestrate strategy, execution, and enablement across AI, digital public infrastructure, technology, governance, and organisational change, bringing the right expertise at the right moment, and remaining your partner through every phase that follows. The work is never finished. Neither are we. That's π.</p>
-      <p class="section__lead section__lead--light ar">نُنسِّق الاستراتيجية والتنفيذ والتمكين عبر الذكاء الاصطناعي والبنية التحتية الرقمية العامة والتكنولوجيا والحوكمة والتحول المؤسسي, نُحضر الخبرة المناسبة في اللحظة المناسبة، ونبقى شريكك في كل مرحلة تلي ذلك. العمل لا ينتهي أبداً. ونحن كذلك. هذا هو π.
+      
 
       <div class="services-grid">
 
@@ -269,9 +255,9 @@
           </div>
           <h3 class="service-card__title">314 Advisory</h3>
           <p class="service-card__body en">15 advisory products spanning government excellence, AI strategy, PMO, procurement, IT governance, and capacity building. Structured. Accountable. Local.</p>
-          <p class="service-card__body ar">15 منتجاً استشارياً متخصصاً تشمل التميز الحكومي واستراتيجية الذكاء الاصطناعي وإدارة المشاريع والمشتريات وحوكمة تقنية المعلومات وبناء القدرات. منظم. مسؤول. محلي.</p>
+          
           <span class="service-card__link en">Learn more <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-          <span class="service-card__link ar">اعرف المزيد <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          
         </div>
 
         <!-- 314 DPI -->
@@ -285,9 +271,9 @@
           </div>
           <h3 class="service-card__title">314 DPI</h3>
           <p class="service-card__body en">Digital Public Infrastructure at national scale. Functional registries, digital authentication, credential sharing, and citizen service systems, deployable in weeks with full data sovereignty.</p>
-          <p class="service-card__body ar">البنية التحتية الرقمية العامة على النطاق الوطني. سجلات وظيفية ومصادقة رقمية ومشاركة بيانات الاعتماد وأنظمة الخدمات، قابلة للنشر في أسابيع مع سيادة كاملة على البيانات.</p>
+          
           <span class="service-card__link en">Learn more <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-          <span class="service-card__link ar">اعرف المزيد <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          
         </div>
 
         <!-- 314 Cloud and Ai -->
@@ -300,9 +286,9 @@
           </div>
           <h3 class="service-card__title">314 Cloud and Ai</h3>
           <p class="service-card__body en">Cloud strategy, migration, implementation, and managed services for governments and regulated enterprises globally. Honest scope. Right-sized for you.</p>
-          <p class="service-card__body ar">استراتيجية السحابة والترحيل والتنفيذ والخدمات المُدارة للحكومات والمؤسسات المنظمة على مستوى العالم. نطاق واضح. مُقاس حسب احتياجاتك.</p>
+          
           <span class="service-card__link en">Learn more <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-          <span class="service-card__link ar">اعرف المزيد <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          
         </div>
 
       </div>
@@ -313,44 +299,44 @@
   <section class="section">
     <div class="container">
       <p class="section__label en">Why 314</p>
-      <p class="section__label ar">لماذا 314</p>
+      
       <h2 class="section__h2 section__h2--ink en">Transformation that actually lands.</h2>
-      <h2 class="section__h2 section__h2--ink ar">تحوّل يصل فعلاً.</h2>
+      
       <p class="section__lead section__lead--ink en">Four guiding principles, each built to produce outcomes, not just recommendations. Here is how each one works.</p>
-      <p class="section__lead section__lead--ink ar">أربعة مجالات عملية، كل واحد منها مصمم لتحقيق نتائج حقيقية, لا مجرد توصيات. إليك كيف يعمل كل منها.</p>
+      
 
       <div class="pillars-grid">
         <div class="pillar">
           <p class="pillar__num en">01</p>
-          <p class="pillar__num ar">01</p>
+          
           <h3 class="pillar__title en">Reliability before flash</h3>
-          <h3 class="pillar__title ar">الثقة قبل البريق</h3>
+          
           <p class="pillar__body en">We do not ship what will not hold. A foundation that moves is not a foundation. Every engagement starts with what keeps working, not what looks impressive in a slide deck.</p>
-          <p class="pillar__body ar">لا نقدم ما لا يصمد. الأساس الذي يتزعزع ليس أساساً. تبدأ كل مشاركة بما يستمر في العمل، لا بما يبدو مبهراً في عرض تقديمي.</p>
+          
         </div>
         <div class="pillar">
           <p class="pillar__num en">02</p>
-          <p class="pillar__num ar">02</p>
+          
           <h3 class="pillar__title en">Vendor-agnostic by principle</h3>
-          <h3 class="pillar__title ar">استقلالية عن الموردين بحكم المبدأ</h3>
+          
           <p class="pillar__body en">We recommend what is right for the problem, even when it is not the platform that pays us best. The right answer is determined by your environment, not our incentives.</p>
-          <p class="pillar__body ar">نوصي بما يناسب المشكلة، حتى لو لم تكن المنصة الأعلى ربحاً لنا. الإجابة الصحيحة تحددها بيئتك، لا حوافزنا.</p>
+          
         </div>
         <div class="pillar">
           <p class="pillar__num en">03</p>
-          <p class="pillar__num ar">03</p>
+          
           <h3 class="pillar__title en">Local is the point, not the pitch</h3>
-          <h3 class="pillar__title ar">المحلية حقيقة لا شعار</h3>
+          
           <p class="pillar__body en">Real accountability you can reach. We do not outsource the relationship. The person who scoped it is the person who delivers it.</p>
-          <p class="pillar__body ar">مساءلة حقيقية يمكنك الوصول إليها. لا نُسنِد العلاقة لطرف خارجي. من حدد النطاق هو من يقدم الخدمة.</p>
+          
         </div>
         <div class="pillar">
           <p class="pillar__num en">04</p>
-          <p class="pillar__num ar">04</p>
+          
           <h3 class="pillar__title en">Always one more decimal</h3>
-          <h3 class="pillar__title ar">دائماً عشري واحد إضافي</h3>
+          
           <p class="pillar__body en">We don't stop at delivery. Every engagement reveals the next layer worth reaching for, and we stay in the work long enough to make sure what we promised is what you experience.</p>
-          <p class="pillar__body ar">لا نتوقف عند التسليم. كل مشاركة تكشف عن طبقة أعمق تستحق المضي إليها، ونبقى في العمل حتى نتأكد أن ما وعدنا به هو ما تعيشه فعلاً.</p>
+          
         </div>
       </div>
     </div>
@@ -372,11 +358,11 @@
       <div class="about-hero-inner">
         <div class="about-hero-text">
           <p class="section__label en">About Us</p>
-          <p class="section__label ar">من نحن</p>
+          
           <h1 class="section__h2 section__h2--light en" style="font-size:clamp(32px,4.5vw,56px);">About 314 Technologies.</h1>
-          <h1 class="section__h2 section__h2--light ar" style="font-size:clamp(28px,4vw,52px);">عن 314 تكنولوجيز.</h1>
+          
           <p class="section__lead section__lead--light mt-24 en">314 Technologies is a global technology and advisory firm. We build the infrastructure, systems, and platforms that organisations depend on, and we stay until they work.</p>
-          <p class="section__lead section__lead--light mt-24 ar">شركة 314 تكنولوجيز هي شركة تقنية واستشارات عالمية. نبني البنية التحتية والأنظمة والمنصات التي تعتمد عليها المنظمات، ونبقى حتى تعمل.</p>
+          
         </div>
         <div class="about-anim-wrap" aria-hidden="true">
           <svg class="about-anim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -413,16 +399,16 @@
   <section class="svc-section bg-ink">
     <div class="container">
       <p class="section__label en" style="color:var(--teal);margin-bottom:8px;">Our Journey</p>
-      <p class="section__label ar" style="color:var(--teal);margin-bottom:8px;">مسيرتنا</p>
+      
       <h2 class="section__h2 section__h2--light en" style="margin-bottom:32px;">Built from the inside out.</h2>
-      <h2 class="section__h2 section__h2--light ar" style="margin-bottom:32px;">بُني من الداخل إلى الخارج.</h2>
+      
       <div class="about-journey-body">
         <p class="en" style="color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:20px;">The founding team brings together experience spanning global technology delivery, public policy, government advisory, and senior executive roles at organisations including Google, Cisco, Boston Consulting Group, and national institutions across the Gulf region.</p>
-        <p class="ar" style="color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:20px;">يجمع الفريق المؤسس خبرات تمتد عبر توصيل التكنولوجيا العالمية والسياسات العامة والاستشارات الحكومية وأدوار تنفيذية رفيعة في منظمات بارزة كجوجل وسيسكو ومجموعة بوسطن الاستشارية ومؤسسات وطنية في منطقة الخليج.</p>
+        
         <p class="en" style="color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:20px;">314 was built on a simple observation: the firms that won advisory mandates rarely stayed to build the thing. And the firms that stayed to build rarely understood the strategic layer well enough to get the architecture right. 314 is the answer to that gap.</p>
-        <p class="ar" style="color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:20px;">بُنيت 314 على ملاحظة بسيطة: الشركات التي فازت بتفويضات الاستشارات نادراً ما بقيت لتبني الشيء الفعلي. والشركات التي بقت للبناء نادراً ما فهمت الطبقة الاستراتيجية بما يكفي للحصول على الهندسة الصحيحة. 314 هي الإجابة على هذه الفجوة.</p>
+        
         <p class="en" style="color:var(--muted);font-size:16px;line-height:1.8;">The founding team has operated at the intersection of strategy and delivery long enough to know that the two cannot be separated. That conviction is the foundation every engagement is built on.</p>
-        <p class="ar" style="color:var(--muted);font-size:16px;line-height:1.8;">عمل الفريق المؤسس عند تقاطع الاستراتيجية والتنفيذ لفترة طويلة بما يكفي ليعلم أن الاثنين لا يمكن فصلهما. هذا الإيمان هو الأساس الذي يُبنى عليه كل مشاركة.</p>
+        
           </div>
       </div>
   </section>
@@ -431,61 +417,61 @@
   <section class="svc-section bg-paper-2">
     <div class="container">
       <p class="section__label en" style="margin-bottom:8px;">Our Team</p>
-      <p class="section__label ar" style="margin-bottom:8px;">فريقنا</p>
+      
       <h2 class="section__h2 section__h2--ink en" style="margin-bottom:16px;">Practitioners, not presenters.</h2>
-      <h2 class="section__h2 section__h2--ink ar" style="margin-bottom:16px;">ممارسون، لا عارضون.</h2>
+      
       <p class="section__lead section__lead--ink en" style="max-width:640px;margin-bottom:0;">314 is built around a team of practitioners with deep, hands-on experience across government and enterprise delivery. Every person we bring to an engagement has done the work before, not just advised on it.</p>
-      <p class="section__lead section__lead--ink ar" style="max-width:640px;margin-bottom:0;">بُنيت 314 حول فريق من الممارسين ذوي الخبرة العميقة والعملية في تقديم الخدمات الحكومية والمؤسسية. كل شخص نجلبه إلى مشاركة قد أنجز العمل من قبل، ولم يكتفِ بتقديم المشورة.</p>
+      
       <div class="team-tiles-grid">
         <div class="team-tile">
           <div class="team-tile__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
           <p class="team-tile__label en">IT Procurement &amp; Commercial Advisory</p>
-          <p class="team-tile__label ar">المشتريات التقنية والاستشارات التجارية</p>
+          
         </div>
         <div class="team-tile">
           <div class="team-tile__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="4" rx="1"/><rect x="2" y="17" width="6" height="4" rx="1"/><rect x="16" y="17" width="6" height="4" rx="1"/><path d="M12 6v4M5 17v-2a7 7 0 0114 0v2"/></svg></div>
           <p class="team-tile__label en">Enterprise Architecture</p>
-          <p class="team-tile__label ar">هندسة المؤسسات</p>
+          
         </div>
         <div class="team-tile">
           <div class="team-tile__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></div>
           <p class="team-tile__label en">Cloud Architecture &amp; Infrastructure</p>
-          <p class="team-tile__label ar">هندسة السحابة والبنية التحتية</p>
+          
         </div>
         <div class="team-tile">
           <div class="team-tile__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
           <p class="team-tile__label en">ERP &amp; Application Governance</p>
-          <p class="team-tile__label ar">تخطيط موارد المؤسسة وحوكمة التطبيقات</p>
+          
         </div>
         <div class="team-tile">
           <div class="team-tile__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
           <p class="team-tile__label en">AI Strategy &amp; Enablement</p>
-          <p class="team-tile__label ar">استراتيجية الذكاء الاصطناعي وتمكينه</p>
+          
         </div>
         <div class="team-tile">
           <div class="team-tile__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.4 4.6 2.4 7.4L12 17.8l-6 4.4 2.4-7.4L2 10.4h7.6z"/></svg></div>
           <p class="team-tile__label en">Government Excellence</p>
-          <p class="team-tile__label ar">التميز الحكومي</p>
+          
         </div>
         <div class="team-tile">
           <div class="team-tile__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <p class="team-tile__label en">IT Governance &amp; Risk</p>
-          <p class="team-tile__label ar">حوكمة تقنية المعلومات والمخاطر</p>
+          
         </div>
         <div class="team-tile">
           <div class="team-tile__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12l2 2 4-4"/></svg></div>
           <p class="team-tile__label en">PMO &amp; Programme Delivery</p>
-          <p class="team-tile__label ar">مكتب إدارة المشاريع وتسليم البرامج</p>
+          
         </div>
         <div class="team-tile">
           <div class="team-tile__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
           <p class="team-tile__label en">Leadership &amp; Executive Coaching</p>
-          <p class="team-tile__label ar">القيادة والتدريب التنفيذي</p>
+          
         </div>
         <div class="team-tile">
           <div class="team-tile__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 10v11M16 10v11M12 10v11"/></svg></div>
           <p class="team-tile__label en">Public Sector &amp; Service Design</p>
-          <p class="team-tile__label ar">القطاع العام وتصميم الخدمات</p>
+          
         </div>
       </div>
     </div>
@@ -495,16 +481,16 @@
   <section class="svc-section bg-ink">
     <div class="container">
       <p class="section__label en" style="color:var(--teal);margin-bottom:8px;">Our Purpose</p>
-      <p class="section__label ar" style="color:var(--teal);margin-bottom:8px;">غرضنا</p>
+      
       <h2 class="section__h2 section__h2--light en" style="margin-bottom:32px;">The work is never finished.<br>Neither are we.</h2>
-      <h2 class="section__h2 section__h2--light ar" style="margin-bottom:32px;">العمل لا ينتهي أبداً.<br>ونحن كذلك.</h2>
+      
       <div class="about-purpose-body">
         <p class="en" style="color:var(--paper);font-size:17px;font-weight:500;line-height:1.8;margin-bottom:20px;">Technology is not the destination. Outcomes are.</p>
-        <p class="ar" style="color:var(--paper);font-size:17px;font-weight:500;line-height:1.8;margin-bottom:20px;">التكنولوجيا ليست الوجهة. النتائج هي الوجهة.</p>
+        
         <p class="en" style="color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:20px;">314 exists to close the gap between what organisations are told is possible and what actually gets built. Too many transformation programmes end at the strategy document. Too many advisory engagements stop at the recommendation. 314 stays through the architecture, through the build, through go-live, and through whatever comes next.</p>
-        <p class="ar" style="color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:20px;">وُجدت 314 لسد الفجوة بين ما يُقال للمنظمات بأنه ممكن وما يُبنى فعلياً. كثير من برامج التحول تنتهي عند وثيقة الاستراتيجية. كثير من مشاركات الاستشارة تتوقف عند التوصية. 314 تبقى عبر الهندسة المعمارية، وعبر البناء، وعبر الإطلاق، وعبر ما يأتي بعد ذلك.</p>
+        
         <p class="en" style="color:var(--teal);font-size:18px;font-weight:600;">That is &#960;.</p>
-        <p class="ar" style="color:var(--teal);font-size:18px;font-weight:600;">هذا هو &#960;.</p>
+        
       </div>
     </div>
   </section>
@@ -513,17 +499,17 @@
   <section class="section">
     <div class="container">
       <p class="section__label en">Company Overview</p>
-      <p class="section__label ar">نظرة عامة عن الشركة</p>
+      
       <div class="about-intro">
         <div class="about-intro__body">
           <h2 class="section__h2 section__h2--ink en">Who we are and<br>what we stand for.</h2>
-          <h2 class="section__h2 section__h2--ink ar">من نحن وما نؤمن به.</h2>
+          
           <p class="en" style="margin-top:24px;color:var(--muted);font-size:16px;line-height:1.8;">314 Technologies is a global technology and advisory firm working across three practice areas: Advisory, Cloud and AI, and Digital Public Infrastructure.</p>
-          <p class="ar" style="margin-top:24px;color:var(--muted);font-size:16px;line-height:1.8;">شركة 314 تكنولوجيز هي شركة تقنية واستشارات عالمية تعمل عبر ثلاثة مجالات: الاستشارات، والسحابة والذكاء الاصطناعي، والبنية التحتية الرقمية العامة.</p>
+          
           <p class="en" style="margin-top:16px;color:var(--muted);font-size:16px;line-height:1.8;">We work with governments and enterprises that are building at scale. Not pilots. Not proofs of concept. The real thing, designed to last and supported long after delivery.</p>
-          <p class="ar" style="margin-top:16px;color:var(--muted);font-size:16px;line-height:1.8;">نعمل مع الحكومات والمؤسسات التي تبني على نطاق واسع. ليس تجارب تجريبية. ليس إثباتات للمفهوم. الشيء الحقيقي، المصمم ليدوم والمدعوم طويلاً بعد التسليم.</p>
+          
           <p class="en" style="margin-top:16px;color:var(--muted);font-size:16px;line-height:1.8;">Our engagements are structured around accountability. The team that scopes is the team that delivers. We are vendor-agnostic by principle, and we will always tell you when you do not need us.</p>
-          <p class="ar" style="margin-top:16px;color:var(--muted);font-size:16px;line-height:1.8;">مشاركاتنا مبنية حول المساءلة. الفريق الذي يحدد النطاق هو الفريق الذي ينفذ. نحن مستقلون عن الموردين بحكم المبدأ، وسنخبرك دائماً عندما لا تحتاج إلينا.</p>
+          
         </div>
         <div class="about-intro__aside about-logo-wrap">
           <svg class="hero-logo about-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke-linecap="round">
@@ -542,38 +528,38 @@
   <section class="creds-section section">
     <div class="container">
       <p class="section__label en">What We Stand For</p>
-      <p class="section__label ar">ما نؤمن به</p>
+      
       <h2 class="section__h2 section__h2--ink en">Three things we never compromise on.</h2>
-      <h2 class="section__h2 section__h2--ink ar">ثلاثة أشياء لا نتنازل عنها أبداً.</h2>
+      
       <p class="section__lead section__lead--ink en">Every engagement is different. These are not.</p>
-      <p class="section__lead section__lead--ink ar">كل مشاركة مختلفة. هذه ليست كذلك.</p>
+      
       <div class="creds-grid">
         <div class="cred-card">
           <div class="cred-card__icon" aria-hidden="true">
             <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M16 3l2.4 7.4H26l-6.4 4.6 2.4 7.4L16 18l-6 4.4 2.4-7.4L6 10.4h7.6z"/></svg>
           </div>
           <h3 class="cred-card__title en">We stay until it works</h3>
-          <h3 class="cred-card__title ar">نبقى حتى ينجح الأمر</h3>
+          
           <p class="cred-card__body en">The team that scopes is the team that delivers. We do not hand off, disappear after the strategy phase, or pass the relationship down a subcontractor chain. From day one to long after go-live.</p>
-          <p class="cred-card__body ar">الفريق الذي يحدد النطاق هو الفريق الذي ينفّذ. لا نُسلّم الملف، ولا نختفي بعد مرحلة الاستراتيجية، ولا نُمرّر العلاقة إلى سلسلة من المقاولين من الباطن.</p>
+          
         </div>
         <div class="cred-card">
           <div class="cred-card__icon" aria-hidden="true">
             <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M16 6v4M16 22v4M6 16H2M30 16h-4M8.9 8.9l-2.8-2.8M25.9 25.9l-2.8-2.8M8.9 23.1l-2.8 2.8M25.9 6.1l-2.8 2.8"/><circle cx="16" cy="16" r="6"/></svg>
           </div>
           <h3 class="cred-card__title en">We recommend what is right, not what pays us best</h3>
-          <h3 class="cred-card__title ar">نوصي بالصحيح، لا بالأعلى عائداً</h3>
+          
           <p class="cred-card__body en">Vendor-agnostic by principle. We work across cloud platforms, system vendors, and technology partners, and we will tell you when you do not need any of them.</p>
-          <p class="cred-card__body ar">مستقلون عن الموردين بحكم المبدأ. نعمل عبر منصات السحابة وموردي الأنظمة وشركاء التقنية, وسنخبرك حين لا تحتاج إلى أيٍّ منهم.</p>
+          
         </div>
         <div class="cred-card">
           <div class="cred-card__icon" aria-hidden="true">
             <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M16 3C9 3 4 9 4 16s5 13 12 13 12-6 12-13S23 3 16 3z"/><path d="M12 16l3 3 5-6"/></svg>
           </div>
           <h3 class="cred-card__title en">We go deep, not wide</h3>
-          <h3 class="cred-card__title ar">نتعمّق لا نتوسّع</h3>
+          
           <p class="cred-card__body en">314 does a small number of things and does them well, DPI, cloud architecture, and technology advisory. Exceptional at each. Nothing bolted on to chase a market.</p>
-          <p class="cred-card__body ar">تفعل 314 عدداً محدوداً من الأشياء وتتقنها, البنية الرقمية العامة، وهندسة السحابة، والاستشارات التقنية. متميزون في كل منها. لا شيء مُلصَق لملاحقة السوق.</p>
+          
         </div>
       </div>
     </div>
@@ -585,14 +571,14 @@
       <div class="gcp-inner">
         <div class="gcp-text">
           <p class="section__label en">Our Approach</p>
-          <p class="section__label ar">نهجنا</p>
+          
           <h2 class="section__h2 section__h2--light en">Platform-agnostic.<br>Outcome-obsessed.</h2>
-          <h2 class="section__h2 section__h2--light ar">مستقلون عن المنصات.<br>مهووسون بالنتائج.</h2>
+          
           <p class="en">We work with the leading cloud and infrastructure platforms, but we are not in the business of selling any of them. Every recommendation starts with the problem, the platform follows. Our team carries delivery experience across the major cloud providers, open infrastructure, and enterprise systems. What we recommend is what we would choose if it were our own.</p>
-          <p class="ar">نعمل مع منصات السحابة والبنية التحتية الرائدة، لكننا لسنا في مجال بيع أيٍّ منها. كل توصية تبدأ بالمشكلة، والمنصة تأتي لاحقاً. يحمل فريقنا خبرة التسليم عبر مزودي السحابة الرئيسيين والبنية التحتية المفتوحة وأنظمة المؤسسات. ما نوصي به هو ما كنا سنختاره لو كان شأننا.</p>
+          
           <a class="btn btn-primary mt-32" data-page="cloud">
             <span class="en">Explore 314 Cloud and AI</span>
-            <span class="ar">استكشف 314 السحابة والذكاء الاصطناعي</span>
+            
           </a>
         </div>
         <div class="gcp-visual">
@@ -602,9 +588,9 @@
             </div>
             <div>
               <p class="gcp-feature__title en">Cloud Strategy and Migration</p>
-              <p class="gcp-feature__title ar">استراتيجية السحابة والترحيل</p>
+              
               <p class="gcp-feature__body en">Multi-cloud and hybrid architecture. Migration planning, landing zone design, and go-live delivery across platforms.</p>
-              <p class="gcp-feature__body ar">هندسة متعددة السحابة وهجينة. تخطيط الترحيل وتصميم منطقة الإطلاق والتسليم المباشر عبر المنصات.</p>
+              
             </div>
           </div>
           <div class="gcp-feature">
@@ -613,9 +599,9 @@
             </div>
             <div>
               <p class="gcp-feature__title en">Digital Public Infrastructure</p>
-              <p class="gcp-feature__title ar">البنية التحتية الرقمية العامة</p>
+              
               <p class="gcp-feature__body en">Registry systems, identity platforms, and service delivery infrastructure designed and deployed at national scale.</p>
-              <p class="gcp-feature__body ar">أنظمة السجلات ومنصات الهوية وبنية تحتية لتقديم الخدمات، مُصمَّمة ومُنشَرة على النطاق الوطني.</p>
+              
             </div>
           </div>
           <div class="gcp-feature">
@@ -624,9 +610,9 @@
             </div>
             <div>
               <p class="gcp-feature__title en">AI and Managed Services</p>
-              <p class="gcp-feature__title ar">الذكاء الاصطناعي والخدمات المُدارة</p>
+              
               <p class="gcp-feature__body en">AI integration and ongoing infrastructure management built around the client's environment, not a single vendor's stack.</p>
-              <p class="gcp-feature__body ar">تكامل الذكاء الاصطناعي وإدارة البنية التحتية المستمرة، مبنية حول بيئة العميل, لا حول مكدس مورد واحد.</p>
+              
             </div>
           </div>
         </div>
@@ -643,11 +629,11 @@
   <section class="page-hero">
     <div class="container">
       <p class="section__label en">Business Functions</p>
-      <p class="section__label ar">وظائف الأعمال</p>
+      
       <h1 class="page-hero__title en">Wherever your organisation<br>needs to transform.</h1>
-      <h1 class="page-hero__title ar">أينما تحتاج مؤسستك<br>إلى التحول.</h1>
+      
       <p class="page-hero__sub en">Select a function to explore how 314 works across every critical area of government and enterprise.</p>
-      <p class="page-hero__sub ar">اختر وظيفة لاستكشاف كيف تعمل 314 في كل مجال حرج من مجالات الحكومة والمؤسسات.</p>
+      
     </div>
   </section>
 
@@ -661,62 +647,62 @@
       </button>
       <nav class="fn-sidebar" id="fnSidebar" aria-label="Business functions">
       <p class="fn-sidebar__label en">8 Functions</p>
-      <p class="fn-sidebar__label ar">8 وظائف</p>
+      
 
       <button class="fn-sidebar__item fn-sidebar__item--active" data-fn="01" aria-selected="true">
         <span class="fn-sidebar__num en" aria-hidden="true">01</span>
-        <span class="fn-sidebar__num ar" aria-hidden="true">٠١</span>
+        
         <span class="fn-sidebar__name en">IT Strategy</span>
-        <span class="fn-sidebar__name ar">استراتيجية تقنية المعلومات</span>
+        
       </button>
 
       <button class="fn-sidebar__item" data-fn="02" aria-selected="false">
         <span class="fn-sidebar__num en" aria-hidden="true">02</span>
-        <span class="fn-sidebar__num ar" aria-hidden="true">٠٢</span>
+        
         <span class="fn-sidebar__name en">Digital Transformation</span>
-        <span class="fn-sidebar__name ar">التحول الرقمي</span>
+        
       </button>
 
       <button class="fn-sidebar__item" data-fn="03" aria-selected="false">
         <span class="fn-sidebar__num en" aria-hidden="true">03</span>
-        <span class="fn-sidebar__num ar" aria-hidden="true">٠٣</span>
+        
         <span class="fn-sidebar__name en">Government Excellence</span>
-        <span class="fn-sidebar__name ar">التميز الحكومي</span>
+        
       </button>
 
       <button class="fn-sidebar__item" data-fn="04" aria-selected="false">
         <span class="fn-sidebar__num en" aria-hidden="true">04</span>
-        <span class="fn-sidebar__num ar" aria-hidden="true">٠٤</span>
+        
         <span class="fn-sidebar__name en">AI Strategy</span>
-        <span class="fn-sidebar__name ar">استراتيجية الذكاء الاصطناعي</span>
+        
       </button>
 
       <button class="fn-sidebar__item" data-fn="05" aria-selected="false">
         <span class="fn-sidebar__num en" aria-hidden="true">05</span>
-        <span class="fn-sidebar__num ar" aria-hidden="true">٠٥</span>
+        
         <span class="fn-sidebar__name en">Project Management</span>
-        <span class="fn-sidebar__name ar">إدارة المشاريع</span>
+        
       </button>
 
       <button class="fn-sidebar__item" data-fn="06" aria-selected="false">
         <span class="fn-sidebar__num en" aria-hidden="true">06</span>
-        <span class="fn-sidebar__num ar" aria-hidden="true">٠٦</span>
+        
         <span class="fn-sidebar__name en">Procurement</span>
-        <span class="fn-sidebar__name ar">المشتريات</span>
+        
       </button>
 
       <button class="fn-sidebar__item" data-fn="07" aria-selected="false">
         <span class="fn-sidebar__num en" aria-hidden="true">07</span>
-        <span class="fn-sidebar__num ar" aria-hidden="true">٠٧</span>
+        
         <span class="fn-sidebar__name en">IT Governance</span>
-        <span class="fn-sidebar__name ar">حوكمة تقنية المعلومات</span>
+        
       </button>
 
       <button class="fn-sidebar__item" data-fn="08" aria-selected="false">
         <span class="fn-sidebar__num en" aria-hidden="true">08</span>
-        <span class="fn-sidebar__num ar" aria-hidden="true">٠٨</span>
+        
         <span class="fn-sidebar__name en">Leadership</span>
-        <span class="fn-sidebar__name ar">القيادة</span>
+        
       </button>
       </nav>
       <button class="fn-swipe-arrow fn-swipe-arrow--right" id="fnArrowRight" aria-label="Scroll right" onclick="document.getElementById('fnSidebar').scrollBy({left:120,behavior:'smooth'})">
@@ -730,224 +716,184 @@
       <!-- 01 IT Strategy -->
       <div class="fn-panel fn-panel--active" id="fn-panel-01" role="region" aria-label="IT Strategy">
         <p class="fn-panel__cat en">IT Strategy</p>
-        <p class="fn-panel__cat ar">استراتيجية تقنية المعلومات</p>
+        
         <h2 class="fn-panel__h en">IT Strategy &amp; Enterprise Architecture</h2>
-        <h2 class="fn-panel__h ar">استراتيجية تقنية المعلومات وهندسة المؤسسات</h2>
+        
         <div class="fn-panel__bar"></div>
         <p class="fn-panel__body en">Aligning technology investments with business goals. We design enterprise architectures, develop IT strategies, build EA governance offices, and produce transformation roadmaps that reflect where your organisation needs to go, not where a vendor wants to take it.</p>
-        <p class="fn-panel__body ar">مواءمة استثمارات التقنية مع أهداف الأعمال. نصمم هندسات المؤسسات ونطور استراتيجيات تقنية المعلومات وننشئ مكاتب حوكمة EA وننتج خرائط طريق التحول التي تعكس وجهة مؤسستك لا وجهة المورد.</p>
+        
         <p class="fn-panel__covers-label en">What this covers</p>
-        <p class="fn-panel__covers-label ar">ما يشمله هذا المجال</p>
+        
         <ul class="fn-panel__covers en">
           <li>Enterprise architecture design and TOGAF-aligned frameworks</li>
           <li>IT strategy development and investment prioritisation</li>
           <li>EA governance office setup and operating model</li>
           <li>Multi-year transformation roadmaps tied to business outcomes</li>
         </ul>
-        <ul class="fn-panel__covers ar">
-          <li>تصميم هندسة المؤسسات وأطر TOGAF</li>
-          <li>تطوير استراتيجية تقنية المعلومات وتحديد أولويات الاستثمار</li>
-          <li>إعداد مكتب حوكمة EA ونموذج التشغيل</li>
-          <li>خرائط طريق التحول متعددة السنوات المرتبطة بنتائج الأعمال</li>
-        </ul>
+        
         <p class="fn-panel__prod-label en">Products</p>
-        <p class="fn-panel__prod-label ar">المنتجات</p>
+        
         <div class="fn-tags"><span class="fn-tag">314 ArchitectIQ</span><span class="fn-tag">314 AppGov</span></div>
       </div>
 
       <!-- 02 Digital Transformation -->
       <div class="fn-panel" id="fn-panel-02" role="region" aria-label="Digital Transformation">
         <p class="fn-panel__cat en">Digital Transformation</p>
-        <p class="fn-panel__cat ar">التحول الرقمي</p>
+        
         <h2 class="fn-panel__h en">Digital Transformation &amp; Service Design</h2>
-        <h2 class="fn-panel__h ar">التحول الرقمي وتصميم الخدمات</h2>
+        
         <div class="fn-panel__bar"></div>
         <p class="fn-panel__body en">End-to-end redesign of government and enterprise services. Customer journey mapping, digital channel design, change management, and impact measurement built around the people who use the service, not the systems that deliver it.</p>
-        <p class="fn-panel__body ar">إعادة تصميم خدمات الحكومة والمؤسسات من البداية إلى النهاية. رسم خرائط رحلة العملاء وتصميم القنوات الرقمية وإدارة التغيير وقياس الأثر بمحورية المستخدم لا الأنظمة.</p>
+        
         <p class="fn-panel__covers-label en">What this covers</p>
-        <p class="fn-panel__covers-label ar">ما يشمله هذا المجال</p>
+        
         <ul class="fn-panel__covers en">
           <li>Customer and citizen journey mapping and service blueprinting</li>
           <li>Digital channel strategy and UX-led service redesign</li>
           <li>Change management and organisational adoption planning</li>
           <li>Impact measurement and digital performance tracking</li>
         </ul>
-        <ul class="fn-panel__covers ar">
-          <li>رسم خرائط رحلة العميل والمواطن ومخططات الخدمة</li>
-          <li>استراتيجية القنوات الرقمية وإعادة تصميم الخدمة بمحورية تجربة المستخدم</li>
-          <li>إدارة التغيير وتخطيط تبني المؤسسة</li>
-          <li>قياس الأثر وتتبع الأداء الرقمي</li>
-        </ul>
+        
         <p class="fn-panel__prod-label en">Products</p>
-        <p class="fn-panel__prod-label ar">المنتجات</p>
+        
         <div class="fn-tags"><span class="fn-tag">314 ServiceCX</span></div>
       </div>
 
       <!-- 03 Government Excellence -->
       <div class="fn-panel" id="fn-panel-03" role="region" aria-label="Government Excellence">
         <p class="fn-panel__cat en">Government Excellence</p>
-        <p class="fn-panel__cat ar">التميز الحكومي</p>
+        
         <h2 class="fn-panel__h en">Government Excellence &amp; Institutional Readiness</h2>
-        <h2 class="fn-panel__h ar">التميز الحكومي والجاهزية المؤسسية</h2>
+        
         <div class="fn-panel__bar"></div>
         <p class="fn-panel__body en">Preparing government entities for national excellence frameworks and awards. We embed excellence culture, streamline processes, and deliver measurable performance improvements aligned to UAE national programmes.</p>
-        <p class="fn-panel__body ar">إعداد الجهات الحكومية لأطر وجوائز التميز الوطني. نُرسّخ ثقافة التميز ونُبسّط العمليات ونحقق تحسينات أداء قابلة للقياس متوافقة مع البرامج الوطنية الإماراتية.</p>
+        
         <p class="fn-panel__covers-label en">What this covers</p>
-        <p class="fn-panel__covers-label ar">ما يشمله هذا المجال</p>
+        
         <ul class="fn-panel__covers en">
           <li>National excellence framework readiness (DGEP, MBZ, and sector awards)</li>
           <li>Gap assessment, scoring analysis, and improvement planning</li>
           <li>Excellence culture embedding and internal capacity building</li>
           <li>Award submission strategy, documentation, and assessor preparation</li>
         </ul>
-        <ul class="fn-panel__covers ar">
-          <li>الجاهزية لأطر التميز الوطني (DGEP وجائزة محمد بن زايد وجوائز القطاعات)</li>
-          <li>تقييم الفجوات وتحليل التسجيل وتخطيط التحسين</li>
-          <li>ترسيخ ثقافة التميز وبناء القدرات الداخلية</li>
-          <li>استراتيجية التقديم للجوائز والتوثيق وإعداد المقيّمين</li>
-        </ul>
+        
         <p class="fn-panel__prod-label en">Products</p>
-        <p class="fn-panel__prod-label ar">المنتجات</p>
+        
         <div class="fn-tags"><span class="fn-tag">314 ExcelGov</span></div>
       </div>
 
       <!-- 04 AI Strategy -->
       <div class="fn-panel" id="fn-panel-04" role="region" aria-label="AI Strategy">
         <p class="fn-panel__cat en">AI Strategy</p>
-        <p class="fn-panel__cat ar">استراتيجية الذكاء الاصطناعي</p>
+        
         <h2 class="fn-panel__h en">AI Strategy &amp; Enablement</h2>
-        <h2 class="fn-panel__h ar">استراتيجية الذكاء الاصطناعي وتمكينه</h2>
+        
         <div class="fn-panel__bar"></div>
         <p class="fn-panel__body en">AI readiness assessments, sovereign infrastructure advisory, use-case prioritisation, governance frameworks, and production-ready AI agent deployment. We help organisations move from AI curiosity to AI accountability.</p>
-        <p class="fn-panel__body ar">تقييمات جاهزية الذكاء الاصطناعي واستشارات البنية التحتية السيادية وتحديد أولويات حالات الاستخدام وأطر الحوكمة ونشر وكلاء الذكاء الاصطناعي. ننقل المؤسسات من فضول الذكاء الاصطناعي إلى المساءلة.</p>
+        
         <p class="fn-panel__covers-label en">What this covers</p>
-        <p class="fn-panel__covers-label ar">ما يشمله هذا المجال</p>
+        
         <ul class="fn-panel__covers en">
           <li>AI readiness assessment and organisational maturity benchmarking</li>
           <li>Use-case identification, scoring, and implementation prioritisation</li>
           <li>AI governance framework and ethical AI policy design</li>
           <li>Sovereign infrastructure advisory and production AI agent deployment</li>
         </ul>
-        <ul class="fn-panel__covers ar">
-          <li>تقييم الجاهزية للذكاء الاصطناعي وقياس النضج المؤسسي</li>
-          <li>تحديد حالات الاستخدام وتقييمها وتحديد أولويات التنفيذ</li>
-          <li>تصميم إطار حوكمة الذكاء الاصطناعي وسياسة الذكاء الاصطناعي الأخلاقي</li>
-          <li>استشارات البنية التحتية السيادية ونشر وكلاء الذكاء الاصطناعي الإنتاجية</li>
-        </ul>
+        
         <p class="fn-panel__prod-label en">Products</p>
-        <p class="fn-panel__prod-label ar">المنتجات</p>
+        
         <div class="fn-tags"><span class="fn-tag">314 GovAI</span><span class="fn-tag">314 AgentAI</span></div>
       </div>
 
       <!-- 05 Project Management -->
       <div class="fn-panel" id="fn-panel-05" role="region" aria-label="Project Management">
         <p class="fn-panel__cat en">Project Management</p>
-        <p class="fn-panel__cat ar">إدارة المشاريع</p>
+        
         <h2 class="fn-panel__h en">Project &amp; Portfolio Management</h2>
-        <h2 class="fn-panel__h ar">إدارة المشاريع والمحافظ</h2>
+        
         <div class="fn-panel__bar"></div>
         <p class="fn-panel__body en">PMO infrastructure, portfolio governance, agile delivery maturity, and project recovery. We turn ad-hoc execution into a disciplined delivery machine, and we fix programmes that are already in trouble.</p>
-        <p class="fn-panel__body ar">البنية التحتية لمكتب إدارة المشاريع وحوكمة المحافظ ونضج التسليم الرشيق وإنقاذ المشاريع. نُحوّل التنفيذ العشوائي إلى آلة تسليم منضبطة، ونُصلح البرامج المتعثرة.</p>
+        
         <p class="fn-panel__covers-label en">What this covers</p>
-        <p class="fn-panel__covers-label ar">ما يشمله هذا المجال</p>
+        
         <ul class="fn-panel__covers en">
           <li>PMO design, setup, and ongoing operating model</li>
           <li>Portfolio governance, reporting frameworks, and executive dashboards</li>
           <li>Agile delivery maturity assessment and methodology adoption</li>
           <li>Rapid project recovery for at-risk or failing programmes</li>
         </ul>
-        <ul class="fn-panel__covers ar">
-          <li>تصميم مكتب إدارة المشاريع وإعداده ونموذج تشغيله المستمر</li>
-          <li>حوكمة المحافظ وأطر التقارير ولوحات معلومات الإدارة التنفيذية</li>
-          <li>تقييم نضج التسليم الرشيق وتبني المنهجية</li>
-          <li>الإنقاذ السريع للمشاريع المتعثرة أو الفاشلة</li>
-        </ul>
+        
         <p class="fn-panel__prod-label en">Products</p>
-        <p class="fn-panel__prod-label ar">المنتجات</p>
+        
         <div class="fn-tags"><span class="fn-tag">314 DeliverIQ</span><span class="fn-tag">314 FlowOS</span><span class="fn-tag">314 OpsIQ</span><span class="fn-tag">314 RescueIQ</span></div>
       </div>
 
       <!-- 06 Procurement -->
       <div class="fn-panel" id="fn-panel-06" role="region" aria-label="Procurement">
         <p class="fn-panel__cat en">Procurement</p>
-        <p class="fn-panel__cat ar">المشتريات</p>
+        
         <h2 class="fn-panel__h en">Procurement &amp; Vendor Management</h2>
-        <h2 class="fn-panel__h ar">المشتريات وإدارة الموردين</h2>
+        
         <div class="fn-panel__bar"></div>
         <p class="fn-panel__body en">Strategic IT procurement from RFP design to vendor selection, contract negotiation, and savings realisation. Vendor-agnostic by principle: we recommend what is right for the problem, even when it is not the partner that pays us best.</p>
-        <p class="fn-panel__body ar">المشتريات الاستراتيجية لتقنية المعلومات من تصميم طلبات تقديم العروض إلى اختيار الموردين والتفاوض على العقود وتحقيق المدخرات. مستقلون عن الموردين بحكم المبدأ: نوصي بما يناسب المشكلة.</p>
+        
         <p class="fn-panel__covers-label en">What this covers</p>
-        <p class="fn-panel__covers-label ar">ما يشمله هذا المجال</p>
+        
         <ul class="fn-panel__covers en">
           <li>RFP and tender documentation design and review</li>
           <li>Vendor evaluation frameworks and structured shortlisting</li>
           <li>Contract structure advisory and negotiation support</li>
           <li>Procurement strategy and savings realisation tracking</li>
         </ul>
-        <ul class="fn-panel__covers ar">
-          <li>تصميم ومراجعة وثائق طلبات تقديم العروض والمناقصات</li>
-          <li>أطر تقييم الموردين والقوائم المختصرة المنظمة</li>
-          <li>استشارات هيكل العقود ودعم التفاوض</li>
-          <li>استراتيجية المشتريات المتوافقة مع القيمة المحلية وتتبع تحقيق المدخرات</li>
-        </ul>
+        
         <p class="fn-panel__prod-label en">Products</p>
-        <p class="fn-panel__prod-label ar">المنتجات</p>
+        
         <div class="fn-tags"><span class="fn-tag">314 ProcureEdge</span></div>
       </div>
 
       <!-- 07 IT Governance -->
       <div class="fn-panel" id="fn-panel-07" role="region" aria-label="IT Governance">
         <p class="fn-panel__cat en">IT Governance</p>
-        <p class="fn-panel__cat ar">حوكمة تقنية المعلومات</p>
+        
         <h2 class="fn-panel__h en">IT Governance, Risk &amp; Compliance</h2>
-        <h2 class="fn-panel__h ar">حوكمة تقنية المعلومات والمخاطر والامتثال</h2>
+        
         <div class="fn-panel__bar"></div>
         <p class="fn-panel__body en">EGIT frameworks, ISO management system design, business continuity management, risk assessment, ITSM transformation, and certification audit support. Governance that holds under pressure, not governance that exists on paper.</p>
-        <p class="fn-panel__body ar">أطر حوكمة تقنية المعلومات وتصميم أنظمة إدارة ISO وإدارة استمرارية الأعمال وتقييم المخاطر وتحويل ITSM ودعم تدقيق الاعتماد. حوكمة صامدة تحت الضغط لا ورقية.</p>
+        
         <p class="fn-panel__covers-label en">What this covers</p>
-        <p class="fn-panel__covers-label ar">ما يشمله هذا المجال</p>
+        
         <ul class="fn-panel__covers en">
           <li>COBIT and EGIT governance framework design and implementation</li>
           <li>ISO management system design across ISO 27001, 9001, 22301, and 20000</li>
           <li>IT risk assessment, control frameworks, and audit readiness</li>
           <li>Business continuity planning and ITSM transformation</li>
         </ul>
-        <ul class="fn-panel__covers ar">
-          <li>تصميم وتنفيذ إطار حوكمة COBIT وEGIT</li>
-          <li>تصميم أنظمة إدارة ISO عبر ISO 27001 و9001 و22301 و20000</li>
-          <li>تقييم مخاطر تقنية المعلومات وأطر الضوابط والجاهزية للتدقيق</li>
-          <li>تخطيط استمرارية الأعمال وتحويل ITSM</li>
-        </ul>
+        
         <p class="fn-panel__prod-label en">Products</p>
-        <p class="fn-panel__prod-label ar">المنتجات</p>
+        
         <div class="fn-tags"><span class="fn-tag">314 RiskGuard</span><span class="fn-tag">314 ISOCert</span></div>
       </div>
 
       <!-- 08 Leadership -->
       <div class="fn-panel" id="fn-panel-08" role="region" aria-label="Leadership">
         <p class="fn-panel__cat en">Leadership</p>
-        <p class="fn-panel__cat ar">القيادة</p>
+        
         <h2 class="fn-panel__h en">Leadership Development &amp; Capacity Building</h2>
-        <h2 class="fn-panel__h ar">تطوير القيادة وبناء القدرات</h2>
+        
         <div class="fn-panel__bar"></div>
         <p class="fn-panel__body en">Executive coaching, leadership workshops, train-the-trainer programmes, assessor qualification, and institutional training. We build lasting internal capability, not dependency on the next consultant.</p>
-        <p class="fn-panel__body ar">التدريب التنفيذي وورش عمل القيادة وبرامج تدريب المدربين وتأهيل المقيّمين والتدريب المؤسسي. نبني قدرات داخلية دائمة لا اعتماداً على الاستشاري التالي.</p>
+        
         <p class="fn-panel__covers-label en">What this covers</p>
-        <p class="fn-panel__covers-label ar">ما يشمله هذا المجال</p>
+        
         <ul class="fn-panel__covers en">
           <li>Executive coaching and C-suite leadership alignment facilitation</li>
           <li>Leadership programme design, delivery, and follow-through</li>
           <li>Train-the-trainer certification and assessor qualification</li>
           <li>Institutional training plans designed to reduce long-term consultant dependency</li>
         </ul>
-        <ul class="fn-panel__covers ar">
-          <li>التدريب التنفيذي وتيسير توافق قيادة الإدارة العليا</li>
-          <li>تصميم برامج القيادة وتقديمها ومتابعتها</li>
-          <li>اعتماد تدريب المدربين وتأهيل المقيّمين</li>
-          <li>خطط التدريب المؤسسي المصممة لتقليل الاعتماد على المستشارين على المدى البعيد</li>
-        </ul>
+        
         <p class="fn-panel__prod-label en">Products</p>
-        <p class="fn-panel__prod-label ar">المنتجات</p>
+        
         <div class="fn-tags"><span class="fn-tag">314 LeadLab</span><span class="fn-tag">314 CapaBuild</span></div>
       </div>
 
@@ -957,12 +903,12 @@
   <section class="section bg-ink">
     <div class="container" style="text-align:center;">
       <p class="section__label en">Ready to work together?</p>
-      <p class="section__label ar">مستعد للعمل معاً؟</p>
+      
       <h2 class="section__h2 section__h2--light en" style="margin-bottom:8px;">Tell us which function you are working on.</h2>
-      <h2 class="section__h2 section__h2--light ar" style="margin-bottom:8px;">أخبرنا بالوظيفة التي تعمل عليها.</h2>
+      
       <p style="color:var(--muted);font-size:16px;line-height:1.7;max-width:560px;margin:0 auto 32px;" class="en">The first conversation is always with a 314 principal.</p>
-      <p style="color:var(--muted);font-size:16px;line-height:1.7;max-width:560px;margin:0 auto 32px;" class="ar">المحادثة الأولى دائماً مع مدير في 314.</p>
-      <a class="btn btn-primary" data-page="contact"><span class="en">Contact Us</span><span class="ar">تواصل معنا</span></a>
+      
+      <a class="btn btn-primary" data-page="contact"><span class="en">Contact Us</span></a>
     </div>
   </section>
 
@@ -981,9 +927,9 @@
 
   <div class="svc-nav">
     <div class="svc-nav__inner">
-      <a class="svc-nav__btn svc-active" data-page="consulting"><span class="en">314 Advisory</span><span class="ar">314 الاستشارات</span></a>
-      <a class="svc-nav__btn" data-page="cloud"><span class="en">314 Cloud & AI</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a>
-      <a class="svc-nav__btn" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 للبنية الرقمية</span></a>
+      <a class="svc-nav__btn svc-active" data-page="consulting"><span class="en">314 Advisory</span></a>
+      <a class="svc-nav__btn" data-page="cloud"><span class="en">314 Cloud & AI</span></a>
+      <a class="svc-nav__btn" data-page="dpi"><span class="en">314 DPI</span></a>
     </div>
   </div>
 
@@ -992,14 +938,14 @@
       <div class="svc-lead">
         <div>
           <p class="section__label en">314 Advisory</p>
-          <p class="section__label ar">314 الاستشارات</p>
+          
           <h2 class="section__h2 section__h2--ink en">Expert-led advisory.<br>Structured outcomes.</h2>
-          <h2 class="section__h2 ar">استشارات متخصصة.<br>نتائج منظمة.</h2>
+          
         </div>
         <div>
           <p class="svc-lead__body en">15 structured advisory products built for government and enterprise. Each is scoped, costed, and delivered with clear accountability. We are honest about what you need and equally honest about what you do not.</p>
-          <p class="svc-lead__body ar">15 منتجاً استشارياً منظماً مبنياً للحكومات والمؤسسات. كل منتج محدد النطاق والتكلفة ويُسلَّم بمساءلة واضحة. نحن صادقون فيما تحتاجه وفيما لا تحتاجه.</p>
-          <a class="btn btn-primary mt-32" data-page="contact"><span class="en">Contact us</span><span class="ar">تواصل معنا</span></a>
+          
+          <a class="btn btn-primary mt-32" data-page="contact"><span class="en">Contact us</span></a>
         </div>
       </div>
 
@@ -1008,121 +954,121 @@
         <div class="product-card">
           <p class="product-card__name">314 ArchitectIQ</p>
           <h3 class="product-card__title en">Enterprise Architecture &amp; IT Strategy</h3>
-          <h3 class="product-card__title ar">هندسة المؤسسات واستراتيجية تقنية المعلومات</h3>
+          
           <p class="product-card__body en">Architecture design, TOGAF-aligned frameworks, IT strategy development, and transformation roadmaps tied to business outcomes.</p>
-          <p class="product-card__body ar">تصميم الهندسة وأطر TOGAF وتطوير استراتيجية تقنية المعلومات وخرائط طريق التحول المرتبطة بنتائج الأعمال.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 AppGov</p>
           <h3 class="product-card__title en">Application Portfolio Governance</h3>
-          <h3 class="product-card__title ar">حوكمة محفظة التطبيقات</h3>
+          
           <p class="product-card__body en">Application rationalisation, lifecycle management, shadow IT discovery, and portfolio optimisation to reduce cost and technical debt.</p>
-          <p class="product-card__body ar">ترشيد التطبيقات وإدارة دورة الحياة واكتشاف تقنية المعلومات الظل وتحسين المحفظة لخفض التكاليف والديون التقنية.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 ServiceCX</p>
           <h3 class="product-card__title en">Digital Service Design &amp; CX</h3>
-          <h3 class="product-card__title ar">تصميم الخدمات الرقمية وتجربة العملاء</h3>
+          
           <p class="product-card__body en">Journey mapping, service blueprinting, digital channel strategy, and change management to deliver citizen and customer experiences that work.</p>
-          <p class="product-card__body ar">رسم خرائط الرحلة والخدمة واستراتيجية القنوات الرقمية وإدارة التغيير لتقديم تجارب مواطن وعميل تعمل فعلاً.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 ExcelGov</p>
           <h3 class="product-card__title en">Government Excellence &amp; Awards</h3>
-          <h3 class="product-card__title ar">التميز الحكومي والجوائز</h3>
+          
           <p class="product-card__body en">End-to-end readiness for UAE national excellence frameworks. Assessment, gap analysis, enablement programmes, and submission support.</p>
-          <p class="product-card__body ar">الجاهزية الشاملة لأطر التميز الوطني الإماراتية. التقييم وتحليل الفجوات وبرامج التمكين ودعم التقديم.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 GovAI</p>
           <h3 class="product-card__title en">AI Strategy for Government</h3>
-          <h3 class="product-card__title ar">استراتيجية الذكاء الاصطناعي للحكومة</h3>
+          
           <p class="product-card__body en">AI readiness assessment, sovereign infrastructure advisory, use-case prioritisation, and governance frameworks for public sector adoption.</p>
-          <p class="product-card__body ar">تقييم الجاهزية واستشارات البنية التحتية السيادية وتحديد أولويات حالات الاستخدام وأطر الحوكمة لتبني القطاع العام.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 AgentAI</p>
           <h3 class="product-card__title en">Agentic AI Deployment</h3>
-          <h3 class="product-card__title ar">نشر وكلاء الذكاء الاصطناعي</h3>
+          
           <p class="product-card__body en">Design and deployment of production-ready AI agents across leading platforms. From workflow automation to multi-agent orchestration at enterprise scale.</p>
-          <p class="product-card__body ar">تصميم ونشر وكلاء ذكاء اصطناعي جاهزين للإنتاج عبر المنصات الرائدة. من أتمتة سير العمل إلى تنسيق الوكلاء المتعددين على نطاق مؤسسي.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 DeliverIQ</p>
           <h3 class="product-card__title en">PMO Setup &amp; Portfolio Governance</h3>
-          <h3 class="product-card__title ar">إعداد مكتب إدارة المشاريع وحوكمة المحافظ</h3>
+          
           <p class="product-card__body en">PMO infrastructure design, portfolio reporting, governance frameworks, and delivery cadence for organisations managing multiple initiatives.</p>
-          <p class="product-card__body ar">تصميم البنية التحتية لمكتب إدارة المشاريع وتقارير المحافظ وأطر الحوكمة لإدارة مبادرات متعددة.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 FlowOS</p>
           <h3 class="product-card__title en">Process Reengineering &amp; Workflow</h3>
-          <h3 class="product-card__title ar">إعادة هندسة العمليات وسير العمل</h3>
+          
           <p class="product-card__body en">End-to-end process mapping, bottleneck identification, redesign, and digital automation of workflows to reduce cycle time and overhead.</p>
-          <p class="product-card__body ar">رسم خرائط العمليات الشاملة وتحديد الاختناقات وإعادة التصميم وأتمتة سير العمل لتقليل وقت الدورة والعبء.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 OpsIQ</p>
           <h3 class="product-card__title en">Operating Model Design</h3>
-          <h3 class="product-card__title ar">تصميم نموذج التشغيل</h3>
+          
           <p class="product-card__body en">Organisational structure, operating model transformation, role clarity, and accountability frameworks for entities undergoing structural change.</p>
-          <p class="product-card__body ar">الهيكل التنظيمي وتحويل نموذج التشغيل ووضوح الأدوار وأطر المساءلة للجهات التي تمر بتغيير هيكلي.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 RescueIQ</p>
           <h3 class="product-card__title en">Programme &amp; Project Recovery</h3>
-          <h3 class="product-card__title ar">إنقاذ البرامج والمشاريع</h3>
+          
           <p class="product-card__body en">Turnaround for at-risk or failing programmes. Rapid diagnostic, root-cause analysis, stabilisation plan, and embedded delivery support.</p>
-          <p class="product-card__body ar">إنقاذ البرامج المتعثرة أو الفاشلة. تشخيص سريع وتحليل الأسباب الجذرية وخطة تثبيت ودعم تسليم مدمج للعودة إلى المسار.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 ProcureEdge</p>
           <h3 class="product-card__title en">IT Procurement &amp; Vendor Advisory</h3>
-          <h3 class="product-card__title ar">مشتريات تقنية المعلومات واستشارات الموردين</h3>
+          
           <p class="product-card__body en">RFP design, vendor evaluation, contract negotiation, and procurement strategy. We recommend the right vendor, not the most convenient one.</p>
-          <p class="product-card__body ar">تصميم طلبات تقديم العروض وتقييم الموردين والتفاوض على العقود واستراتيجية المشتريات المتوافقة مع القيمة المحلية.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 RiskGuard</p>
           <h3 class="product-card__title en">IT Risk &amp; Governance Frameworks</h3>
-          <h3 class="product-card__title ar">أطر مخاطر وحوكمة تقنية المعلومات</h3>
+          
           <p class="product-card__body en">COBIT-aligned IT governance, risk assessments, ITSM transformation, and control frameworks for organisations that need governance that holds under pressure.</p>
-          <p class="product-card__body ar">حوكمة تقنية المعلومات وفق COBIT وتقييمات المخاطر وتحويل ITSM وأطر الضوابط لمؤسسات تحتاج حوكمة صامدة.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 ISOCert</p>
           <h3 class="product-card__title en">ISO Management System Design</h3>
-          <h3 class="product-card__title ar">تصميم أنظمة إدارة ISO</h3>
+          
           <p class="product-card__body en">End-to-end ISO implementation across ISO 27001, ISO 9001, ISO 22301, and ISO 20000. Gap analysis, policy design, internal audit, and certification support.</p>
-          <p class="product-card__body ar">تطبيق ISO الشامل عبر ISO 27001 وISO 9001 وISO 22301 وISO 20000. تحليل الفجوات وتصميم السياسات والتدقيق الداخلي ودعم الاعتماد.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 LeadLab</p>
           <h3 class="product-card__title en">Leadership Development Programmes</h3>
-          <h3 class="product-card__title ar">برامج تطوير القيادة</h3>
+          
           <p class="product-card__body en">Executive coaching, leadership workshops, C-suite alignment facilitation, and design thinking for senior teams navigating transformation.</p>
-          <p class="product-card__body ar">التدريب التنفيذي وورش عمل القيادة وتيسير توافق الإدارة العليا والتفكير التصميمي للفرق القيادية التي تقود التحول.</p>
+          
         </div>
 
         <div class="product-card">
           <p class="product-card__name">314 CapaBuild</p>
           <h3 class="product-card__title en">Institutional Capacity Building</h3>
-          <h3 class="product-card__title ar">بناء القدرات المؤسسية</h3>
+          
           <p class="product-card__body en">Train-the-trainer, assessor qualification, institutional training plans, and knowledge transfer designed to reduce long-term dependency on external consultants.</p>
-          <p class="product-card__body ar">برامج تدريب المدربين وتأهيل المقيّمين وخطط التدريب المؤسسي ونقل المعرفة المصممة لتقليل الاعتماد على المستشارين الخارجيين.</p>
+          
         </div>
 
       </div>
@@ -1132,12 +1078,12 @@
   <section class="section bg-ink">
     <div class="container" style="text-align:center;">
       <p class="section__label en">Start a conversation</p>
-      <p class="section__label ar">ابدأ محادثة</p>
+      
       <h2 class="section__h2 section__h2--light en" style="margin-bottom:8px;">Tell us what you need to solve.</h2>
-      <h2 class="section__h2 section__h2--light ar" style="margin-bottom:8px;">أخبرنا بما تحتاج إلى حله.</h2>
+      
       <p style="color:var(--muted);font-size:16px;line-height:1.7;max-width:560px;margin:0 auto 32px;" class="en">The first conversation is always with a 314 principal. No sales team. No pitch deck.</p>
-      <p style="color:var(--muted);font-size:16px;line-height:1.7;max-width:560px;margin:0 auto 32px;" class="ar">المحادثة الأولى دائماً مع مدير في 314. لا فريق مبيعات. لا عروض تقديمية.</p>
-      <a class="btn btn-primary" data-page="contact"><span class="en">Contact Us</span><span class="ar">تواصل معنا</span></a>
+      
+      <a class="btn btn-primary" data-page="contact"><span class="en">Contact Us</span></a>
     </div>
   </section>
 
@@ -1151,9 +1097,9 @@
 
   <div class="svc-nav">
     <div class="svc-nav__inner">
-      <a class="svc-nav__btn" data-page="consulting"><span class="en">314 Advisory</span><span class="ar">314 الاستشارات</span></a>
-      <a class="svc-nav__btn" data-page="cloud"><span class="en">314 Cloud & AI</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a>
-      <a class="svc-nav__btn svc-active" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 للبنية الرقمية</span></a>
+      <a class="svc-nav__btn" data-page="consulting"><span class="en">314 Advisory</span></a>
+      <a class="svc-nav__btn" data-page="cloud"><span class="en">314 Cloud & AI</span></a>
+      <a class="svc-nav__btn svc-active" data-page="dpi"><span class="en">314 DPI</span></a>
     </div>
   </div>
 
@@ -1162,14 +1108,14 @@
       <div class="svc-lead">
         <div>
           <p class="section__label en">314 DPI</p>
-          <p class="section__label ar">314 للبنية الرقمية العامة</p>
+          
           <h2 class="section__h2 section__h2--light en">Digital Public Infrastructure.<br>Delivered at Scale.</h2>
-          <h2 class="section__h2 section__h2--light ar">البنية التحتية الرقمية العامة.<br>مُقدَّمة على نطاق واسع.</h2>
+          
         </div>
         <div>
           <p class="svc-lead__body en" style="color:var(--muted);">When governments, enterprises, and development organisations need to move from manual processes and fragmented records to scalable digital services, 314 DPI provides the infrastructure layer that makes it possible. Functional registries, digital identity, service portals, and AI-powered agents, deployed in weeks rather than years.</p>
-          <p class="svc-lead__body ar" style="color:var(--muted);">أسس رقمية بمستوى حكومي من السجلات الوظيفية إلى المصادقة الرقمية ومشاركة بيانات الاعتماد، قابلة للنشر في أسابيع لا سنوات. خيارات سيادية ومعزولة لمتطلبات القطاع العام.</p>
-          <a class="btn btn-primary mt-32" data-page="contact"><span class="en">Contact us</span><span class="ar">تواصل معنا</span></a>
+          
+          <a class="btn btn-primary mt-32" data-page="contact"><span class="en">Contact us</span></a>
         </div>
       </div>
 
@@ -1183,9 +1129,9 @@
             </svg>
           </div>
           <h3 class="dpi-card__title en">Citizen Service Portals</h3>
-          <h3 class="dpi-card__title ar">بوابات خدمات المواطنين</h3>
+          
           <p class="dpi-card__body en">Always-on digital platforms enabling residents and businesses to access government services, lodge requests, and make secure payments from any device. Paper-based processes eliminated at the source.</p>
-          <p class="dpi-card__body ar">منصات رقمية دائمة الإتاحة تُمكّن المقيمين والشركات من الوصول إلى الخدمات الحكومية وتقديم الطلبات وإجراء المدفوعات الآمنة من أي جهاز. تُلغي العمليات الورقية من جذورها.</p>
+          
         </div>
 
         <div class="dpi-card">
@@ -1195,9 +1141,9 @@
             </svg>
           </div>
           <h3 class="dpi-card__title en">Digital Identity and Authentication</h3>
-          <h3 class="dpi-card__title ar">الهوية الرقمية والمصادقة</h3>
+          
           <p class="dpi-card__body en">Secure, interoperable identity verification across all government touchpoints. Built on national ID infrastructure with multi-channel access, reducing identity fraud and service friction simultaneously.</p>
-          <p class="dpi-card__body ar">تحقق من الهوية آمن وقابل للتشغيل البيني عبر جميع نقاط الخدمة الحكومية. مبني على البنية الوطنية للهوية مع وصول متعدد القنوات.</p>
+          
         </div>
 
         <div class="dpi-card">
@@ -1207,9 +1153,9 @@
             </svg>
           </div>
           <h3 class="dpi-card__title en">Functional Registries</h3>
-          <h3 class="dpi-card__title ar">السجلات الوظيفية</h3>
+          
           <p class="dpi-card__body en">Single, authoritative digital records for births, businesses, land, licences, and more. Real-time data sharing across entities removes duplication and eliminates manual reconciliation.</p>
-          <p class="dpi-card__body ar">سجلات رقمية موثوقة وموحدة للمواليد والشركات والأراضي والتراخيص. مشاركة البيانات في الوقت الفعلي بين الجهات تُزيل التكرار والتسوية اليدوية.</p>
+          
         </div>
 
 
@@ -1219,9 +1165,9 @@
 
       <div class="dpi-pillars-wrap">
         <p class="section__label en" style="margin-bottom:16px;">DPI Pillars</p>
-        <p class="section__label ar" style="margin-bottom:16px;">ركائز البنية الرقمية العامة</p>
+        
         <h3 class="section__h3--light en" style="margin-bottom:32px;">The domains 314 DPI serves</h3>
-        <h3 class="section__h3--light ar" style="margin-bottom:32px;">القطاعات التي تخدمها 314 للبنية الرقمية</h3>
+        
         <div class="dpi-pillars-grid">
 
           <div class="dpi-pillar" data-domain="identity" role="button" tabindex="0">
@@ -1229,7 +1175,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12z"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg>
             </div>
             <p class="dpi-pillar__name en">Identity</p>
-            <p class="dpi-pillar__name ar">الهوية</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="governance" role="button" tabindex="0">
@@ -1237,7 +1183,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 10v11M16 10v11M12 10v11"/></svg>
             </div>
             <p class="dpi-pillar__name en">Governance</p>
-            <p class="dpi-pillar__name ar">الحوكمة</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="infrastructure" role="button" tabindex="0">
@@ -1245,7 +1191,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="8" height="8" rx="1"/></svg>
             </div>
             <p class="dpi-pillar__name en">Infrastructure</p>
-            <p class="dpi-pillar__name ar">البنية التحتية</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="finance" role="button" tabindex="0">
@@ -1253,7 +1199,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/><path d="M9 3.6C7 4.4 5.4 6 4.6 8"/></svg>
             </div>
             <p class="dpi-pillar__name en">Finance</p>
-            <p class="dpi-pillar__name ar">المالية</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="education" role="button" tabindex="0">
@@ -1261,7 +1207,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3l8 4v4c0 5-3.5 9.7-8 11-4.5-1.3-8-6-8-11V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
             </div>
             <p class="dpi-pillar__name en">Education</p>
-            <p class="dpi-pillar__name ar">التعليم</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="agriculture" role="button" tabindex="0">
@@ -1269,7 +1215,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22V12M12 12C12 7 7 4 3 6M12 12c0-5 5-8 9-6M3 6c0 5 3 9 9 16M21 6c0 5-3 9-9 16"/></svg>
             </div>
             <p class="dpi-pillar__name en">Agriculture</p>
-            <p class="dpi-pillar__name ar">الزراعة</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="healthcare" role="button" tabindex="0">
@@ -1277,7 +1223,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </div>
             <p class="dpi-pillar__name en">Healthcare</p>
-            <p class="dpi-pillar__name ar">الرعاية الصحية</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="smartcities" role="button" tabindex="0">
@@ -1285,7 +1231,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/><circle cx="18" cy="9" r="2"/></svg>
             </div>
             <p class="dpi-pillar__name en">Smart Cities</p>
-            <p class="dpi-pillar__name ar">المدن الذكية</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="energy" role="button" tabindex="0">
@@ -1293,7 +1239,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
             <p class="dpi-pillar__name en">Energy</p>
-            <p class="dpi-pillar__name ar">الطاقة</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="socialprotection" role="button" tabindex="0">
@@ -1301,7 +1247,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <p class="dpi-pillar__name en">Social Protection</p>
-            <p class="dpi-pillar__name ar">الحماية الاجتماعية</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="disaster" role="button" tabindex="0">
@@ -1309,7 +1255,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
             <p class="dpi-pillar__name en">Disaster Management</p>
-            <p class="dpi-pillar__name ar">إدارة الكوارث</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="financialservices" role="button" tabindex="0">
@@ -1317,7 +1263,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M8 8V5a4 4 0 018 0v3"/><line x1="12" y1="13" x2="12" y2="15"/></svg>
             </div>
             <p class="dpi-pillar__name en">Financial Services</p>
-            <p class="dpi-pillar__name ar">الخدمات المالية</p>
+            
           </div>
 
           <div class="dpi-pillar" data-domain="commerce" role="button" tabindex="0">
@@ -1325,14 +1271,14 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
             </div>
             <p class="dpi-pillar__name en">Commerce</p>
-            <p class="dpi-pillar__name ar">التجارة</p>
+            
           </div>
 
         </div>
       </div>
 
         <p class="section__label en" style="margin-top:24px;margin-bottom:20px;opacity:0.6;text-align:center;">Click a domain to explore DPI use cases</p>
-        <p class="section__label ar" style="margin-top:24px;margin-bottom:20px;opacity:0.6;text-align:center;">انقر على أي مجال لاستكشاف حالات استخدام البنية التحتية الرقمية</p>
+        
       </div><!-- /dpi-pillars-wrap -->
 
       <!-- DPI Domain Modal -->
@@ -1342,13 +1288,13 @@
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="1" y1="1" x2="15" y2="15"/><line x1="15" y1="1" x2="1" y2="15"/></svg>
           </button>
           <p class="section__label en" style="color:var(--teal);margin-bottom:6px;">DPI Use Cases</p>
-          <p class="section__label ar" style="color:var(--teal);margin-bottom:6px;">حالات استخدام البنية التحتية الرقمية</p>
+          
           <h3 class="ind-modal__title" id="dpiModalTitle"></h3>
           <div class="ind-modal__body">
             <div class="ind-modal__cases" id="dpiModalCases"></div>
           </div>
           <a class="btn btn-primary ind-modal__cta" data-page="contact" id="dpiModalCta">
-            <span class="en">Discuss this with us</span><span class="ar">لنناقش هذا معك</span>
+            <span class="en">Discuss this with us</span>
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -1368,37 +1314,37 @@
       <div class="dpi-for-wrap">
         <div>
           <p class="section__label en" style="margin-bottom:16px;">Who It Is For</p>
-          <p class="section__label ar" style="margin-bottom:16px;">لمن هو موجه</p>
+          
           <div class="for-list">
             <div class="for-item"><span class="for-item__dot"></span>
               <p class="for-item__text en">Government entities modernising citizen-facing service delivery and back-office operations.</p>
-              <p class="for-item__text ar">الوزارات الاتحادية والمحلية التي تُحدّث تقديم الخدمات للمواطنين.</p>
+              
             </div>
             <div class="for-item"><span class="for-item__dot"></span>
               <p class="for-item__text en">Smart city and municipal authorities digitising resident interactions and payment collection.</p>
-              <p class="for-item__text ar">سلطات المدن الذكية والبلديات التي ترقمن تفاعلات السكان وجمع المدفوعات.</p>
+              
             </div>
             <div class="for-item"><span class="for-item__dot"></span>
               <p class="for-item__text en">Entities building national identity, credentialing, or registry platforms from scratch.</p>
-              <p class="for-item__text ar">الجهات التي تبني منصات الهوية الوطنية أو بيانات الاعتماد أو السجلات من الصفر.</p>
+              
             </div>
             <div class="for-item"><span class="for-item__dot"></span>
               <p class="for-item__text en">Public and private sector organisations requiring secure, scalable digital infrastructure with full control over their data.</p>
-              <p class="for-item__text ar">عملاء القطاع العام الذين يحتاجون بنية تحتية سيادية دون أي تنازل عن التحكم بالبيانات.</p>
+              
             </div>
           </div>
         </div>
         <div>
           <p class="section__label en" style="margin-bottom:16px;">Why 314 for DPI</p>
-          <p class="section__label ar" style="margin-bottom:16px;">لماذا 314 للبنية الرقمية</p>
+          
           <div class="for-list">
             <div class="for-item"><span class="for-item__dot"></span>
               <p class="for-item__text en">Experienced DPI delivery partner with proven deployments across government and enterprise contexts, vendor-agnostic by design.</p>
-              <p class="for-item__text ar">شريك متمرس في تسليم DPI بعمليات نشر مثبتة في سياقات حكومية ومؤسسية، مستقل عن المورد في تصميمه.</p>
+              
             </div>
             <div class="for-item"><span class="for-item__dot"></span>
               <p class="for-item__text en">Advisory, architecture, and implementation in one team. No hand-off between strategy and build.</p>
-              <p class="for-item__text ar">الاستشارات والهندسة والتنفيذ في فريق واحد. لا فصل بين الاستراتيجية والبناء.</p>
+              
             </div>
           </div>
         </div>
@@ -1417,9 +1363,9 @@
 
   <div class="svc-nav">
     <div class="svc-nav__inner">
-      <a class="svc-nav__btn" data-page="consulting"><span class="en">314 Advisory</span><span class="ar">314 الاستشارات</span></a>
-      <a class="svc-nav__btn svc-active" data-page="cloud"><span class="en">314 Cloud & AI</span><span class="ar">314 السحابة والذكاء الاصطناعي</span></a>
-      <a class="svc-nav__btn" data-page="dpi"><span class="en">314 DPI</span><span class="ar">314 للبنية الرقمية</span></a>
+      <a class="svc-nav__btn" data-page="consulting"><span class="en">314 Advisory</span></a>
+      <a class="svc-nav__btn svc-active" data-page="cloud"><span class="en">314 Cloud & AI</span></a>
+      <a class="svc-nav__btn" data-page="dpi"><span class="en">314 DPI</span></a>
     </div>
   </div>
 
@@ -1428,37 +1374,37 @@
       <div class="svc-lead">
         <div>
           <p class="section__label en">314 Cloud and Ai</p>
-          <p class="section__label ar">314 السحاب</p>
+          
           <h2 class="section__h2 section__h2--ink en">Cloud and AI,<br>built for what matters.</h2>
-          <h2 class="section__h2 section__h2--ink ar">السحابة والذكاء الاصطناعي،<br>مبنيان لما يهم.</h2>
+          
         </div>
         <div>
           <p class="svc-lead__body en">Cloud strategy, migration, managed services, and AI implementation for governments and enterprises. 314 Technologies handles the full lifecycle, from architecture and planning through to deployment and ongoing management, across platforms, without vendor lock-in.</p>
-          <p class="svc-lead__body ar">استراتيجية السحابة والترحيل والخدمات المُدارة وتنفيذ الذكاء الاصطناعي للحكومات والمؤسسات. تتولى 314 تكنولوجيز دورة الحياة الكاملة، من الهندسة والتخطيط حتى النشر والإدارة المستمرة، عبر المنصات، دون ارتباط بمورد واحد.</p>
-          <a class="btn btn-primary mt-32" data-page="contact"><span class="en">Contact us</span><span class="ar">تواصل معنا</span></a>
+          
+          <a class="btn btn-primary mt-32" data-page="contact"><span class="en">Contact us</span></a>
         </div>
       </div>
 
       <div class="dpi-grid">
         <div class="dpi-card" style="background:var(--paper-2);border-color:var(--hair);">
           <div class="dpi-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-          <h3 class="dpi-card__title" style="color:var(--ink);"><span class="en">Cloud Strategy &amp; Architecture</span><span class="ar">استراتيجية السحابة والهندسة</span></h3>
-          <p class="dpi-card__body" style="color:var(--slate);"><span class="en">Cloud readiness assessment, landing zone design, architecture review, and migration planning aligned to your regulatory environment and data sovereignty requirements.</span><span class="ar">تقييم الجاهزية للسحابة وتصميم منطقة الإطلاق ومراجعة الهندسة وتخطيط الترحيل وفق بيئتك التنظيمية ومتطلبات سيادة البيانات لديك.</span></p>
+          <h3 class="dpi-card__title" style="color:var(--ink);"><span class="en">Cloud Strategy &amp; Architecture</span></h3>
+          <p class="dpi-card__body" style="color:var(--slate);"><span class="en">Cloud readiness assessment, landing zone design, architecture review, and migration planning aligned to your regulatory environment and data sovereignty requirements.</span></p>
         </div>
         <div class="dpi-card" style="background:var(--paper-2);border-color:var(--hair);">
           <div class="dpi-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8h10M7 11h6"/></svg></div>
-          <h3 class="dpi-card__title" style="color:var(--ink);"><span class="en">Cloud Migration &amp; Modernisation</span><span class="ar">ترحيل وتحديث السحابة</span></h3>
-          <p class="dpi-card__body" style="color:var(--slate);"><span class="en">End-to-end workload migration, application modernisation, containerisation, and go-live delivery with embedded project management.</span><span class="ar">ترحيل أعباء العمل الشامل وتحديث التطبيقات والحاويات وتسليم الإطلاق مع إدارة مشاريع مدمجة.</span></p>
+          <h3 class="dpi-card__title" style="color:var(--ink);"><span class="en">Cloud Migration &amp; Modernisation</span></h3>
+          <p class="dpi-card__body" style="color:var(--slate);"><span class="en">End-to-end workload migration, application modernisation, containerisation, and go-live delivery with embedded project management.</span></p>
         </div>
         <div class="dpi-card" style="background:var(--paper-2);border-color:var(--hair);">
           <div class="dpi-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-          <h3 class="dpi-card__title" style="color:var(--ink);"><span class="en">Managed Cloud Services</span><span class="ar">الخدمات السحابية المُدارة</span></h3>
-          <p class="dpi-card__body" style="color:var(--slate);"><span class="en">Ongoing infrastructure management, monitoring, optimisation, and support. A local team that is accountable when things need attention.</span><span class="ar">إدارة البنية التحتية المستمرة والمراقبة والتحسين والدعم. فريق محلي مسؤول عندما تحتاج الأمور إلى انتباه.</span></p>
+          <h3 class="dpi-card__title" style="color:var(--ink);"><span class="en">Managed Cloud Services</span></h3>
+          <p class="dpi-card__body" style="color:var(--slate);"><span class="en">Ongoing infrastructure management, monitoring, optimisation, and support. A local team that is accountable when things need attention.</span></p>
         </div>
         <div class="dpi-card" style="background:var(--paper-2);border-color:var(--hair);">
           <div class="dpi-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
-          <h3 class="dpi-card__title" style="color:var(--ink);"><span class="en">AI &amp; Data Services</span><span class="ar">خدمات الذكاء الاصطناعي والبيانات</span></h3>
-          <p class="dpi-card__body" style="color:var(--slate);"><span class="en">AI model integration, data platform design, and production deployment across the leading AI and data frameworks. Built around your environment, not a single vendor's stack.</span><span class="ar">تكامل منصات الذكاء الاصطناعي والبيانات الرائدة لحالات الاستخدام المؤسسي والحكومي. مبني حول بيئتك، لا حول حزمة مورد واحدة.</span></p>
+          <h3 class="dpi-card__title" style="color:var(--ink);"><span class="en">AI &amp; Data Services</span></h3>
+          <p class="dpi-card__body" style="color:var(--slate);"><span class="en">AI model integration, data platform design, and production deployment across the leading AI and data frameworks. Built around your environment, not a single vendor's stack.</span></p>
         </div>
       </div>
 
@@ -1466,66 +1412,54 @@
       <!-- ── AI AGENTS ── -->
       <div class="ai-agents-wrap">
         <p class="section__label en" style="color:var(--teal);">AI Agents</p>
-        <p class="section__label ar" style="color:var(--teal);">وكلاء الذكاء الاصطناعي</p>
+        
         <h3 class="section__h2 section__h2--light en">From a single automated workflow<br>to an agentic enterprise.</h3>
-        <h3 class="section__h2 section__h2--light ar">من سير عمل آلي واحد إلى مؤسسة ذكية.</h3>
+        
         <p class="ai-agents-lead en" style="color:var(--muted);">Built on the right platform for your environment, delivered end to end.</p>
-        <p class="ai-agents-lead ar">مبني على المنصة المناسبة لبيئتك، مُقدَّم من البداية إلى النهاية.</p>
+        
 
         <div class="ai-agents-grid">
 
           <div class="ai-agent-card">
             <h4 class="ai-agent-card__title en">Production AI Agents</h4>
-            <h4 class="ai-agent-card__title ar">وكلاء جاهزون للإنتاج</h4>
+            
             <p class="ai-agent-card__body en">Design, build, and deployment of production-ready AI agents, from single workflow automations to multi-agent orchestration across your existing systems.</p>
-            <p class="ai-agent-card__body ar">تصميم وبناء ونشر وكلاء ذكاء اصطناعي جاهزين للإنتاج، من أتمتة سير عمل مفردة إلى تنسيق متعدد الوكلاء عبر أنظمتك الحالية.</p>
+            
             <p class="ai-agent-card__use-label">USE CASES</p>
             <ul class="ai-agent-card__uses en">
               <li>Citizen and customer inquiries</li>
               <li>Case and request routing</li>
               <li>Document and back-office processing</li>
             </ul>
-            <ul class="ai-agent-card__uses ar">
-              <li>استفسارات المواطنين والعملاء</li>
-              <li>توجيه الحالات والطلبات</li>
-              <li>معالجة المستندات والمكتب الخلفي</li>
-            </ul>
+            
           </div>
 
           <div class="ai-agent-card">
             <h4 class="ai-agent-card__title en">Front Door Agents</h4>
-            <h4 class="ai-agent-card__title ar">وكلاء الواجهة الأمامية</h4>
+            
             <p class="ai-agent-card__body en">One AI entry point for your workforce and customers. Every request starts in one place and is routed intelligently to the right agent or team.</p>
-            <p class="ai-agent-card__body ar">نقطة دخول ذكاء اصطناعي واحدة لموظفيك وعملائك. كل طلب يبدأ في مكان واحد ويُوجَّه بذكاء إلى الوكيل أو الفريق المناسب.</p>
+            
             <p class="ai-agent-card__use-label">USE CASES</p>
             <ul class="ai-agent-card__uses en">
               <li>Service requests and enterprise search</li>
               <li>HR and IT helpdesk</li>
               <li>Handoff to specialist agents</li>
             </ul>
-            <ul class="ai-agent-card__uses ar">
-              <li>طلبات الخدمة والبحث المؤسسي</li>
-              <li>مكتب مساعدة الموارد البشرية وتقنية المعلومات</li>
-              <li>التسليم إلى وكلاء متخصصين</li>
-            </ul>
+            
           </div>
 
           <div class="ai-agent-card">
             <h4 class="ai-agent-card__title en">Agentic Enterprise Blueprint</h4>
-            <h4 class="ai-agent-card__title ar">مخطط المؤسسة الذكية</h4>
+            
             <p class="ai-agent-card__body en">A structured approach to building the agentic enterprise, spanning infrastructure, data, security, and the agent orchestration layer. We implement it end to end.</p>
-            <p class="ai-agent-card__body ar">نهج منظم لبناء المؤسسة الذكية، يشمل البنية التحتية والبيانات والأمان وطبقة تنسيق الوكلاء. ننفذه من البداية إلى النهاية.</p>
+            
             <p class="ai-agent-card__use-label">USE CASES</p>
             <ul class="ai-agent-card__uses en">
               <li>Agent governance and security</li>
               <li>Secure rollout in your environment</li>
               <li>Pilot to production at scale</li>
             </ul>
-            <ul class="ai-agent-card__uses ar">
-              <li>حوكمة الوكلاء والأمان</li>
-              <li>طرح آمن في بيئتك</li>
-              <li>من التجريب إلى الإنتاج على نطاق واسع</li>
-            </ul>
+            
           </div>
 
         </div><!-- /ai-agents-grid -->
@@ -1535,24 +1469,24 @@
       <!-- ── AI AGENTS BY INDUSTRY ── -->
       <div class="industry-tiles-wrap">
         <p class="section__label en" style="color:var(--teal);margin-bottom:8px;">AI Agents by Industry</p>
-        <p class="section__label ar" style="color:var(--teal);margin-bottom:8px;">وكلاء الذكاء الاصطناعي حسب القطاع</p>
+        
         <h3 class="section__h2 section__h2--ink en" style="margin-bottom:8px;">Every sector. One platform.</h3>
-        <h3 class="section__h2 section__h2--ink ar" style="margin-bottom:8px;">كل قطاع. منصة واحدة.</h3>
+        
         <p style="color:var(--muted);font-size:15px;margin-bottom:6px;" class="en">Click a tile to explore use cases.</p>
-        <p style="color:var(--muted);font-size:15px;margin-bottom:6px;" class="ar">انقر على أي بطاقة لاستكشاف حالات الاستخدام.</p>
+        
         <div class="industry-tiles-grid">
-          <button class="industry-tile" data-industry="government"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 10v11M16 10v11M12 10v11"/></svg></div><span class="industry-tile__name en">Government</span><span class="industry-tile__name ar">الحكومة</span></button>
-          <button class="industry-tile" data-industry="financial"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><span class="industry-tile__name en">Financial Services</span><span class="industry-tile__name ar">الخدمات المالية</span></button>
-          <button class="industry-tile" data-industry="healthcare"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="industry-tile__name en">Healthcare</span><span class="industry-tile__name ar">الرعاية الصحية</span></button>
-          <button class="industry-tile" data-industry="retail"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div><span class="industry-tile__name en">Retail</span><span class="industry-tile__name ar">التجزئة</span></button>
-          <button class="industry-tile" data-industry="telecom"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.2 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.08 6.08l1.08-.64a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><span class="industry-tile__name en">Telecom</span><span class="industry-tile__name ar">الاتصالات</span></button>
-          <button class="industry-tile" data-industry="education"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422A12 12 0 0112 21a12 12 0 01-6.16-10.422L12 14z"/></svg></div><span class="industry-tile__name en">Education</span><span class="industry-tile__name ar">التعليم</span></button>
-          <button class="industry-tile" data-industry="energy"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><span class="industry-tile__name en">Energy</span><span class="industry-tile__name ar">الطاقة</span></button>
-          <button class="industry-tile" data-industry="legal"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span class="industry-tile__name en">Legal</span><span class="industry-tile__name ar">القانوني</span></button>
-          <button class="industry-tile" data-industry="realestate"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></div><span class="industry-tile__name en">Real Estate</span><span class="industry-tile__name ar">العقارات</span></button>
-          <button class="industry-tile" data-industry="manufacturing"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="8" height="8" rx="1"/></svg></div><span class="industry-tile__name en">Manufacturing</span><span class="industry-tile__name ar">التصنيع</span></button>
-          <button class="industry-tile" data-industry="travel"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19.5 2.5S18 2 16.5 3.5L13 7 4.8 5.2a1 1 0 00-.86.3L2 7.4a1 1 0 00.14 1.5L8 13l-2 3-2 1 1 1 1-2 3-2 3.9 5.9a1 1 0 001.5.1l1.9-1.9a1 1 0 00.3-.86z"/></svg></div><span class="industry-tile__name en">Travel</span><span class="industry-tile__name ar">السفر</span></button>
-          <button class="industry-tile" data-industry="smartcity"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/><circle cx="18" cy="9" r="2"/></svg></div><span class="industry-tile__name en">Smart Cities</span><span class="industry-tile__name ar">المدن الذكية</span></button>
+          <button class="industry-tile" data-industry="government"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 10v11M16 10v11M12 10v11"/></svg></div><span class="industry-tile__name en">Government</span></button>
+          <button class="industry-tile" data-industry="financial"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><span class="industry-tile__name en">Financial Services</span></button>
+          <button class="industry-tile" data-industry="healthcare"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="industry-tile__name en">Healthcare</span></button>
+          <button class="industry-tile" data-industry="retail"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div><span class="industry-tile__name en">Retail</span></button>
+          <button class="industry-tile" data-industry="telecom"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.2 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.08 6.08l1.08-.64a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><span class="industry-tile__name en">Telecom</span></button>
+          <button class="industry-tile" data-industry="education"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422A12 12 0 0112 21a12 12 0 01-6.16-10.422L12 14z"/></svg></div><span class="industry-tile__name en">Education</span></button>
+          <button class="industry-tile" data-industry="energy"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><span class="industry-tile__name en">Energy</span></button>
+          <button class="industry-tile" data-industry="legal"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span class="industry-tile__name en">Legal</span></button>
+          <button class="industry-tile" data-industry="realestate"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></div><span class="industry-tile__name en">Real Estate</span></button>
+          <button class="industry-tile" data-industry="manufacturing"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="8" height="8" rx="1"/></svg></div><span class="industry-tile__name en">Manufacturing</span></button>
+          <button class="industry-tile" data-industry="travel"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19.5 2.5S18 2 16.5 3.5L13 7 4.8 5.2a1 1 0 00-.86.3L2 7.4a1 1 0 00.14 1.5L8 13l-2 3-2 1 1 1 1-2 3-2 3.9 5.9a1 1 0 001.5.1l1.9-1.9a1 1 0 00.3-.86z"/></svg></div><span class="industry-tile__name en">Travel</span></button>
+          <button class="industry-tile" data-industry="smartcity"><div class="industry-tile__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/><circle cx="18" cy="9" r="2"/></svg></div><span class="industry-tile__name en">Smart Cities</span></button>
         </div>
       </div>
 
@@ -1568,7 +1502,7 @@
             <div class="ind-modal__cases" id="indModalCases"></div>
           </div>
           <a class="btn btn-primary ind-modal__cta" data-page="contact" id="indModalCta">
-            <span class="en">Discuss this with us</span><span class="ar">لنناقش هذا معك</span>
+            <span class="en">Discuss this with us</span>
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -1618,11 +1552,11 @@
   <section class="page-hero">
     <div class="container">
       <p class="section__label en">Contact Us</p>
-      <p class="section__label ar">تواصل معنا</p>
+      
       <h1 class="page-hero__title en">One call away.</h1>
-      <h1 class="page-hero__title ar">مكالمة محلية.</h1>
+      
       <p class="page-hero__sub en">Whether you are a government entity, a public institution, or an enterprise looking for honest technology advice, we are here. We do not outsource the relationship.</p>
-      <p class="page-hero__sub ar">سواء كنت جهة حكومية أو مؤسسة عامة أو شركة تبحث عن مشورة تقنية صادقة، فنحن هنا. لا نعهد بالعلاقة إلى طرف خارجي.</p>
+      
     </div>
   </section>
 
@@ -1632,28 +1566,28 @@
 
         <div>
           <p class="section__label en" style="margin-bottom:24px;">Get in Touch</p>
-          <p class="section__label ar" style="margin-bottom:24px;">ابدأ التواصل</p>
+          
           <form class="contact-form" id="contactForm" onsubmit="submitContactForm(event);">
             <div class="form-name-org-grid">
               <div class="form-group">
                 <label class="form-label en" for="c-name">Name</label>
-                <label class="form-label ar" for="c-name">الاسم</label>
+                
                 <input class="form-input" id="c-name" type="text" placeholder="Your name" />
               </div>
               <div class="form-group">
                 <label class="form-label en" for="c-org">Organisation</label>
-                <label class="form-label ar" for="c-org">المنظمة</label>
+                
                 <input class="form-input" id="c-org" type="text" placeholder="Your organisation" />
               </div>
             </div>
             <div class="form-group">
               <label class="form-label en" for="c-email">Email</label>
-              <label class="form-label ar" for="c-email">البريد الإلكتروني</label>
+              
               <input class="form-input" id="c-email" type="email" placeholder="you@organisation.com" />
             </div>
             <div class="form-group">
               <label class="form-label en" for="c-svc">Enquiry Type</label>
-              <label class="form-label ar" for="c-svc">نوع الاستفسار</label>
+              
               <select class="form-select" id="c-svc">
                 <option value="">-- Select a service area --</option>
                 <option value="consulting">314 Advisory: advisory, product scoping, or partnership</option>
@@ -1664,36 +1598,36 @@
             </div>
             <div class="form-group">
               <label class="form-label en" for="c-msg">Message</label>
-              <label class="form-label ar" for="c-msg">الرسالة</label>
+              
               <textarea class="form-textarea" id="c-msg" placeholder="Tell us what you are working on. The more context, the better."></textarea>
             </div>
             <button type="submit" class="btn btn-primary" style="width:fit-content;">
               <span class="en">Send Enquiry</span>
-              <span class="ar">إرسال الاستفسار</span>
+              
             </button>
             <p style="font-size:13px;color:var(--slate);line-height:1.6;" class="en">The first response will always be from a 314 principal, not a sales team.</p>
-            <p style="font-size:13px;color:var(--slate);line-height:1.6;" class="ar">الرد الأول سيكون دائماً من مدير في 314، لا من فريق مبيعات.</p>
+            
           </form>
         </div>
 
         <div>
           <p class="section__label en" style="margin-bottom:24px;">Our Details</p>
-          <p class="section__label ar" style="margin-bottom:24px;">تفاصيلنا</p>
+          
           <div class="contact-info-block">
             <div class="contact-info-item">
               <div class="contact-info-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17.657 6.343A8 8 0 112.343 6.343a8 8 0 0115.314 0z"/><path d="M10 10a3 3 0 100-6 3 3 0 000 6z"/></svg></div>
               <div>
                 <p class="contact-info-label en">Location</p>
-                <p class="contact-info-label ar">الموقع</p>
+                
                 <p class="contact-info-value en">Dubai, United Arab Emirates</p>
-                <p class="contact-info-value ar">دبي، الإمارات العربية المتحدة</p>
+                
               </div>
             </div>
             <div class="contact-info-item">
               <div class="contact-info-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z"/><path d="M2 9h16"/></svg></div>
               <div>
                 <p class="contact-info-label en">Website</p>
-                <p class="contact-info-label ar">الموقع الإلكتروني</p>
+                
                 <p class="contact-info-value">314tech.ai</p>
               </div>
             </div>
@@ -1701,7 +1635,7 @@
               <div class="contact-info-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h12c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M20 6l-8 5-8-5"/></svg></div>
               <div>
                 <p class="contact-info-label en">Email</p>
-                <p class="contact-info-label ar">البريد الإلكتروني</p>
+                
                 <a class="contact-info-value" href="mailto:info@314tech.ai" style="color:var(--teal);text-decoration:none;">info@314tech.ai</a>
               </div>
             </div>
@@ -1709,15 +1643,15 @@
               <div class="contact-info-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1z"/></svg></div>
               <div>
                 <p class="contact-info-label en">Trade Name</p>
-                <p class="contact-info-label ar">الاسم التجاري</p>
+                
                 <p class="contact-info-value en">Three One Four Technologies L.L.C</p>
-                <p class="contact-info-value ar">ثري وان فور تكنولوجيز ش.ذ.م.م</p>
+                
               </div>
             </div>
           </div>
           <div style="margin-top:40px;padding:28px 24px;background:var(--ink);border-radius:var(--radius);border-left:3px solid var(--teal);">
             <p style="font-family:var(--font-head);font-size:17px;font-weight:600;color:var(--paper);line-height:1.4;" class="en">The constant you can build on.<br>The infinite you can build toward.</p>
-            <p style="font-family:var(--font-ar);font-size:16px;font-weight:600;color:var(--paper);line-height:1.6;text-align:right;" class="ar">أساسٌ تبني عليه،<br>وأفقٌ تبني نحوه.</p>
+            
           </div>
         </div>
 
@@ -1753,39 +1687,39 @@
           </svg>
         </a>
         <p class="footer__brand__tagline en">The constant you can build on.<br>The infinite you can build toward.</p>
-        <p class="footer__brand__tagline ar">أساسٌ تبني عليه،<br>وأفقٌ تبني نحوه.</p>
+        
         <p class="footer__brand__sub en">Three One Four Technologies L.L.C<br>Dubai, United Arab Emirates</p>
-        <p class="footer__brand__sub ar">ثري وان فور تكنولوجيز ش.ذ.م.م<br>دبي، الإمارات العربية المتحدة</p>
+        
       </div>
       <div>
         <p class="footer__col__heading en">Navigation</p>
-        <p class="footer__col__heading ar">التنقل</p>
+        
         <ul class="footer__links">
-          <li><a class="footer__link en" data-page="home">Home</a><a class="footer__link ar" data-page="home">الرئيسية</a></li>
-          <li><a class="footer__link en" data-page="about">Who we are</a><a class="footer__link ar" data-page="about">من نحن</a></li>
-          <li><a class="footer__link en" data-page="consulting">What we do</a><a class="footer__link ar" data-page="consulting">ما نقدمه</a></li>
-          <li><a class="footer__link en" data-page="contact">Contact</a><a class="footer__link ar" data-page="contact">تواصل معنا</a></li>
+          <li><a class="footer__link en" data-page="home">Home</a></li>
+          <li><a class="footer__link en" data-page="about">Who we are</a></li>
+          <li><a class="footer__link en" data-page="consulting">What we do</a></li>
+          <li><a class="footer__link en" data-page="contact">Contact</a></li>
         </ul>
       </div>
       <div>
         <p class="footer__col__heading en">Services</p>
-        <p class="footer__col__heading ar">الخدمات</p>
+        
         <ul class="footer__links">
-          <li><a class="footer__link en" data-page="consulting">314 Advisory</a><a class="footer__link ar" data-page="consulting">314 الاستشارات</a></li>
-          <li><a class="footer__link en" data-page="cloud">314 Cloud & AI</a><a class="footer__link ar" data-page="cloud">314 السحابة والذكاء الاصطناعي</a></li>
-          <li><a class="footer__link en" data-page="dpi">314 DPI</a><a class="footer__link ar" data-page="dpi">314 للبنية الرقمية</a></li>
+          <li><a class="footer__link en" data-page="consulting">314 Advisory</a></li>
+          <li><a class="footer__link en" data-page="cloud">314 Cloud & AI</a></li>
+          <li><a class="footer__link en" data-page="dpi">314 DPI</a></li>
         </ul>
         <p class="footer__col__heading en" style="margin-top:28px;">Contact</p>
-        <p class="footer__col__heading ar" style="margin-top:28px;">تواصل</p>
+        
         <ul class="footer__links">
           <li><span class="footer__link">314tech.ai</span></li>
-          <li><a class="footer__link en" data-page="contact">Get in touch</a><a class="footer__link ar" data-page="contact">ابدأ التواصل</a></li>
+          <li><a class="footer__link en" data-page="contact">Get in touch</a></li>
         </ul>
       </div>
     </div>
     <div class="footer__bottom">
       <p class="footer__legal en">Three One Four Technologies L.L.C &nbsp;|&nbsp; Dubai, UAE &nbsp;|&nbsp; All rights reserved.</p>
-      <p class="footer__legal ar">ثري وان فور تكنولوجيز ش.ذ.م.م &nbsp;|&nbsp; دبي، الإمارات &nbsp;|&nbsp; جميع الحقوق محفوظة.</p>
+      
       <p class="footer__geo">314tech.ai</p>
     </div>
   </div>
@@ -1880,7 +1814,6 @@
   }
 
   document.addEventListener('click', function (e) {
-    if (e.target.closest('[data-action="lang"]')) { toggleLang(); return; }
     var fnBtn = e.target.closest('.fn-sidebar__item[data-fn]');
     if (fnBtn) { activateFn(fnBtn.dataset.fn); return; }
     var target = e.target.closest('[data-page]');
@@ -1964,37 +1897,6 @@
     }
   });
 
-  // Language toggle
-  var currentLang = 'en';
-
-  function setLang(lang) {
-    currentLang = lang;
-    var body = document.body;
-    var html = document.documentElement;
-    if (lang === 'ar') {
-      body.classList.add('lang-ar');
-      body.classList.remove('lang-en');
-      html.setAttribute('lang', 'ar');
-      html.setAttribute('dir', 'rtl');
-    } else {
-      body.classList.add('lang-en');
-      body.classList.remove('lang-ar');
-      html.setAttribute('lang', 'en');
-      html.setAttribute('dir', 'ltr');
-    }
-    var ol = document.querySelector('meta[property="og:locale"]');
-    var oa = document.querySelector('meta[property="og:locale:alternate"]');
-    if (ol) ol.setAttribute('content', lang === 'ar' ? 'ar_AE' : 'en_US');
-    if (oa) oa.setAttribute('content', lang === 'ar' ? 'en_US' : 'ar_AE');
-  }
-
-  function toggleLang() {
-    setLang(currentLang === 'en' ? 'ar' : 'en');
-  }
-
-  // lang toggle handled via global click handler (data-action="lang")
-  // Expose globals for onclick fallback
-  window._toggleLang = toggleLang;
   window._toggleNav = function() {
     var h = document.getElementById('hamburger');
     var n = document.getElementById('mobileNav');
@@ -2026,7 +1928,6 @@
     });
   }
 
-  setLang('en');
   // ── CONTACT FORM, Web3Forms ──
   window.submitContactForm = function(e) {
     e.preventDefault();
@@ -2043,7 +1944,7 @@
     }
 
     btn.disabled = true;
-    btn.innerHTML = '<span class="en">Sending…</span><span class="ar">جاري الإرسال…</span>';
+    btn.innerHTML = '<span class="en">Sending…</span>';
 
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
@@ -2065,9 +1966,9 @@
         document.getElementById('contactForm').innerHTML =
           '<div style="padding:32px;text-align:center;">' +
           '<p style="font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;" class="en">Message sent.</p>' +
-          '<p style="font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;" class="ar">تم إرسال رسالتك.</p>' +
+          '' +
           '<p style="color:var(--slate);" class="en">We\'ll be in touch shortly.</p>' +
-          '<p style="color:var(--slate);" class="ar">سنتواصل معك قريباً.</p>' +
+          '' +
           '</div>';
       } else {
         throw new Error(data.message || 'Submission failed');
@@ -2075,7 +1976,7 @@
     })
     .catch(function() {
       btn.disabled = false;
-      btn.innerHTML = '<span class="en">Send Enquiry</span><span class="ar">إرسال الاستفسار</span>';
+      btn.innerHTML = '<span class="en">Send Enquiry</span>';
       alert('Something went wrong. Please email us directly at info@314tech.ai');
     });
   };
