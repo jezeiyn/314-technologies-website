@@ -1736,7 +1736,7 @@
   var pages = ['home', 'about',  'functions', 'consulting', 'dpi', 'cloud', 'contact'];
   var currentPage = 'home';
 
-  function showPage(id) {
+  function showPage(id, fromRoute) {
     if (!pages.includes(id)) return;
     currentPage = id;
     pages.forEach(function (p) {
@@ -1760,7 +1760,10 @@
     });
     applyPageMeta(id);
     window.scrollTo({ top: 0, behavior: 'instant' });
-    history.pushState(null, '', '#' + id);
+    var cleanPath = id === 'home' ? '/' : '/' + id;
+    if (window.location.pathname !== cleanPath || window.location.hash) {
+      history[fromRoute ? 'replaceState' : 'pushState'](null, '', cleanPath);
+    }
     closeMobileNav();
   }
 
@@ -1802,7 +1805,7 @@
 
   function applyPageMeta(id) {
     var m = PAGE_META[id] || PAGE_META.home;
-    var url = 'https://www.314tech.ai/' + (id === 'home' ? '' : '#' + id);
+    var url = 'https://www.314tech.ai/' + (id === 'home' ? '' : id);
     document.title = m.t;
     setMeta('meta[name="description"]', 'content', m.d);
     setMeta('meta[property="og:title"]', 'content', m.t);
@@ -1833,14 +1836,15 @@
     }
   });
 
-  function routeFromHash() {
-    var hash = window.location.hash.replace('#', '');
-    if (hash === 'services') hash = 'consulting';
-    if (pages.includes(hash)) showPage(hash);
-    else showPage('home');
+  // Clean URLs: /about, /dpi and so on. Old links such as /#about still work and are rewritten to /about.
+  function routeFromLocation() {
+    var id = window.location.pathname.replace(/^\/+|\/+$/g, '');
+    if (!id) id = window.location.hash.replace('#', '');
+    if (id === 'services') id = 'consulting';
+    showPage(pages.includes(id) ? id : 'home', true);
   }
-  routeFromHash();
-  window.addEventListener('popstate', routeFromHash);
+  routeFromLocation();
+  window.addEventListener('popstate', routeFromLocation);
 
   // Hamburger
   var hamburger = document.getElementById('hamburger');
