@@ -18,11 +18,11 @@
     advisory_topics: "", referred_by: "", consent_db: false, consent_share: false, hp: ""
   };
   const STEPS = [
-    { title: "About you", desc: "Who you are and where you are", head: "Let's start with you", lead: "The basics, so we can reach you and understand where you are in your career." },
-    { title: "Expertise", desc: "Skills and certifications", head: "What you are best at", lead: "Choose your main area, then the skills you would put your name to. Be honest about your level. We check." },
-    { title: "Where you fit", desc: "The 314 work you could support", head: "Where you could fit", lead: "These are 314's service lines and products. Pick the ones where your experience would help. This is how we find you quickly when a contract lands." },
-    { title: "How you work", desc: "Engagement, availability and rates", head: "How you like to work", lead: "Tell us which kinds of engagement you would consider and when you could start." },
-    { title: "Review and send", desc: "Check it over and give consent", head: "Check it over", lead: "Make sure everything looks right. You can change any section before you send." }
+    { title: "Your details", head: "Your details", lead: "How to reach you, and where you are in your career." },
+    { title: "What you do", head: "What you do", lead: "Your main area and the skills you would put your name to. Be straight about your level, because we check." },
+    { title: "Which 314 work fits", head: "Which 314 work fits", lead: "Tick every service line or product where your experience would help. We search on this when a contract lands." },
+    { title: "How you work", head: "How you want to work", lead: "The kinds of engagement you would take on, and when you could start." },
+    { title: "Check and send", head: "Check and send", lead: "Read it through. Use Edit to change anything before you send it." }
   ];
   const COUNTRIES = ["United Arab Emirates", "Saudi Arabia", "Qatar", "Kuwait", "Bahrain", "Oman", "Egypt", "Jordan", "Lebanon", "Turkey", "India", "Pakistan", "United Kingdom", "Ireland", "Germany", "France", "Netherlands", "Spain", "Italy", "Poland", "United States", "Canada", "Australia", "Singapore", "South Africa", "Kenya", "Nigeria", "Ghana", "Ethiopia", "Tanzania", "Uganda", "Rwanda", "Zambia", "Zimbabwe", "Botswana", "Namibia", "Mauritius", "Morocco", "Tunisia", "Senegal", "Cote d'Ivoire", "Democratic Republic of the Congo"];
   const SVGNS = "http://www.w3.org/2000/svg";
@@ -159,12 +159,13 @@
     const name = h("span", { class: "lvl-name", text: PROFICIENCY[cur()] });
     const btns = h("div", { class: "lvl-btns", role: "group", "aria-label": "Your level in " + sk.name }, [1, 2, 3, 4, 5].map(n =>
       h("button", { type: "button", "aria-pressed": String(cur() === n), "aria-label": n + " of 5, " + PROFICIENCY[n], text: String(n), onclick: (e) => {
-        const v = S.skills.get(sk.slug); if (!v) return; v.proficiency = n; name.textContent = PROFICIENCY[n];
-        btns.querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-pressed", String(i + 1 === n))); queueSave(); } })));
+        const v = S.skills.get(sk.slug); if (!v) return; v.proficiency = n; name.textContent = PROFICIENCY[n]; paint(); queueSave(); } })));
+    const paint = () => btns.querySelectorAll("button").forEach((b, i) => { b.classList.toggle("f", i + 1 <= cur()); b.setAttribute("aria-pressed", String(i + 1 === cur())); });
+    paint();
     const row = h("div", { class: "skill-row" + (on ? " on" : "") },
       h("label", { class: "skill-pick" }, h("input", { type: "checkbox", checked: on, "data-k": "s_" + sk.slug, onchange: (e) => {
         if (e.target.checked) S.skills.set(sk.slug, { proficiency: 3 }); else S.skills.delete(sk.slug);
-        row.classList.toggle("on", e.target.checked); name.textContent = PROFICIENCY[cur()]; btns.querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-pressed", String(i + 1 === cur())));
+        row.classList.toggle("on", e.target.checked); name.textContent = PROFICIENCY[cur()]; paint();
         setErr("skills", ""); queueSave(); } }),
         h("span", { class: "box" }, tick()), h("span", { class: "skill-name" }, sk.name, sk.vendor ? h("span", { class: "v", text: sk.vendor }) : null)),
       h("div", { class: "lvl" }, btns, name));
@@ -356,7 +357,7 @@
       const can = i < step;
       stepnav.appendChild(h("li", { class: state }, h("button", { type: "button", "data-go": can ? "1" : null, disabled: !can && i !== step, "aria-current": i === step ? "step" : null,
         onclick: () => { if (can) go(i); } },
-        h("span", { class: "jn-dot" }, i < step ? tick() : String(i + 1)), h("span", {}, h("div", { class: "t", text: s.title }), h("div", { class: "d", text: s.desc })))));
+        h("span", { class: "n", text: String(i + 1).padStart(2, "0") }), h("span", { class: "t", text: s.title }), i < step ? h("span", { class: "ok", text: "Done" }) : h("span"))));
     });
     const pt = document.getElementById("progText"), pb = document.getElementById("progBar");
     const n = Math.min(step, STEPS.length - 1);
@@ -372,18 +373,18 @@
       step > 0 ? h("button", { class: "btn btn-ghost", type: "button", onclick: () => go(step - 1), disabled: busy, text: "Back" }) : h("span"),
       h("div", { style: "flex:1;min-width:0" }, submitError ? h("div", { class: "form-error", role: "alert", text: submitError }) : null),
       h("button", { class: "btn btn-primary", type: "button", disabled: busy, onclick: next },
-        busy ? [h("span", { class: "spin" }), "Sending"] : [last ? "Send application" : "Continue", last ? null : arrow()])));
+        busy ? [h("span", { class: "spin" }), "Sending"] : last ? "Send application" : "Continue")));
   }
 
   function doneView() {
-    const mark = document.createElementNS(SVGNS, "svg"); mark.setAttribute("viewBox", "0 0 14 14"); mark.setAttribute("fill", "none");
-    const p = document.createElementNS(SVGNS, "path"); p.setAttribute("d", "M2.5 7.4l3 3 6-6.4"); p.setAttribute("stroke", "#0F6E68"); p.setAttribute("stroke-width", "1.6"); p.setAttribute("stroke-linecap", "round"); p.setAttribute("stroke-linejoin", "round"); mark.appendChild(p);
-    return h("section", { class: "finish enter" }, h("div", { class: "finish-mark" }, mark), h("h2", { text: "You are on our list." }),
-      h("p", { text: "Thank you, " + (S.full_name.trim().split(/\s+/)[0] || "") + ". Your profile is in the 314 talent network." }),
+    const first = S.full_name.trim().split(/\s+/)[0] || "";
+    return h("section", { class: "finish enter" }, h("div", { class: "kicker", text: "Application received" }),
+      h("h2", { text: first ? "Thanks, " + first + "." : "Thanks." }),
+      h("p", { text: "Your profile is now in the 314 talent network." }),
       h("ol", { class: "next" },
-        h("li", {}, h("b", { text: "1" }), h("div", {}, h("strong", { text: "We review it" }), h("span", { text: "A member of our team reads every application and checks the details." }))),
-        h("li", {}, h("b", { text: "2" }), h("div", {}, h("strong", { text: "We get in touch when it matches" }), h("span", { text: "If your profile fits current or upcoming work, we will contact you at " + S.email.trim() + "." }))),
-        h("li", {}, h("b", { text: "3" }), h("div", {}, h("strong", { text: "You stay in control" }), h("span", { text: "To change or remove your details, reply to any email from us." })))),
+        h("li", {}, h("div", {}, h("strong", { text: "We read it" }), h("span", { text: "Someone on our team goes through every application and checks the details." }))),
+        h("li", {}, h("div", {}, h("strong", { text: "We contact you when work matches" }), h("span", { text: "If your profile fits a live or upcoming project, we will write to you at " + S.email.trim() + ". We do not send bulk mail." }))),
+        h("li", {}, h("div", {}, h("strong", { text: "Changing your mind" }), h("span", { text: "Reply to any email from us to update or delete your details." })))),
       h("a", { class: "btn", href: "/careers", text: "Back to careers" }));
   }
 
@@ -394,7 +395,7 @@
     if (step === 99) { app.appendChild(doneView()); return; }
     const s = STEPS[step];
     app.appendChild(h("div", { class: "enter", key: step },
-      h("header", { class: "jn-head" }, h("div", { class: "eyebrow", text: "Step " + (step + 1) + " of " + STEPS.length }), h("h2", { text: s.head }), h("p", { text: s.lead })),
+      h("header", { class: "jn-head" }, h("h2", { text: s.head }), h("p", { text: s.lead })),
       h("form", { class: "jn-form", novalidate: "", onsubmit: e => { e.preventDefault(); next(); } }, [stepAbout, stepExpertise, stepFit, stepWork, stepReview][step](),
         h("button", { type: "submit", class: "sr-only", tabindex: "-1", text: "Continue" }))));
     // re-show any errors the person has already seen on this step
