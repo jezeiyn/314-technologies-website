@@ -3,188 +3,300 @@
   const API = window.TalentAPI;
   const CFG = window.TALENT_CONFIG;
   const app = document.getElementById("app");
+  const actions = document.getElementById("actions");
+  const stepnav = document.getElementById("stepnav");
 
+  const blankCert = () => ({ name: "", issuer: "", credential_ref: "", expires_on: "" });
   const S = {
     full_name: "", email: "", phone: "", country: "", city: "", current_title: "", current_employer: "",
     hide_employer: false, employer_approval_needed: false, headline: "", seniority: "", years_experience: "",
     languages: "English", sectors: new Set(), linkedin_url: "", github_url: "", portfolio_url: "",
     primaryDomain: "", primaryYears: "", extraDomains: new Set(), skills: new Map(), other_skills: "",
-    offerings: new Set(), credentials: [{ name: "", issuer: "", credential_ref: "", expires_on: "" }],
+    offerings: new Set(), credentials: [blankCert()],
     engagement_modes: new Set(), availability: "within_30_days", available_from: "", rate_currency: "AED",
     day_rate_min: "", day_rate_max: "", advisory_hourly_rate: "", work_modes: new Set(), willing_to_relocate: false,
     advisory_topics: "", referred_by: "", consent_db: false, consent_share: false, hp: ""
   };
-  const STEPS = ["About you", "Expertise", "Where you fit", "How you work", "Consent"];
-  let step = 0, REF = null, errors = {};
+  const STEPS = [
+    { title: "About you", desc: "Who you are and where you are", head: "Let's start with you", lead: "The basics, so we can reach you and understand where you are in your career." },
+    { title: "Expertise", desc: "Skills and certifications", head: "What you are best at", lead: "Choose your main area, then the skills you would put your name to. Be honest about your level. We check." },
+    { title: "Where you fit", desc: "The 314 work you could support", head: "Where you could fit", lead: "These are 314's service lines and products. Pick the ones where your experience would help. This is how we find you quickly when a contract lands." },
+    { title: "How you work", desc: "Engagement, availability and rates", head: "How you like to work", lead: "Tell us which kinds of engagement you would consider and when you could start." },
+    { title: "Review and send", desc: "Check it over and give consent", head: "Check it over", lead: "Make sure everything looks right. You can change any section before you send." }
+  ];
+  const COUNTRIES = ["United Arab Emirates", "Saudi Arabia", "Qatar", "Kuwait", "Bahrain", "Oman", "Egypt", "Jordan", "Lebanon", "Turkey", "India", "Pakistan", "United Kingdom", "Ireland", "Germany", "France", "Netherlands", "Spain", "Italy", "Poland", "United States", "Canada", "Australia", "Singapore", "South Africa", "Kenya", "Nigeria", "Ghana", "Ethiopia", "Tanzania", "Uganda", "Rwanda", "Zambia", "Zimbabwe", "Botswana", "Namibia", "Mauritius", "Morocco", "Tunisia", "Senegal", "Cote d'Ivoire", "Democratic Republic of the Congo"];
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const tick = (cls) => { const s = document.createElementNS(SVGNS, "svg"); s.setAttribute("viewBox", "0 0 14 14"); s.setAttribute("fill", "none"); if (cls) s.setAttribute("class", cls);
+    const p = document.createElementNS(SVGNS, "path"); p.setAttribute("d", "M2.5 7.4l3 3 6-6.4"); p.setAttribute("stroke", "currentColor"); p.setAttribute("stroke-width", "2"); p.setAttribute("stroke-linecap", "round"); p.setAttribute("stroke-linejoin", "round"); s.appendChild(p); return s; };
+  const arrow = () => { const s = document.createElementNS(SVGNS, "svg"); s.setAttribute("viewBox", "0 0 16 16"); s.setAttribute("fill", "none");
+    const p = document.createElementNS(SVGNS, "path"); p.setAttribute("d", "M3 8h10M9 4l4 4-4 4"); p.setAttribute("stroke", "currentColor"); p.setAttribute("stroke-width", "1.8"); p.setAttribute("stroke-linecap", "round"); p.setAttribute("stroke-linejoin", "round"); s.appendChild(p); return s; };
+
+  let step = 0, REF = null, busy = false, submitError = "";
+  const touched = new Set();
+
+  // ---- draft autosave (this browser only; consent and the bot trap are never stored) ----
+  const DRAFT_KEY = "314_talent_draft_v2";
+  const SETS = ["sectors", "extraDomains", "offerings", "engagement_modes", "work_modes"];
+  let saveTimer, restoredAt = null;
+  function snapshot() {
+    const o = {};
+    for (const k of Object.keys(S)) {
+      if (["consent_db", "consent_share", "hp"].includes(k)) continue;
+      o[k] = SETS.includes(k) ? [...S[k]] : k === "skills" ? [...S.skills] : S[k];
+    }
+    return { v: 2, at: Date.now(), step, data: o };
+  }
+  function saveDraft() {
+    try {
+      const empty = !S.full_name && !S.email && !S.primaryDomain && !S.offerings.size;
+      if (empty) return;
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(snapshot()));
+      for (const id of ["saved"]) { const el = document.getElementById(id); if (el) el.hidden = false; }
+      const ps = document.getElementById("progSaved"); if (ps) ps.textContent = "Saved";
+    } catch (e) { /* storage unavailable: the form still works */ }
+  }
+  const queueSave = () => { clearTimeout(saveTimer); saveTimer = setTimeout(saveDraft, 350); };
+  function loadDraft() {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY); if (!raw) return false;
+      const d = JSON.parse(raw);
+      if (!d || d.v !== 2 || Date.now() - d.at > 30 * 864e5) { localStorage.removeItem(DRAFT_KEY); return false; }
+      for (const [k, v] of Object.entries(d.data)) {
+        if (!(k in S)) continue;
+        if (SETS.includes(k)) S[k] = new Set(v); else if (k === "skills") S.skills = new Map(v); else S[k] = v;
+      }
+      if (!S.credentials || !S.credentials.length) S.credentials = [blankCert()];
+      step = Math.min(Math.max(+d.step || 0, 0), STEPS.length - 2);
+      restoredAt = d.at; return true;
+    } catch (e) { return false; }
+  }
+  function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch (e) { /* ignore */ } }
+
+  // ---- error handling: update messages in place so typing never loses focus ----
+  const errSlot = (key) => h("div", { class: "error", role: "alert", "data-err": key, hidden: true });
+  function setErr(key, msg) {
+    document.querySelectorAll('[data-err="' + key + '"]').forEach(el => { el.textContent = msg || ""; el.hidden = !msg; });
+    const ctl = document.getElementById("f_" + key);
+    if (ctl) { if (msg) ctl.setAttribute("aria-invalid", "true"); else ctl.removeAttribute("aria-invalid"); }
+    document.querySelectorAll('[data-box="' + key + '"]').forEach(el => el.classList.toggle("invalid", !!msg));
+  }
+  function showErrors(errs, only) {
+    const keys = new Set([...document.querySelectorAll("[data-err]")].map(e => e.dataset.err));
+    keys.forEach(k => { if (!only || only.has(k)) setErr(k, errs[k]); });
+  }
+  const touch = (key) => { touched.add(key); showErrors(validate(step), new Set([key])); };
+  const clearErr = (key) => { if (touched.has(key) || document.querySelector('[data-err="' + key + '"]:not([hidden])')) setErr(key, ""); };
 
   // ---- form building blocks ----
-  const field = (label, control, opts = {}) => h("div", { class: "field" },
-    h("label", { for: control.id || null }, label, opts.optional ? h("span", { class: "opt", text: " (optional)" }) : null),
-    control, opts.hint ? h("div", { class: "hint", text: opts.hint }) : null,
-    opts.err && errors[opts.err] ? h("div", { class: "error", role: "alert", text: errors[opts.err] }) : null);
+  const field = (key, label, control, o = {}) => h("div", { class: "field", "data-field": key },
+    h("label", { for: control.id || null }, label, o.optional ? h("span", { class: "opt", text: " (optional)" }) : null),
+    control, o.hint ? h("div", { class: "hint", text: o.hint }) : null, errSlot(key));
 
-  const text = (key, o = {}) => h("input", { id: "f_" + key, type: o.type || "text", value: S[key], autocomplete: o.auto || "off",
-    maxlength: o.max || 200, placeholder: o.ph || null, min: o.min, max: o.maxv, inputmode: o.inputmode || null,
-    oninput: (e) => { S[key] = e.target.value; } });
+  const text = (key, o = {}) => h("input", { id: "f_" + key, type: o.type || "text", value: S[key], autocomplete: o.auto || "off", maxlength: o.max || 200,
+    placeholder: o.ph || null, min: o.min, max: o.maxv, inputmode: o.inputmode || null, list: o.list || null, enterkeyhint: o.enter || null, "data-k": key,
+    oninput: (e) => { S[key] = e.target.value; if (touched.has(key)) touch(key); else clearErr(key); queueSave(); },
+    onblur: () => { if (STEP_KEYS[step].includes(key)) touch(key); } });
 
-  const select = (key, options, o = {}) => h("select", { id: "f_" + key, onchange: (e) => { S[key] = e.target.value; delete errors[key]; if (o.rerender) render(); } },
+  const select = (key, options, o = {}) => h("select", { id: "f_" + key, "data-k": key,
+    onchange: (e) => { S[key] = e.target.value; clearErr(key); if (o.rerender) render(); queueSave(); } },
     (o.blank ? [h("option", { value: "", text: o.blank })] : []),
     options.map(([v, l]) => h("option", { value: v, selected: S[key] === v, text: l })));
 
-  const check = (label, get, set, hint) => h("label", { class: "check" },
-    h("input", { type: "checkbox", checked: get(), onchange: (e) => set(e.target.checked) }),
-    h("span", {}, label, hint ? h("span", { class: "muted small", text: " " + hint }) : null));
+  const seg = (key, options) => h("div", { class: "seg", role: "radiogroup", id: "f_" + key + "_g" }, options.map(([v, l]) =>
+    h("label", {}, h("input", { type: "radio", name: "r_" + key, value: v, checked: S[key] === v, "data-k": key,
+      onchange: () => { S[key] = v; clearErr(key); queueSave(); } }), h("span", { text: l }))));
 
-  const chipSet = (setObj, items, rerender) => h("div", { class: "chips" }, items.map(([v, l]) =>
-    h("label", { class: "chip" }, h("input", { type: "checkbox", checked: setObj.has(v),
-      onchange: (e) => { e.target.checked ? setObj.add(v) : setObj.delete(v); if (rerender) render(); } }), l)));
+  const tags = (setObj, items, rerender) => h("div", { class: "tags" }, items.map(([v, l]) =>
+    h("label", { class: "tt" }, h("input", { type: "checkbox", checked: setObj.has(v), "data-k": "t_" + v,
+      onchange: (e) => { e.target.checked ? setObj.add(v) : setObj.delete(v); if (rerender) render(); queueSave(); } }), h("span", { text: l }))));
+
+  const card = (checked, title, desc, onchange, big) => h("label", { class: "cc" + (big ? " big" : "") },
+    h("input", { type: "checkbox", checked, onchange }), h("span", { class: "cc-body" }, h("span", { class: "cc-t", text: title }), h("span", { class: "cc-tick" }, tick()), desc ? h("span", { class: "cc-d", text: desc }) : null));
+
+  const sw = (title, desc, get, set, boxKey) => h("label", { class: "switch", "data-box": boxKey || null },
+    h("input", { type: "checkbox", checked: get(), onchange: (e) => { set(e.target.checked); queueSave(); if (boxKey) setErr(boxKey, ""); } }),
+    h("span", { class: "box" }, tick()), h("span", { class: "st" }, title, desc ? h("span", { class: "sd", text: desc }) : null));
 
   // ---- steps ----
+  const STEP_KEYS = [
+    ["full_name", "email", "country", "current_title", "seniority", "years_experience"],
+    ["primaryDomain", "skills"], ["offerings"], ["engagement_modes", "advisory_topics"], ["consent"]
+  ];
+
   function stepAbout() {
-    return h("section", { class: "panel" }, h("h2", { text: "About you" }),
-      h("p", { class: "lead", text: "Basic details so we can reach you and understand where you are in your career." }),
-      h("div", { class: "grid-2" },
-        field("Full name", text("full_name", { auto: "name" }), { err: "full_name" }),
-        field("Email", text("email", { type: "email", auto: "email" }), { err: "email", hint: "We use this to contact you about relevant work. We never publish it." })),
-      h("div", { class: "grid-2" },
-        field("Phone or WhatsApp", text("phone", { type: "tel", auto: "tel" }), { optional: true }),
-        field("Country you are based in", text("country", { auto: "country-name" }), { err: "country" })),
-      h("div", { class: "grid-2" },
-        field("City", text("city", { auto: "address-level2" }), { optional: true }),
-        field("Current job title", text("current_title"), { err: "current_title" })),
-      field("Current employer", text("current_employer"), { optional: true }),
-      check("Do not show my employer's name to clients. Describe it generally instead.", () => S.hide_employer, v => S.hide_employer = v),
-      check("My employer requires approval for outside work.", () => S.employer_approval_needed, v => S.employer_approval_needed = v,
-        "We will not approach you for outside work until you confirm you are cleared."),
-      h("div", { style: "height:14px" }),
-      field("One line that describes what you do", text("headline", { max: 160, ph: "e.g. Cloud security architect for regulated industries" }), { optional: true }),
-      h("div", { class: "grid-3" },
-        field("Seniority", select("seniority", Object.entries(LABELS.seniority), { blank: "Select" }), { err: "seniority" }),
-        field("Years of experience", text("years_experience", { type: "number", min: 0, maxv: 60, inputmode: "numeric" }), { err: "years_experience" }),
-        field("Languages", text("languages", { max: 120 }), { hint: "Separate with commas." })),
-      field("Sectors you have worked in", chipSet(S.sectors, SECTORS.map(s => [s, s])), { optional: true }),
-      h("div", { class: "grid-3" },
-        field("LinkedIn", text("linkedin_url", { type: "url", ph: "https://" }), { optional: true }),
-        field("GitHub", text("github_url", { type: "url", ph: "https://" }), { optional: true }),
-        field("Portfolio or website", text("portfolio_url", { type: "url", ph: "https://" }), { optional: true })));
+    return [
+      h("div", { class: "row c2" },
+        field("full_name", "Full name", text("full_name", { auto: "name", enter: "next" })),
+        field("email", "Email", text("email", { type: "email", auto: "email", inputmode: "email" }), { hint: "We use this to contact you about relevant work. We never publish it." })),
+      h("div", { class: "row c2" },
+        field("phone", "Phone or WhatsApp", text("phone", { type: "tel", auto: "tel" }), { optional: true }),
+        field("country", "Country you are based in", text("country", { auto: "country-name", list: "countries" }))),
+      h("datalist", { id: "countries" }, COUNTRIES.map(c => h("option", { value: c }))),
+      h("div", { class: "row c2" },
+        field("city", "City", text("city", { auto: "address-level2" }), { optional: true }),
+        field("current_title", "Current job title", text("current_title"))),
+      field("current_employer", "Current employer", text("current_employer"), { optional: true }),
+      sw("Keep my employer's name private", "Clients see a general description instead of the company name.", () => S.hide_employer, v => S.hide_employer = v),
+      sw("My employer requires approval for outside work", "We will not approach you for outside work until you tell us you are cleared.", () => S.employer_approval_needed, v => S.employer_approval_needed = v),
+      h("hr", { class: "rule" }),
+      field("headline", "One line that describes what you do", text("headline", { max: 160, ph: "Cloud security architect for regulated industries" }), { optional: true }),
+      h("div", { class: "field", "data-field": "seniority" }, h("span", { class: "lbl", text: "Seniority" }), seg("seniority", Object.entries(LABELS.seniority)), errSlot("seniority")),
+      h("div", { class: "row c2" },
+        field("years_experience", "Years of experience", text("years_experience", { type: "number", min: 0, maxv: 60, inputmode: "numeric" })),
+        field("languages", "Languages", text("languages", { max: 120 }), { hint: "Separate with commas." })),
+      h("div", { class: "field" }, h("span", { class: "lbl" }, "Sectors you have worked in", h("span", { class: "opt", text: " (optional)" })), tags(S.sectors, SECTORS.map(s => [s, s]))),
+      h("hr", { class: "rule" }),
+      h("div", { class: "row c3" },
+        field("linkedin_url", "LinkedIn", text("linkedin_url", { type: "url", ph: "https://", inputmode: "url" }), { optional: true }),
+        field("github_url", "GitHub", text("github_url", { type: "url", ph: "https://", inputmode: "url" }), { optional: true }),
+        field("portfolio_url", "Portfolio or site", text("portfolio_url", { type: "url", ph: "https://", inputmode: "url" }), { optional: true }))
+    ];
+  }
+
+  function skillRow(sk) {
+    const on = S.skills.has(sk.slug);
+    const cur = () => (S.skills.get(sk.slug) || { proficiency: 3 }).proficiency;
+    const name = h("span", { class: "lvl-name", text: PROFICIENCY[cur()] });
+    const btns = h("div", { class: "lvl-btns", role: "group", "aria-label": "Your level in " + sk.name }, [1, 2, 3, 4, 5].map(n =>
+      h("button", { type: "button", "aria-pressed": String(cur() === n), "aria-label": n + " of 5, " + PROFICIENCY[n], text: String(n), onclick: (e) => {
+        const v = S.skills.get(sk.slug); if (!v) return; v.proficiency = n; name.textContent = PROFICIENCY[n];
+        btns.querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-pressed", String(i + 1 === n))); queueSave(); } })));
+    const row = h("div", { class: "skill-row" + (on ? " on" : "") },
+      h("label", { class: "skill-pick" }, h("input", { type: "checkbox", checked: on, "data-k": "s_" + sk.slug, onchange: (e) => {
+        if (e.target.checked) S.skills.set(sk.slug, { proficiency: 3 }); else S.skills.delete(sk.slug);
+        row.classList.toggle("on", e.target.checked); name.textContent = PROFICIENCY[cur()]; btns.querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-pressed", String(i + 1 === cur())));
+        setErr("skills", ""); queueSave(); } }),
+        h("span", { class: "box" }, tick()), h("span", { class: "skill-name" }, sk.name, sk.vendor ? h("span", { class: "v", text: sk.vendor }) : null)),
+      h("div", { class: "lvl" }, btns, name));
+    return row;
   }
 
   function stepExpertise() {
-    const domOpts = REF.domains.map(d => [d.slug, d.name]);
     const picked = [S.primaryDomain, ...S.extraDomains].filter(Boolean);
     const groups = picked.map(slug => {
-      const dom = REF.domains.find(d => d.slug === slug);
-      const skills = REF.skills.filter(s => s.domain_id === dom.id);
-      return h("div", { class: "skill-group" }, h("h3", { text: dom.name }),
-        skills.map(sk => {
-          const on = S.skills.has(sk.slug);
-          const row = h("div", { class: "skill-row" + (on ? "" : " off") },
-            h("label", { class: "check", style: "margin:0" },
-              h("input", { type: "checkbox", checked: on, onchange: (e) => {
-                if (e.target.checked) S.skills.set(sk.slug, { proficiency: 3 }); else S.skills.delete(sk.slug); delete errors.skills;
-                row.classList.toggle("off", !e.target.checked); } }),
-              h("span", {}, sk.name, sk.vendor ? h("span", { class: "tag", style: "margin-left:8px", text: sk.vendor }) : null)),
-            h("select", { "aria-label": "Level for " + sk.name, onchange: (e) => { const v = S.skills.get(sk.slug); if (v) v.proficiency = +e.target.value; } },
-              Object.entries(PROFICIENCY).map(([n, l]) => h("option", { value: n, selected: (S.skills.get(sk.slug)?.proficiency || 3) == n, text: l }))));
-          return row;
-        }));
+      const dom = REF.domains.find(d => d.slug === slug); if (!dom) return null;
+      const list = REF.skills.filter(s => s.domain_id === dom.id);
+      const n = list.filter(s => S.skills.has(s.slug)).length;
+      return h("div", { class: "skill-group" }, h("h3", {}, dom.name, h("small", { text: n ? n + " selected" : list.length + " skills" })), list.map(skillRow));
     });
-    return h("section", { class: "panel" }, h("h2", { text: "Your expertise" }),
-      h("p", { class: "lead", text: "Choose your main area, then the skills you would put your name to. Be honest about your level. We check." }),
-      h("div", { class: "grid-2" },
-        field("Main area of expertise", select("primaryDomain", domOpts, { blank: "Select", rerender: true }), { err: "primaryDomain" }),
-        field("Years in this area", text("primaryYears", { type: "number", min: 0, maxv: 60 }), { optional: true })),
-      field("Other areas you work in", chipSet(S.extraDomains, REF.domains.filter(d => d.slug !== S.primaryDomain).map(d => [d.slug, d.name]), true), { optional: true }),
-      picked.length ? h("div", {}, h("div", { class: "small muted", style: "margin-bottom:6px", text: "Tick your skills and set a level for each." }), groups, errors.skills ? h("div", { class: "error", role: "alert", text: errors.skills }) : null)
-        : h("p", { class: "muted", text: "Pick a main area to see its skills." }),
-      h("div", { style: "height:16px" }),
-      field("Anything else we should know about your skills", h("textarea", { id: "f_other", maxlength: 1000, oninput: (e) => S.other_skills = e.target.value, value: S.other_skills }), { optional: true }),
-      h("h3", { text: "Certifications" }),
-      h("p", { class: "muted small", text: "Add the ones that matter for the work you want. We verify them with the issuer before they show as verified." }),
-      S.credentials.map((c, i) => h("div", { class: "cred-row" },
-        h("div", {}, h("label", { class: i ? "sr-only" : null, text: "Certification" }), h("input", { type: "text", value: c.name, maxlength: 160, placeholder: "e.g. Professional Cloud Architect", oninput: e => c.name = e.target.value })),
-        h("div", {}, h("label", { class: i ? "sr-only" : null, text: "Issuer" }), h("input", { type: "text", value: c.issuer, maxlength: 120, oninput: e => c.issuer = e.target.value })),
-        h("div", {}, h("label", { class: i ? "sr-only" : null, text: "Credential ID" }), h("input", { type: "text", value: c.credential_ref, maxlength: 120, oninput: e => c.credential_ref = e.target.value })),
-        h("div", {}, h("label", { class: i ? "sr-only" : null, text: "Expires" }), h("input", { type: "date", value: c.expires_on, oninput: e => c.expires_on = e.target.value })),
-        h("button", { class: "btn btn-sm", type: "button", "aria-label": "Remove certification", onclick: () => { S.credentials.splice(i, 1); if (!S.credentials.length) S.credentials.push({ name: "", issuer: "", credential_ref: "", expires_on: "" }); render(); }, text: "Remove" }))),
-      S.credentials.length < 12 ? h("button", { class: "btn btn-sm", type: "button", onclick: () => { S.credentials.push({ name: "", issuer: "", credential_ref: "", expires_on: "" }); render(); }, text: "Add another" }) : null);
+    return [
+      h("div", { class: "row c2" },
+        field("primaryDomain", "Main area of expertise", select("primaryDomain", REF.domains.map(d => [d.slug, d.name]), { blank: "Choose one", rerender: true })),
+        field("primaryYears", "Years in this area", text("primaryYears", { type: "number", min: 0, maxv: 60, inputmode: "numeric" }), { optional: true })),
+      h("div", { class: "field" }, h("span", { class: "lbl" }, "Other areas you work in", h("span", { class: "opt", text: " (optional)" })),
+        tags(S.extraDomains, REF.domains.filter(d => d.slug !== S.primaryDomain).map(d => [d.slug, d.name]), true)),
+      picked.length
+        ? h("div", { class: "field", "data-field": "skills" }, h("span", { class: "lbl", text: "Tick your skills and set a level for each" }), h("div", {}, groups), errSlot("skills"))
+        : h("div", { class: "empty", text: "Choose a main area and its skills will appear here." }),
+      field("other_skills", "Anything else we should know about your skills", h("textarea", { id: "f_other_skills", maxlength: 1000, value: S.other_skills, "data-k": "other_skills", oninput: (e) => { S.other_skills = e.target.value; queueSave(); } }, ), { optional: true }),
+      h("h3", { class: "sub", text: "Certifications" }),
+      h("p", { class: "hint", style: "margin-top:-14px", text: "Add the ones that matter for the work you want. We verify them with the issuer before they show as verified." }),
+      h("div", {}, S.credentials.map((c, i) => h("div", { class: "cert" },
+        field("c" + i + "n", "Certification", h("input", { id: "f_c" + i + "n", type: "text", value: c.name, maxlength: 160, placeholder: "Professional Cloud Architect", oninput: e => { c.name = e.target.value; queueSave(); } })),
+        field("c" + i + "i", "Issuer", h("input", { id: "f_c" + i + "i", type: "text", value: c.issuer, maxlength: 120, placeholder: "Google Cloud", oninput: e => { c.issuer = e.target.value; queueSave(); } })),
+        field("c" + i + "r", "Credential ID", h("input", { id: "f_c" + i + "r", type: "text", value: c.credential_ref, maxlength: 120, oninput: e => { c.credential_ref = e.target.value; queueSave(); } }), { optional: true }),
+        field("c" + i + "e", "Expires", h("input", { id: "f_c" + i + "e", type: "date", value: c.expires_on, oninput: e => { c.expires_on = e.target.value; queueSave(); } }), { optional: true }),
+        S.credentials.length > 1 || c.name ? h("button", { class: "link-btn rm", type: "button", onclick: () => { S.credentials.splice(i, 1); if (!S.credentials.length) S.credentials.push(blankCert()); render(); queueSave(); }, text: "Remove" }) : null)),
+        S.credentials.length < 12 ? h("button", { class: "add", type: "button", onclick: () => { S.credentials.push(blankCert()); render(); queueSave(); }, text: "+ Add another certification" }) : null)
+    ];
   }
 
   function stepFit() {
-    const lines = ["consulting", "dpi", "cloud"];
-    return h("section", { class: "panel" }, h("h2", { text: "Where you could fit" }),
-      h("p", { class: "lead", text: "These are the 314 service lines and products. Tick the ones where your experience would help. This is how we find you quickly when a contract lands." }),
-      lines.map(l => h("div", { class: "offer-line" }, h("h3", { text: LABELS.line[l] }),
-        h("div", { class: "chips" }, REF.offerings.filter(o => o.service_line === l).map(o =>
-          h("label", { class: "chip", title: o.summary }, h("input", { type: "checkbox", checked: S.offerings.has(o.slug),
-            onchange: e => e.target.checked ? S.offerings.add(o.slug) : S.offerings.delete(o.slug) }), o.name))))),
-      errors.offerings ? h("div", { class: "error", role: "alert", text: errors.offerings }) : null);
+    return [
+      ...["consulting", "dpi", "cloud"].map(l => {
+        const list = REF.offerings.filter(o => o.service_line === l);
+        return h("div", { class: "offer-line" }, h("div", { class: "line-title" }, h("h3", { text: LABELS.line[l] }), h("span", { text: S.offerings.size ? "" : list.length + (list.length === 1 ? " offering" : " offerings") })),
+          h("div", { class: "cards" }, list.map(o => card(S.offerings.has(o.slug), o.name, o.summary, (e) => { e.target.checked ? S.offerings.add(o.slug) : S.offerings.delete(o.slug); setErr("offerings", ""); queueSave(); }))));
+      }),
+      h("div", { class: "field" }, errSlot("offerings"))
+    ];
   }
 
   function stepWork() {
     const adv = S.engagement_modes.has("advisory");
-    return h("section", { class: "panel" }, h("h2", { text: "How you like to work" }),
-      h("p", { class: "lead", text: "Tick every kind of engagement you would consider." }),
-      h("div", { class: "field" }, h("label", { text: "Engagement types" }),
-        chipSet(S.engagement_modes, Object.entries(LABELS.modes), true),
-        h("div", { class: "hint", text: "Advisory means paid expert input by the hour, such as reviews, workshops and second opinions." }),
-        errors.engagement_modes ? h("div", { class: "error", role: "alert", text: errors.engagement_modes }) : null),
-      h("div", { class: "grid-2" },
-        field("When could you start?", select("availability", Object.entries(LABELS.availability)), {}),
-        field("Or from a specific date", text("available_from", { type: "date" }), { optional: true })),
-      h("div", { class: "grid-3" },
-        field("Currency", select("rate_currency", CURRENCIES.map(c => [c, c]))),
-        field("Day rate, from", text("day_rate_min", { type: "number", min: 0 }), { optional: true }),
-        field("Day rate, to", text("day_rate_max", { type: "number", min: 0 }), { optional: true })),
-      h("p", { class: "muted small", text: "Rates are only used internally to check fit with a project budget. They are never shown to clients without your approval." }),
-      adv ? field("Advisory hourly rate", text("advisory_hourly_rate", { type: "number", min: 0 }), { optional: true }) : null,
-      adv ? field("What could you advise on?", h("textarea", { id: "f_adv", maxlength: 1500, value: S.advisory_topics, oninput: e => S.advisory_topics = e.target.value }),
-        { hint: "For example: zero trust roadmaps, GCP landing zone reviews, ISO 27001 readiness.", err: "advisory_topics" }) : null,
-      field("Where can you work?", chipSet(S.work_modes, Object.entries(LABELS.work)), { optional: true }),
-      check("I would consider relocating for the right project.", () => S.willing_to_relocate, v => S.willing_to_relocate = v),
-      h("div", { style: "height:14px" }),
-      field("Who referred you?", text("referred_by", { max: 120 }), { optional: true }));
+    const modeDesc = { full_time: "A permanent role with 314.", contract: "A defined project or period, usually at a day rate.", advisory: "Paid expert input by the hour: reviews, workshops, second opinions." };
+    return [
+      h("div", { class: "field", "data-field": "engagement_modes" }, h("span", { class: "lbl", text: "Engagement types" }),
+        h("div", { class: "cards" }, Object.entries(LABELS.modes).map(([v, l]) => card(S.engagement_modes.has(v), l, modeDesc[v], (e) => {
+          e.target.checked ? S.engagement_modes.add(v) : S.engagement_modes.delete(v); setErr("engagement_modes", ""); render(); queueSave(); }, true))),
+        h("div", { class: "hint", text: "Pick every kind you would consider." }), errSlot("engagement_modes")),
+      adv ? h("div", { class: "enter" }, h("div", { class: "row c2" },
+        field("advisory_hourly_rate", "Advisory hourly rate", text("advisory_hourly_rate", { type: "number", min: 0, inputmode: "decimal" }), { optional: true }),
+        h("div")), h("div", { style: "height:18px" }),
+        field("advisory_topics", "What could you advise on?", h("textarea", { id: "f_advisory_topics", maxlength: 1500, "data-k": "advisory_topics", value: S.advisory_topics,
+          oninput: e => { S.advisory_topics = e.target.value; if (touched.has("advisory_topics")) touch("advisory_topics"); queueSave(); }, onblur: () => touch("advisory_topics") }),
+          { hint: "For example: zero trust roadmaps, GCP landing zone reviews, ISO 27001 readiness." })) : null,
+      h("hr", { class: "rule" }),
+      h("div", { class: "field" }, h("span", { class: "lbl", text: "When could you start?" }), seg("availability", Object.entries(LABELS.availability))),
+      field("available_from", "Or from a specific date", text("available_from", { type: "date" }), { optional: true }),
+      h("hr", { class: "rule" }),
+      h("div", { class: "row c3" },
+        field("rate_currency", "Currency", select("rate_currency", CURRENCIES.map(c => [c, c]))),
+        field("day_rate_min", "Day rate, from", text("day_rate_min", { type: "number", min: 0, inputmode: "decimal" }), { optional: true }),
+        field("day_rate_max", "Day rate, to", text("day_rate_max", { type: "number", min: 0, inputmode: "decimal" }), { optional: true })),
+      h("p", { class: "hint", style: "margin-top:-10px", text: "Rates are only used internally to check fit with a project budget. They are never shown to clients without your approval." }),
+      h("div", { class: "field" }, h("span", { class: "lbl" }, "Where can you work?", h("span", { class: "opt", text: " (optional)" })), tags(S.work_modes, Object.entries(LABELS.work))),
+      sw("I would consider relocating for the right project", "", () => S.willing_to_relocate, v => S.willing_to_relocate = v),
+      field("referred_by", "Who referred you?", text("referred_by", { max: 120 }), { optional: true })
+    ];
   }
 
-  function stepConsent() {
-    return h("section", { class: "panel" }, h("h2", { text: "Consent" }),
-      h("p", { class: "lead", text: "We hold your details only for matching you to work, and you can ask us to change or delete them at any time." }),
-      h("label", { class: "check" }, h("input", { type: "checkbox", checked: S.consent_db, onchange: e => S.consent_db = e.target.checked }),
-        h("span", {}, "I agree that Three One Four Technologies L.L.C may store the information in this form and use it to contact me about relevant work. I have read the ", h("a", { href: "/careers/privacy", target: "_blank", rel: "noopener", text: "privacy notice" }), ".")),
-      errors.consent ? h("div", { class: "error", role: "alert", text: errors.consent }) : null,
-      h("label", { class: "check" }, h("input", { type: "checkbox", checked: S.consent_share, onchange: e => S.consent_share = e.target.checked }),
-        h("span", {}, "I am happy for 314 to share an anonymised summary of my profile with clients when proposing a team. My name and contact details are only shared after I say yes to that specific opportunity. ", h("span", { class: "muted", text: "(optional)" }))),
-      h("div", { class: "honeypot", "aria-hidden": "true" }, h("label", { for: "f_hp", text: "Leave this empty" }), h("input", { id: "f_hp", type: "text", tabindex: "-1", autocomplete: "off", oninput: e => S.hp = e.target.value })),
-      errors.submit ? h("div", { class: "error", role: "alert", text: errors.submit }) : null);
+  function reviewBlock(title, goto, rows) {
+    return h("section", { class: "rv" }, h("div", { class: "rv-h" }, h("h3", { text: title }), h("button", { class: "link-btn", type: "button", onclick: () => go(goto), text: "Edit" })),
+      h("dl", {}, rows.filter(r => r[1] != null && r[1] !== "" && !(Array.isArray(r[1]) && !r[1].length)).map(([k, v]) => [h("dt", { text: k }),
+        h("dd", {}, Array.isArray(v) ? h("div", { class: "tags" }, v.map(x => h("span", { text: x }))) : String(v))])));
   }
 
-  // ---- validation and submit ----
+  function stepReview() {
+    const dom = (slug) => (REF.domains.find(d => d.slug === slug) || {}).name;
+    const live = new Set([S.primaryDomain, ...S.extraDomains]);
+    const skills = REF.skills.filter(s => S.skills.has(s.slug) && live.has(REF.domains.find(d => d.id === s.domain_id).slug));
+    const certs = S.credentials.filter(c => c.name.trim()).map(c => c.name.trim() + (c.issuer.trim() ? " (" + c.issuer.trim() + ")" : ""));
+    const rate = (S.day_rate_min || S.day_rate_max) ? S.rate_currency + " " + (S.day_rate_min || "?") + " to " + (S.day_rate_max || "?") + " a day" : "";
+    return [
+      reviewBlock("About you", 0, [["Name", S.full_name.trim()], ["Email", S.email.trim()], ["Phone", S.phone.trim()], ["Based in", [S.city.trim(), S.country.trim()].filter(Boolean).join(", ")],
+        ["Role", [S.current_title.trim(), S.current_employer.trim() && !S.hide_employer ? "at " + S.current_employer.trim() : ""].filter(Boolean).join(" ")], ["Level", LABELS.seniority[S.seniority] + (S.years_experience !== "" ? ", " + S.years_experience + " years" : "")]]),
+      reviewBlock("Expertise", 1, [["Main area", dom(S.primaryDomain)], ["Also work in", [...S.extraDomains].map(dom)], ["Skills", skills.map(s => s.name + " (" + PROFICIENCY[S.skills.get(s.slug).proficiency] + ")")], ["Certifications", certs]]),
+      reviewBlock("Where you fit", 2, [["Offerings", REF.offerings.filter(o => S.offerings.has(o.slug)).map(o => o.name)]]),
+      reviewBlock("How you work", 3, [["Engagement", [...S.engagement_modes].map(m => LABELS.modes[m])], ["Available", S.available_from ? "From " + S.available_from : LABELS.availability[S.availability]],
+        ["Day rate", rate], ["Advisory rate", S.engagement_modes.has("advisory") && S.advisory_hourly_rate ? S.rate_currency + " " + S.advisory_hourly_rate + " an hour" : ""], ["Work style", [...S.work_modes].map(m => LABELS.work[m])]]),
+      h("div", { class: "consents" },
+        h("label", { class: "switch", "data-box": "consent" }, h("input", { type: "checkbox", checked: S.consent_db, "data-k": "consent", onchange: e => { S.consent_db = e.target.checked; if (e.target.checked) setErr("consent", ""); else if (touched.has("consent")) touch("consent"); } }),
+          h("span", { class: "box" }, tick()), h("span", { class: "st" }, "I agree that Three One Four Technologies L.L.C may store the information in this form and use it to contact me about relevant work. I have read the ",
+            h("a", { href: "/careers/privacy", target: "_blank", rel: "noopener", text: "privacy notice" }), ".")),
+        errSlot("consent"),
+        sw("Share an anonymised summary of my profile with clients", "Used when 314 proposes a team. My name and contact details are only shared after I say yes to that specific opportunity. Optional.", () => S.consent_share, v => S.consent_share = v),
+        h("div", { class: "honeypot", "aria-hidden": "true" }, h("label", { for: "f_hp", text: "Leave this empty" }), h("input", { id: "f_hp", type: "text", tabindex: "-1", autocomplete: "off", oninput: e => S.hp = e.target.value })))
+    ];
+  }
+
+  // ---- validation (returns messages, never touches the page) ----
   const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
   function validate(i) {
-    errors = {};
+    const e = {};
     if (i === 0) {
-      if (S.full_name.trim().length < 2) errors.full_name = "Please enter your full name.";
-      if (!EMAIL.test(S.email.trim())) errors.email = "Please enter a valid email address.";
-      if (!S.country.trim()) errors.country = "Please enter your country.";
-      if (!S.current_title.trim()) errors.current_title = "Please enter your job title.";
-      if (!S.seniority) errors.seniority = "Please choose a level.";
-      if (S.years_experience === "" || +S.years_experience < 0 || +S.years_experience > 60) errors.years_experience = "Enter a number from 0 to 60.";
+      if (S.full_name.trim().length < 2) e.full_name = "Please enter your full name.";
+      if (!EMAIL.test(S.email.trim())) e.email = "Please enter a valid email address, like name@company.com.";
+      if (!S.country.trim()) e.country = "Please enter your country.";
+      if (!S.current_title.trim()) e.current_title = "Please enter your job title.";
+      if (!S.seniority) e.seniority = "Please choose a level.";
+      if (S.years_experience === "" || +S.years_experience < 0 || +S.years_experience > 60) e.years_experience = "Enter a number from 0 to 60.";
     }
     if (i === 1) {
-      if (!S.primaryDomain) errors.primaryDomain = "Please choose your main area.";
+      if (!S.primaryDomain) e.primaryDomain = "Please choose your main area.";
       else {
         const live = new Set([S.primaryDomain, ...S.extraDomains]);
-        const inLive = REF.skills.filter(sk => S.skills.has(sk.slug) && live.has(REF.domains.find(d => d.id === sk.domain_id).slug));
-        if (!inLive.length) errors.skills = "Tick at least one skill.";
+        const n = REF.skills.filter(sk => S.skills.has(sk.slug) && live.has(REF.domains.find(d => d.id === sk.domain_id).slug)).length;
+        if (!n) e.skills = "Tick at least one skill.";
       }
     }
-    if (i === 2 && !S.offerings.size) errors.offerings = "Tick at least one, or choose the closest match.";
+    if (i === 2 && !S.offerings.size) e.offerings = "Pick at least one, or the closest match.";
     if (i === 3) {
-      if (!S.engagement_modes.size) errors.engagement_modes = "Choose at least one.";
-      if (S.engagement_modes.has("advisory") && !S.advisory_topics.trim()) errors.advisory_topics = "Tell us what you could advise on.";
+      if (!S.engagement_modes.size) e.engagement_modes = "Choose at least one.";
+      if (S.engagement_modes.has("advisory") && !S.advisory_topics.trim()) e.advisory_topics = "Tell us what you could advise on.";
     }
-    if (i === 4 && !S.consent_db) errors.consent = "We need your consent to store your details.";
-    return !Object.keys(errors).length;
+    if (i === 4 && !S.consent_db) e.consent = "We need your consent to store your details.";
+    return e;
   }
 
   function payload() {
@@ -210,41 +322,102 @@
     };
   }
 
-  let busy = false;
+  // ---- navigation ----
+  function scrollTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
+  function go(i, focusMain) { step = i; submitError = ""; render(); scrollTop(); if (focusMain !== false) app.focus({ preventScroll: true }); queueSave(); }
+
+  function firstInvalid(errs) {
+    const order = STEP_KEYS[step]; const k = order.find(x => errs[x]) || Object.keys(errs)[0];
+    const el = document.getElementById("f_" + k) || document.querySelector('[data-field="' + k + '"] input, [data-field="' + k + '"] button') || document.querySelector('[data-err="' + k + '"]');
+    return el;
+  }
   async function next() {
-    if (!validate(step)) { render(); const e = app.querySelector(".error"); if (e) e.scrollIntoView({ block: "center" }); return; }
-    if (step < STEPS.length - 1) { step++; render(); window.scrollTo({ top: app.offsetTop - 20 }); return; }
-    if (busy) return; busy = true; render();
+    if (busy) return;
+    const errs = validate(step);
+    if (Object.keys(errs).length) {
+      Object.keys(errs).forEach(k => touched.add(k)); showErrors(errs);
+      const el = firstInvalid(errs); if (el) { el.scrollIntoView({ block: "center", behavior: "smooth" }); if (el.focus) el.focus({ preventScroll: true }); }
+      return;
+    }
+    if (step < STEPS.length - 1) { go(step + 1); return; }
+    busy = true; submitError = ""; renderActions();
     try {
-      if (S.hp) { step = 99; } // a bot filled the hidden field: pretend success, store nothing
-      else await API.submitApplication(payload());
-      step = 99;
-    } catch (e) { errors = { submit: e.message || "Something went wrong. Please try again." }; }
-    busy = false; render(); window.scrollTo({ top: app.offsetTop - 20 });
+      if (!S.hp) await API.submitApplication(payload());
+      clearDraft(); restoredAt = null; clear(document.getElementById("restore")); const sv = document.getElementById("saved"); if (sv) sv.hidden = true; const ps = document.getElementById("progSaved"); if (ps) ps.textContent = ""; busy = false; step = 99; render(); scrollTop(); app.focus({ preventScroll: true }); return;
+    } catch (e) { submitError = (e && e.message) || "Something went wrong. Please try again."; }
+    busy = false; renderActions();
+  }
+
+  // ---- rendering ----
+  function renderNav() {
+    clear(stepnav);
+    STEPS.forEach((s, i) => {
+      const state = i === step ? "on" : i < step ? "done" : "";
+      const can = i < step;
+      stepnav.appendChild(h("li", { class: state }, h("button", { type: "button", "data-go": can ? "1" : null, disabled: !can && i !== step, "aria-current": i === step ? "step" : null,
+        onclick: () => { if (can) go(i); } },
+        h("span", { class: "jn-dot" }, i < step ? tick() : String(i + 1)), h("span", {}, h("div", { class: "t", text: s.title }), h("div", { class: "d", text: s.desc })))));
+    });
+    const pt = document.getElementById("progText"), pb = document.getElementById("progBar");
+    const n = Math.min(step, STEPS.length - 1);
+    if (pt) { clear(pt); pt.append("Step " + (n + 1) + " of " + STEPS.length + "  "); pt.appendChild(h("b", { text: STEPS[n].title })); }
+    if (pb) pb.style.width = ((step === 99 ? STEPS.length : n + 1) / STEPS.length * 100) + "%";
+  }
+
+  function renderActions() {
+    clear(actions);
+    if (step === 99) return;
+    const last = step === STEPS.length - 1;
+    actions.appendChild(h("div", { class: "jn-actions-in" },
+      step > 0 ? h("button", { class: "btn btn-ghost", type: "button", onclick: () => go(step - 1), disabled: busy, text: "Back" }) : h("span"),
+      h("div", { style: "flex:1;min-width:0" }, submitError ? h("div", { class: "form-error", role: "alert", text: submitError }) : null),
+      h("button", { class: "btn btn-primary", type: "button", disabled: busy, onclick: next },
+        busy ? [h("span", { class: "spin" }), "Sending"] : [last ? "Send application" : "Continue", last ? null : arrow()])));
+  }
+
+  function doneView() {
+    const mark = document.createElementNS(SVGNS, "svg"); mark.setAttribute("viewBox", "0 0 14 14"); mark.setAttribute("fill", "none");
+    const p = document.createElementNS(SVGNS, "path"); p.setAttribute("d", "M2.5 7.4l3 3 6-6.4"); p.setAttribute("stroke", "#0F6E68"); p.setAttribute("stroke-width", "1.6"); p.setAttribute("stroke-linecap", "round"); p.setAttribute("stroke-linejoin", "round"); mark.appendChild(p);
+    return h("section", { class: "finish enter" }, h("div", { class: "finish-mark" }, mark), h("h2", { text: "You are on our list." }),
+      h("p", { text: "Thank you, " + (S.full_name.trim().split(/\s+/)[0] || "") + ". Your profile is in the 314 talent network." }),
+      h("ol", { class: "next" },
+        h("li", {}, h("b", { text: "1" }), h("div", {}, h("strong", { text: "We review it" }), h("span", { text: "A member of our team reads every application and checks the details." }))),
+        h("li", {}, h("b", { text: "2" }), h("div", {}, h("strong", { text: "We get in touch when it matches" }), h("span", { text: "If your profile fits current or upcoming work, we will contact you at " + S.email.trim() + "." }))),
+        h("li", {}, h("b", { text: "3" }), h("div", {}, h("strong", { text: "You stay in control" }), h("span", { text: "To change or remove your details, reply to any email from us." })))),
+      h("a", { class: "btn", href: "/careers", text: "Back to careers" }));
   }
 
   function render() {
-    clear(app);
-    if (step === 99) {
-      app.appendChild(h("section", { class: "panel done-box" }, h("h2", { text: "Thank you. You are on our list." }),
-        h("p", { text: "We review every application. If your profile fits current or upcoming work, someone from 314 will contact you at " + S.email.trim() + ". If you would like to change or remove your details, reply to any email from us." })));
-      return;
-    }
-    app.appendChild(h("ol", { class: "steps", "aria-label": "Progress" }, STEPS.map((s, i) => h("li", { class: i === step ? "on" : i < step ? "done" : "", "aria-current": i === step ? "step" : null, text: (i + 1) + ". " + s }))));
-    const body = [stepAbout, stepExpertise, stepFit, stepWork, stepConsent][step]();
-    app.appendChild(h("form", { novalidate: "", onsubmit: e => { e.preventDefault(); next(); } }, body,
-      h("div", { class: "form-nav" },
-        step > 0 ? h("button", { class: "btn", type: "button", onclick: () => { step--; errors = {}; render(); window.scrollTo({ top: app.offsetTop - 20 }); }, text: "Back" }) : h("span"),
-        h("button", { class: "btn btn-primary", type: "submit", disabled: busy, text: step === STEPS.length - 1 ? (busy ? "Sending" : "Submit application") : "Continue" }))));
+    const active = document.activeElement; const keep = active && active.dataset ? active.dataset.k : null;
+    let sel = null; if (active && active.setSelectionRange && keep) { try { sel = [active.selectionStart, active.selectionEnd]; } catch (e) { sel = null; } }
+    clear(app); renderNav(); renderActions();
+    if (step === 99) { app.appendChild(doneView()); return; }
+    const s = STEPS[step];
+    app.appendChild(h("div", { class: "enter", key: step },
+      h("header", { class: "jn-head" }, h("div", { class: "eyebrow", text: "Step " + (step + 1) + " of " + STEPS.length }), h("h2", { text: s.head }), h("p", { text: s.lead })),
+      h("form", { class: "jn-form", novalidate: "", onsubmit: e => { e.preventDefault(); next(); } }, [stepAbout, stepExpertise, stepFit, stepWork, stepReview][step](),
+        h("button", { type: "submit", class: "sr-only", tabindex: "-1", text: "Continue" }))));
+    // re-show any errors the person has already seen on this step
+    if (touched.size) showErrors(validate(step), touched);
+    if (keep) { const el = app.querySelector('[data-k="' + keep + '"]'); if (el) { el.focus({ preventScroll: true }); if (sel) try { el.setSelectionRange(sel[0], sel[1]); } catch (e) { /* ignore */ } } }
+  }
+
+  function renderRestore() {
+    const host = document.getElementById("restore"); clear(host);
+    if (!restoredAt) return;
+    host.appendChild(h("div", { class: "jn-restore" }, h("span", { text: "Welcome back. We restored your draft from " + UI.fmtDate(restoredAt) + "." }),
+      h("button", { type: "button", onclick: () => { clearDraft(); location.reload(); }, text: "Start again" })));
   }
 
   (async function boot() {
     if (CFG.mode === "demo") {
-      document.getElementById("banner").appendChild(h("div", { class: "banner" }, h("div", { class: "banner-inner" }, h("strong", { text: "Test mode" }),
-        h("span", { text: "Nothing you enter here leaves this browser. Applications appear in the " }), h("a", { href: "/careers/staff", text: "admin dashboard" }), h("span", { text: " of this same browser." }))));
+      document.getElementById("banner").appendChild(h("div", { class: "jn-banner" }, h("strong", { text: "Test mode. " }),
+        "Nothing you enter here leaves this browser. Applications appear in the ", h("a", { href: "/careers/staff", text: "admin dashboard" }), " of this same browser."));
     }
     try { await API.init(); REF = await API.getReference(false); }
-    catch (e) { app.appendChild(h("section", { class: "panel" }, h("h2", { text: "We could not load the form" }), h("p", { text: "Please try again in a moment." }))); console.error(e); return; }
-    render();
+    catch (e) { app.appendChild(h("section", { class: "finish" }, h("h2", { text: "We could not load the form" }), h("p", { text: "Please check your connection and try again in a moment." }))); console.error(e); return; }
+    loadDraft(); renderRestore(); render();
+    const ps = document.getElementById("progSaved"); if (ps && restoredAt) ps.textContent = "Saved";
+    const sv = document.getElementById("saved"); if (sv && restoredAt) sv.hidden = false;
   })();
 })();

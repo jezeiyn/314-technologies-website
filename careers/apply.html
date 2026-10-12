@@ -3,29 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Join the 314 Talent Network</title>
 <meta name="description" content="Engineers, architects, security specialists, AI practitioners and advisors: join the 314 Technologies talent network.">
+<meta name="theme-color" content="#0E1726">
 <link rel="icon" type="image/png" href="/careers/assets/314_favicon_32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/careers/css/app.css">
+<link rel="stylesheet" href="/careers/css/join.css">
 </head>
 <body>
-<div id="banner"></div>
-<header class="hero">
-  <div class="topbar"><div class="topbar-inner" style="max-width:1008px"><img src="/careers/assets/314_wordmark_reversed.svg" alt="314 Technologies"></div></div>
-  <div class="hero-inner">
-    <div class="eyebrow">Talent network</div>
-    <h1>Work on the infrastructure governments and enterprises rely on.</h1>
-    <p>314 Technologies is a Dubai-based technology consultancy and Google Cloud partner. When a project needs a specific skill set, we start with the people in this network. Tell us what you are good at and how you like to work. It takes about ten minutes.</p>
+<div class="jn">
+  <aside class="jn-side">
+    <div class="jn-brand">
+      <img src="/careers/assets/314_wordmark_reversed.svg" alt="314 Technologies">
+      <a class="jn-back" href="/careers">Back to careers</a>
+    </div>
+    <div class="jn-intro">
+      <div class="eyebrow">Talent network</div>
+      <h1>Tell us how you work best.</h1>
+      <p>About ten minutes. Your progress saves as you go, so you can stop and come back.</p>
+    </div>
+    <ol class="jn-steps" id="stepnav" aria-label="Application steps"></ol>
+    <div class="jn-prog" aria-hidden="true">
+      <div class="jn-prog-row"><span id="progText"></span><span id="progSaved"></span></div>
+      <div class="jn-bar"><i id="progBar" style="width:0"></i></div>
+    </div>
+    <div class="jn-side-foot">
+      <span class="jn-saved" id="saved" hidden><i></i><span>Draft saved on this device</span></span>
+      <span>Three One Four Technologies L.L.C, Dubai, UAE</span>
+      <a href="/careers/privacy" target="_blank" rel="noopener">Privacy notice</a>
+    </div>
+  </aside>
+  <div class="jn-main">
+    <div id="banner"></div>
+    <div id="restore"></div>
+    <main class="jn-stage" id="app" aria-live="polite" tabindex="-1"></main>
+    <div class="jn-actions" id="actions"></div>
   </div>
-</header>
-<main class="wrap" id="app" aria-live="polite"></main>
-<footer class="footer">
-  Three One Four Technologies L.L.C, Dubai, UAE &nbsp;|&nbsp; <a href="/careers">Careers</a> &nbsp;|&nbsp; <a href="/careers/privacy">Privacy notice</a>
-</footer>
+</div>
 <script src="/careers/js/config.js"></script>
 <script src="/careers/js/reference-data.js"></script>
 <script src="/careers/js/api.js"></script>
