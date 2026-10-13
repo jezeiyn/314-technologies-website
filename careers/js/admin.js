@@ -225,7 +225,7 @@
       list = list.filter(r => byId.has(r.professional_id) && (!opts.hidePending || byId.get(r.professional_id).status !== "pending"));
       clear(results);
       if (!list.length) { results.appendChild(h("div", { class: "empty", text: "No one in the network has the required skills yet." })); return; }
-      results.appendChild(h("p", { class: "small muted", style: "margin-bottom:8px", text: list.length + " people, best fit first. The score is out of 100: required skills 55, nice-to-have skills 15, skill level 10, kind of work 8, availability 7, verification 3, screening 2." }));
+      results.appendChild(h("p", { class: "small muted", style: "margin-bottom:8px", title: "Score out of 100: required skills 55, nice-to-have skills 15, skill level 10, kind of work 8, availability 7, verification 3, screening 2.", text: list.length + (list.length === 1 ? " person" : " people") + ", best fit first" }));
       const tb = h("tbody");
       list.slice(0, 30).forEach(r => {
         const p = byId.get(r.professional_id);
@@ -356,20 +356,21 @@
     const wrap = h("div"), list = h("div");
     const draw = () => {
       clear(list);
-      const q = libQ.trim().toLowerCase(); let shown = 0;
-      REF.offerings.filter(o => !libOffering || o.id === libOffering).forEach(o => {
-        const tpls = REF.templates.filter(t => t.offering_id === o.id && (!q || (t.title + " " + o.name + " " + t.skills.map(s => skillById.get(s.skill_id)?.name || "").join(" ")).toLowerCase().includes(q)));
-        if (!tpls.length) return; shown += tpls.length;
-        list.appendChild(h("div", { class: "group" }, h("h3", { text: o.name }), h("div", { class: "table-wrap" }, h("table", {}, h("tbody", {}, tpls.map(t => h("tr", {},
-          h("td", {}, h("strong", { text: t.title }), h("div", { class: "sub", text: LABELS.seniority[t.seniority] })),
-          h("td", {}, t.skills.map(s => h("span", { class: "tag " + (s.importance === "required" ? "on" : ""), text: skillById.get(s.skill_id)?.name }))),
-          h("td", { style: "text-align:right;white-space:nowrap" }, h("button", { class: "btn btn-sm", type: "button", onclick: () => openMatches({ kind: "template", id: t.id, title: t.title, skills: t.skills }), text: "Find people" })))))))));
-      });
-      if (!shown) list.appendChild(h("p", { class: "empty", text: q ? "No roles match that search." : "There are no roles in the library yet." }));
+      const q = libQ.trim().toLowerCase();
+      const rows = [];
+      REF.offerings.filter(o => !libOffering || o.id === libOffering).forEach(o => REF.templates.filter(t => t.offering_id === o.id).forEach(t => {
+        const hay = (t.title + " " + o.name + " " + t.skills.map(s => skillById.get(s.skill_id)?.name || "").join(" ")).toLowerCase();
+        if (!q || hay.includes(q)) rows.push([o, t]);
+      }));
+      if (!rows.length) { list.appendChild(h("p", { class: "empty", text: q || libOffering ? "No roles match." : "There are no roles in the library yet." })); return; }
+      list.appendChild(h("div", { class: "table-wrap" }, h("table", {}, h("tbody", {}, rows.map(([o, t]) => h("tr", {},
+        h("td", {}, h("strong", { text: t.title }), " ", h("span", { class: "sub", text: LABELS.seniority[t.seniority] })),
+        h("td", { class: "muted", text: o.name }),
+        h("td", { style: "text-align:right;white-space:nowrap" }, h("button", { class: "btn btn-sm", type: "button", onclick: () => openMatches({ kind: "template", id: t.id, title: t.title, skills: t.skills }), text: "Find people" }))))))));
     };
-    wrap.appendChild(h("div", { class: "page-head" }, h("h1", { text: "Role library" }), h("span", { class: "muted", text: "Pick a role to see who in the network fits" }), h("span", { class: "sp" }),
-      h("input", { type: "search", placeholder: "Search role, skill or service", "aria-label": "Search roles", value: libQ, oninput: e => { libQ = e.target.value; draw(); } }),
-      h("select", { "aria-label": "314 service", style: "width:auto", onchange: e => { libOffering = e.target.value; draw(); } }, h("option", { value: "", text: "All 314 services" }), REF.offerings.map(o => h("option", { value: o.id, selected: libOffering === o.id, text: o.name })))));
+    wrap.appendChild(h("div", { class: "page-head" }, h("h1", { text: "Role library" }), h("span", { class: "sp" }),
+      h("input", { type: "search", placeholder: "Search roles", "aria-label": "Search roles", style: "width:min(260px,100%)", value: libQ, oninput: e => { libQ = e.target.value; draw(); } }),
+      h("select", { "aria-label": "314 service", style: "width:auto", onchange: e => { libOffering = e.target.value; draw(); } }, h("option", { value: "", text: "All services" }), REF.offerings.map(o => h("option", { value: o.id, selected: libOffering === o.id, text: o.name })))));
     wrap.appendChild(list); draw();
     return wrap;
   }
