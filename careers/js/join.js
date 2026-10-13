@@ -32,6 +32,21 @@
     const p = document.createElementNS(SVGNS, "path"); p.setAttribute("d", "M3 8h10M9 4l4 4-4 4"); p.setAttribute("stroke", "currentColor"); p.setAttribute("stroke-width", "1.8"); p.setAttribute("stroke-linecap", "round"); p.setAttribute("stroke-linejoin", "round"); s.appendChild(p); return s; };
 
   let step = 0, REF = null, busy = false, submitError = "";
+  // Cloudflare Turnstile: only active when a site key is set in config.js. The token is single use.
+  let tsToken = "", tsNode = null, tsId = null, tsLoad = null;
+  function loadTurnstile() {
+    if (window.turnstile) return Promise.resolve();
+    return tsLoad || (tsLoad = new Promise((res, rej) => { const el = document.createElement("script"); el.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"; el.async = true; el.onload = res; el.onerror = () => { tsLoad = null; rej(new Error("check")); }; document.head.appendChild(el); }));
+  }
+  function checkBlock() {
+    if (!CFG.turnstileSiteKey) return null;
+    if (!tsNode) {
+      tsNode = h("div", { class: "check" });
+      loadTurnstile().then(() => { tsId = window.turnstile.render(tsNode, { sitekey: CFG.turnstileSiteKey, callback: t => { tsToken = t; setErr("check", ""); }, "expired-callback": () => { tsToken = ""; }, "error-callback": () => { tsToken = ""; } }); }).catch(() => { setErr("check", "The security check could not load. Please reload the page and try again."); });
+    }
+    return h("div", { class: "check-wrap" }, tsNode, errSlot("check"));
+  }
+  function resetCheck() { tsToken = ""; if (tsId !== null && window.turnstile) { try { window.turnstile.reset(tsId); } catch (e) { /* ignore */ } } }
   const touched = new Set();
 
   // ---- draft autosave (this browser only; consent and the bot trap are never stored) ----
@@ -123,7 +138,7 @@
   // ---- steps ----
   const STEP_KEYS = [
     ["full_name", "email", "country", "current_title", "seniority", "years_experience", "linkedin_url", "portfolio_url"],
-    ["primaryDomain", "skills"], ["offerings"], ["engagement_modes", "advisory_topics"], ["consent"]
+    ["primaryDomain", "skills"], ["offerings"], ["engagement_modes", "advisory_topics"], ["consent", "check"]
   ];
 
   function stepAbout() {
@@ -262,6 +277,7 @@
             h("a", { href: "/careers/privacy", target: "_blank", rel: "noopener", text: "privacy notice" }), ".")),
         errSlot("consent"),
         sw("Share an anonymised summary of my profile with clients", "Used when 314 proposes a team. My name and contact details are only shared after I say yes to that specific opportunity. Optional.", () => S.consent_share, v => S.consent_share = v),
+        checkBlock(),
         h("div", { class: "honeypot", "aria-hidden": "true" }, h("label", { for: "f_hp", text: "Leave this empty" }), h("input", { id: "f_hp", type: "text", tabindex: "-1", autocomplete: "off", oninput: e => S.hp = e.target.value })))
     ];
   }
@@ -295,6 +311,7 @@
       if (S.engagement_modes.has("advisory") && !S.advisory_topics.trim()) e.advisory_topics = "Tell us what you could advise on.";
     }
     if (i === 4 && !S.consent_db) e.consent = "We need your consent to store your details.";
+    if (i === 4 && CFG.turnstileSiteKey && !tsToken) e.check = "Please complete the security check.";
     return e;
   }
 
@@ -340,9 +357,9 @@
     if (step < STEPS.length - 1) { go(step + 1); return; }
     busy = true; submitError = ""; renderActions();
     try {
-      if (!S.hp) await API.submitApplication(payload());
+      if (!S.hp) await API.submitApplication(payload(), tsToken);
       clearDraft(); restoredAt = null; clear(document.getElementById("restore")); const sv = document.getElementById("saved"); if (sv) sv.hidden = true; const ps = document.getElementById("progSaved"); if (ps) ps.textContent = ""; busy = false; step = 99; render(); scrollTop(); app.focus({ preventScroll: true }); return;
-    } catch (e) { submitError = (e && e.message) || "Something went wrong. Please try again."; }
+    } catch (e) { submitError = (e && e.message) || "Something went wrong. Please try again."; resetCheck(); }
     busy = false; renderActions();
   }
 
