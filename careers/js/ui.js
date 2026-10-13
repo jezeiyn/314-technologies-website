@@ -31,7 +31,6 @@
     stage: { shortlisted: "Shortlisted", contacted: "Contacted", interested: "Interested", interviewed: "Interviewed", offered: "Offered", placed: "Placed", declined: "Declined" },
     line: { consulting: "314 Consulting", dpi: "314 DPI", cloud: "314 Cloud" }
   };
-  const SECTORS = ["Government", "Healthcare", "Education", "Finance and Banking", "Telecommunications", "Manufacturing and Industrial", "Energy and Utilities"];
   const CURRENCIES = ["AED", "USD", "EUR", "GBP", "ZAR", "KES", "NGN"];
   const PROFICIENCY = { 1: "Familiar", 2: "Working", 3: "Proficient", 4: "Advanced", 5: "Expert" };
 
@@ -71,7 +70,6 @@
 
   const fmtDate = (s) => { if (!s) return ""; const d = new Date(s); return isNaN(d) ? "" : d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); };
   const csvCell = (v) => { v = v == null ? "" : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
-  const dots = (n) => h("span", { class: "dots", role: "img", "aria-label": n + " of 5" }, [1, 2, 3, 4, 5].map(i => h("i", { class: i <= n ? "on" : "" })));
 
-  window.UI = { h, clear, LABELS, SECTORS, CURRENCIES, PROFICIENCY, toast, confirmBox, modal, fmtDate, csvCell, dots };
+  window.UI = { h, clear, LABELS, CURRENCIES, PROFICIENCY, toast, confirmBox, modal, fmtDate, csvCell };
 })();
