@@ -20,6 +20,7 @@
     payload_too_large: "That is a lot of entries. Please shorten the lists and try again.",
     url_invalid: "Please enter links as full web addresses, starting with https://",
     modes_required: "Please choose at least one kind of work.",
+    check_failed: "The security check did not go through. Please try again.",
     try_later: "We are getting a lot of registrations right now. Please try again in a few minutes."
   };
   const friendly = (m) => {
@@ -55,7 +56,18 @@
       const t = need(await sb.from("role_templates").select("*, role_template_skills(skill_id, importance)").order("title"));
       return t.map(x => ({ id: x.id, offering_id: x.offering_id, title: x.title, seniority: x.seniority, skills: x.role_template_skills }));
     },
-    async submitApplication(payload) {
+    async submitApplication(payload, token) {
+      if (CFG.turnstileSiteKey) {
+        // With the bot check on, registrations go through the "register" function, which verifies the token first.
+        let res, body = {};
+        try {
+          res = await fetch(CFG.supabaseUrl + "/functions/v1/register", { method: "POST",
+            headers: { "content-type": "application/json", apikey: CFG.supabaseKey }, body: JSON.stringify({ payload, token }) });
+          body = await res.json().catch(() => ({}));
+        } catch (e) { throw new Error(friendly("network")); }
+        if (!res.ok) throw new Error(friendly(body.error || "failed"));
+        return { ok: true };
+      }
       const { error } = await sb.rpc("submit_application", { payload });
       if (error) throw new Error(friendly(error.message));
       return { ok: true };

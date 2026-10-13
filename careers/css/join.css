@@ -21,6 +21,7 @@ a { color: var(--teal-deep); }
 button, input, select, textarea { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--teal-deep); outline-offset: 3px; border-radius: 2px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.check-wrap { margin-top: 4px; }
 .honeypot { position: absolute; left: -9999px; height: 0; overflow: hidden; }
 
 /* ---------- shell ---------- */
