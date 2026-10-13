@@ -350,19 +350,27 @@
   }
 
   // ---- role library ----
-  let libOffering = "";
+  let libOffering = "", libQ = "";
   async function rolesView() {
     await needProjects();
-    const wrap = h("div");
+    const wrap = h("div"), list = h("div");
+    const draw = () => {
+      clear(list);
+      const q = libQ.trim().toLowerCase(); let shown = 0;
+      REF.offerings.filter(o => !libOffering || o.id === libOffering).forEach(o => {
+        const tpls = REF.templates.filter(t => t.offering_id === o.id && (!q || (t.title + " " + o.name + " " + t.skills.map(s => skillById.get(s.skill_id)?.name || "").join(" ")).toLowerCase().includes(q)));
+        if (!tpls.length) return; shown += tpls.length;
+        list.appendChild(h("div", { class: "group" }, h("h3", { text: o.name }), h("div", { class: "table-wrap" }, h("table", {}, h("tbody", {}, tpls.map(t => h("tr", {},
+          h("td", {}, h("strong", { text: t.title }), h("div", { class: "sub", text: LABELS.seniority[t.seniority] })),
+          h("td", {}, t.skills.map(s => h("span", { class: "tag " + (s.importance === "required" ? "on" : ""), text: skillById.get(s.skill_id)?.name }))),
+          h("td", { style: "text-align:right;white-space:nowrap" }, h("button", { class: "btn btn-sm", type: "button", onclick: () => openMatches({ kind: "template", id: t.id, title: t.title, skills: t.skills }), text: "Find people" })))))))));
+      });
+      if (!shown) list.appendChild(h("p", { class: "empty", text: q ? "No roles match that search." : "There are no roles in the library yet." }));
+    };
     wrap.appendChild(h("div", { class: "page-head" }, h("h1", { text: "Role library" }), h("span", { class: "muted", text: "Pick a role to see who in the network fits" }), h("span", { class: "sp" }),
-      h("select", { "aria-label": "314 service", style: "width:auto", onchange: e => { libOffering = e.target.value; render(); } }, h("option", { value: "", text: "All 314 services" }), REF.offerings.map(o => h("option", { value: o.id, selected: libOffering === o.id, text: o.name })))));
-    REF.offerings.filter(o => !libOffering || o.id === libOffering).forEach(o => {
-      const tpls = REF.templates.filter(t => t.offering_id === o.id); if (!tpls.length) return;
-      wrap.appendChild(h("div", { class: "group" }, h("h3", { text: o.name }), h("div", { class: "table-wrap" }, h("table", {}, h("tbody", {}, tpls.map(t => h("tr", {},
-        h("td", {}, h("strong", { text: t.title }), h("div", { class: "sub", text: LABELS.seniority[t.seniority] })),
-        h("td", {}, t.skills.map(s => h("span", { class: "tag " + (s.importance === "required" ? "on" : ""), text: skillById.get(s.skill_id)?.name }))),
-        h("td", { style: "text-align:right;white-space:nowrap" }, h("button", { class: "btn btn-sm", type: "button", onclick: () => openMatches({ kind: "template", id: t.id, title: t.title, skills: t.skills }), text: "Find people" })))))))));
-    });
+      h("input", { type: "search", placeholder: "Search role, skill or service", "aria-label": "Search roles", value: libQ, oninput: e => { libQ = e.target.value; draw(); } }),
+      h("select", { "aria-label": "314 service", style: "width:auto", onchange: e => { libOffering = e.target.value; draw(); } }, h("option", { value: "", text: "All 314 services" }), REF.offerings.map(o => h("option", { value: o.id, selected: libOffering === o.id, text: o.name })))));
+    wrap.appendChild(list); draw();
     return wrap;
   }
 
