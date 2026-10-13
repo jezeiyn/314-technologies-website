@@ -33,6 +33,7 @@
       const names = p.skills.map(s => skillById.get(s.skill_id)?.name || "");
       p._k = {
         skills: new Set(p.skills.map(s => skillById.get(s.skill_id)?.slug)),
+        skillIds: new Set(p.skills.map(s => s.skill_id)),
         domains: new Set(p.domains.map(d => domById.get(d.domain_id)?.slug)),
         offers: new Set(p.offerings.map(o => offById.get(o)?.slug)),
         hay: [p.full_name, p.email, p.current_title, p.current_employer, p.city, p.country, p.advisory_topics, p.other_skills, ...names,
@@ -93,6 +94,7 @@
     const pending = PROS.filter(p => p.status === "pending").length;
     const count = h("span", { class: "muted" });
     const head = h("div", { class: "page-head" }, h("h1", { text: "People" }), count, h("span", { class: "sp" }),
+      h("button", { class: "btn btn-sm", type: "button", onclick: guard(async () => { await load(); await render(); toast("Up to date"); }), text: "Refresh" }),
       h("button", { class: "btn btn-sm", type: "button", onclick: () => exportCsv(PROS.filter(matches)), text: "Export CSV" }));
     const queue = pending ? h("p", { class: "queue" }, h("button", { class: "link-btn", type: "button", onclick: () => { F.status = F.status === "pending" ? "" : "pending"; render(); },
       text: F.status === "pending" ? "Show everyone" : pending + (pending === 1 ? " profile" : " profiles") + " waiting for review" })) : null;
@@ -190,7 +192,12 @@
         section("Skills", p.skills.length ? [...p.skills].sort((a, b) => b.proficiency - a.proficiency).map(s => { const sk = skillById.get(s.skill_id); return sk ? h("div", { class: "skill-line" }, h("span", { text: sk.name + (sk.vendor ? " (" + sk.vendor + ")" : "") }), h("span", { class: "lvl", text: PROFICIENCY[s.proficiency] })) : null; }) : h("p", { class: "muted", text: "None selected." }),
           p.other_skills ? h("p", { class: "small muted", style: "margin-top:8px", text: "Also: " + p.other_skills }) : null),
         section("Certifications", p.credentials.length ? [p.credentials.map(c => h("label", { class: "check" },
-          h("input", { type: "checkbox", checked: c.verified, onchange: guard(async e => { await API.setCredentialVerified(p.id, c.id, e.target.checked); c.verified = e.target.checked; toast(c.verified ? "Marked verified" : "Verification removed"); }) }),
+          h("input", { type: "checkbox", checked: c.verified, onchange: guard(async e => { await API.setCredentialVerified(p.id, c.id, e.target.checked); c.verified = e.target.checked; const cur = p.credentials.find(x => x.id === c.id); if (cur) cur.verified = e.target.checked;
+            const any = p.credentials.some(x => x.verified);
+            if (any && p.verification_level !== "credential_verified") { await patch(p, { verification_level: "credential_verified" }, "Marked verified, person now credential verified"); }
+            else if (!any && p.verification_level === "credential_verified") { await patch(p, { verification_level: "self_declared" }, "Verification removed, person back to self declared"); }
+            else toast(c.verified ? "Marked verified" : "Verification removed");
+            const vs = document.getElementById("vl"); if (vs) vs.value = p.verification_level; }) }),
           h("span", {}, h("strong", { text: c.name }), c.issuer ? ", " + c.issuer : "", c.credential_ref ? h("span", { class: "muted", text: "  ID " + c.credential_ref }) : null, c.expires_on ? h("span", { class: "muted small", text: "  expires " + fmtDate(c.expires_on) }) : null))),
           h("p", { class: "small muted", text: "Tick one only after checking it with the issuer." })] : h("p", { class: "muted", text: "None listed." })),
         section("Sharing", h("dl", { class: "kv" }, kv("Employer", p.employer_display === "anonymised" ? "Keep private, describe generally" : "Can be named"), kv("Outside work", p.employer_approval_needed ? "Employer approval needed first" : ""),
@@ -233,7 +240,7 @@
           h("td", {}, h("div", { text: r.score.toFixed(0) }), h("span", { class: "scorebar" }, h("i", { style: "width:" + Math.min(100, r.score) + "%" }))),
           h("td", {}, h("button", { class: "link-btn", type: "button", onclick: () => { const mm = document.querySelector(".modal-back"); if (mm) mm.remove(); openDrawer(p.id); }, text: p.full_name }), h("div", { class: "sub", text: [p.current_title, where(p)].filter(Boolean).join(", ") })),
           h("td", {}, `${r.required_matched} of ${r.required_total}`, r.preferred_total ? h("div", { class: "sub", text: `${r.preferred_matched} of ${r.preferred_total} extras` }) : null),
-          h("td", {}, LABELS.availability[p.availability], r.mode_ok ? null : h("div", { class: "sub", text: "Not open to " + (LABELS.modes[cfg.mode] || "this kind of work") }),
+          h("td", {}, LABELS.availability[p.availability], r.mode_ok ? null : h("div", { class: "sub", text: "Not open to " + (LABELS.modes[opts.mode || cfg.mode] || "this kind of work") }),
             r.rate_ok === false ? h("div", { class: "sub", style: "color:var(--danger)", text: "Rate above budget" }) : r.rate_ok === true ? h("div", { class: "sub", text: "Rate within budget" }) : null),
           h("td", {}, st(p.status)),
           h("td", {}, cfg.kind === "role" ? h("button", { class: "btn btn-sm", type: "button", onclick: guard(async (ev) => { await API.addToShortlist(cfg.id, p.id); ev.target.textContent = "Shortlisted"; ev.target.disabled = true; }), text: "Shortlist" }) : null)));
@@ -351,6 +358,11 @@
 
   // ---- role library ----
   let libOffering = "", libQ = "";
+  // Same rule as the database match: anyone not archived or declined who holds at least one required skill.
+  const fitCount = (t) => {
+    const req = t.skills.filter(s => s.importance === "required").map(s => s.skill_id);
+    return PROS.filter(p => !["archived", "declined"].includes(p.status) && (!req.length || req.some(id => p._k.skillIds.has(id)))).length;
+  };
   async function rolesView() {
     await needProjects();
     const wrap = h("div"), list = h("div");
@@ -366,6 +378,7 @@
       list.appendChild(h("div", { class: "table-wrap" }, h("table", {}, h("tbody", {}, rows.map(([o, t]) => h("tr", {},
         h("td", {}, h("strong", { text: t.title }), " ", h("span", { class: "sub", text: LABELS.seniority[t.seniority] })),
         h("td", { class: "muted", text: o.name }),
+        h("td", { class: "muted", style: "white-space:nowrap", text: fitCount(t) ? fitCount(t) + (fitCount(t) === 1 ? " person" : " people") : "No one yet" }),
         h("td", { style: "text-align:right;white-space:nowrap" }, h("button", { class: "btn btn-sm", type: "button", onclick: () => openMatches({ kind: "template", id: t.id, title: t.title, skills: t.skills }), text: "Find people" }))))))));
     };
     wrap.appendChild(h("div", { class: "page-head" }, h("h1", { text: "Role library" }), h("span", { class: "sp" }),
